@@ -11,7 +11,7 @@ public abstract class BusinessFactory {
 	
 	private static BusinessFactory instance;
 
-	public static BusinessFactory getInstance() {
+	public synchronized static BusinessFactory getInstance() {
 		if (instance == null) instance = new BusinessFactoryImp();
 		return instance;
 	}

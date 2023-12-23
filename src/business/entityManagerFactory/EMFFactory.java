@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 public class EMFFactory {
 	private static EntityManagerFactory instance;
 
-	public static EntityManagerFactory getInstance() {
+	public synchronized static EntityManagerFactory getInstance() {
 		if (instance == null) instance = Persistence.createEntityManagerFactory("CodeRoyalMarket");
 		return instance;
 	}
