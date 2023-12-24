@@ -1,7 +1,7 @@
 package business.entityManagerFactory;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class EMFFactory {
 	private static EntityManagerFactory instance;

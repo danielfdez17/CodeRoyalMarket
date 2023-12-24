@@ -5,10 +5,10 @@ import java.util.List;
 
 import business.entityManagerFactory.EMFFactory;
 import business.sintaxChecker.SintaxChecker;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.LockModeType;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.LockModeType;
+import javax.persistence.TypedQuery;
 
 public class ClientASImp implements ClientAS {
 	
