@@ -53,7 +53,7 @@ public class SaleLineTransfer {
 	public String toString() {
 		return "Sale ID: " + this.saleId + Utils.JUMP +
 				"Product ID: " + this.productId + Utils.JUMP +
-				"Price: " + this.price + Utils.JUMP +
+				"Product price: " + this.price + Utils.JUMP +
 				"Amount: " + this.amount + Utils.JUMP;
 	}
 	
