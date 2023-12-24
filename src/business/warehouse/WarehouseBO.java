@@ -1,13 +1,17 @@
 package business.warehouse;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import java.io.Serializable;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.NamedQueries;
-import java.util.Set;
+import java.util.List;
 import business.product.ProductBO;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 @NamedQueries({
@@ -16,32 +20,83 @@ import javax.persistence.OneToMany;
 		@NamedQuery(name = "business.warehouse.WarehouseBO.findByname", query = "select obj from WarehouseBO obj where :name = obj.name "),
 		@NamedQuery(name = "business.warehouse.WarehouseBO.findBycity", query = "select obj from WarehouseBO obj where :city = obj.city "),
 		@NamedQuery(name = "business.warehouse.WarehouseBO.findByactive", query = "select obj from WarehouseBO obj where :active = obj.active "),
-		@NamedQuery(name = "business.warehouse.WarehouseBO.findByproducts", query = "select obj from WarehouseBO obj where :products MEMBER OF obj.products ") })
+		@NamedQuery(name = "business.warehouse.WarehouseBO.findByproducts", query = "select obj from WarehouseBO obj where :products MEMBER OF obj.products "),
+		@NamedQuery(name = "business.warehouse.WarehouseBO.findAll", query = "select obj from WarehouseBO obj"),
+})
 public class WarehouseBO implements Serializable {
 	private static final long serialVersionUID = 0;
 
-	public WarehouseBO() {
-	}
+	public WarehouseBO() {}
 
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Version
 	private int version;
 	private String name;
 	private String city;
 	private boolean active;
 	@OneToMany
-	private Set<ProductBO> products;
+	private List<ProductBO> products;
+	
+	public WarehouseBO(String name, String city) {
+		super();
+		this.name = name;
+		this.city = city;
+	}
+	
+	public WarehouseBO(int id, String name, String city, boolean active) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.city = city;
+		this.active = active;
+	}
 
 	public WarehouseBO(WarehouseTransfer warehouse) {
-		// begin-user-code
-		// TODO Auto-generated constructor stub
-		// end-user-code
+		this(warehouse.getId(), warehouse.getName(), warehouse.getCity(), warehouse.isActive());
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public List<ProductBO> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductBO> products) {
+		this.products = products;
 	}
 
 	public WarehouseTransfer toTransfer() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new WarehouseTransfer(id, name, city, active);
 	}
 }
