@@ -13,6 +13,7 @@ import business.sale.SaleBO;
 import business.sintaxChecker.SintaxChecker;
 import business.warehouse.WarehouseBO;
 import utilities.BusinessException;
+import utilities.Errors;
 
 import javax.persistence.LockModeType;
 
@@ -20,7 +21,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int createProduct(ProductTransfer product) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		if (this.isValid(product)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -29,12 +30,12 @@ public class ProductASImp implements ProductAS {
 				BusinessException be = new BusinessException();
 				WarehouseBO warehouseBO = em.find(WarehouseBO.class, product.getWarehouseId(), LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 				if (warehouseBO == null) {
-					res = NonexistentWarehouse;
+					res = Errors.NonexistentWarehouse;
 					throw be;
 				}
 				
 				if (!warehouseBO.isActive()) {
-					res = InactiveWarehouse;
+					res = Errors.InactiveWarehouse;
 					throw be;
 				}
 				
@@ -52,7 +53,7 @@ public class ProductASImp implements ProductAS {
 				else {
 					productBO = query.getResultList().get(0);
 					if (productBO.isActive()) {
-						res = ActiveProduct;
+						res = Errors.ActiveProduct;
 						throw be;
 					}
 					
@@ -65,14 +66,14 @@ public class ProductASImp implements ProductAS {
 					product.setActive(true);
 					productBO = new ProductBO(product.getName(), product.getStock(), product.getPrice());
 					et.commit();
-					res = InactiveProduct;
+					res = Errors.InactiveProduct;
 				}
 			} catch (Exception e) {
 				if (e instanceof BusinessException) {
 					et.rollback();
 				}
 				else {
-					res = UnespectedError;
+					res = Errors.UnespectedError;
 				}
 			} finally {
 				em.close();
@@ -184,7 +185,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int updateProduct(ProductTransfer product) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		if (this.isValid(product)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -194,17 +195,17 @@ public class ProductASImp implements ProductAS {
 				ProductBO productBO = em.find(ProductBO.class, product.getId());
 				WarehouseBO warehouseBO = em.find(WarehouseBO.class, product.getWarehouseId(), LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 				if (productBO == null) {
-					res = NonexistentProduct;
+					res = Errors.NonexistentProduct;
 					throw be;
 				}
 				
 				if (warehouseBO == null) {
-					res = NonexistentWarehouse;
+					res = Errors.NonexistentWarehouse;
 					throw be;
 				}
 				
 				if (!warehouseBO.isActive()) {
-					res = InactiveWarehouse;
+					res = Errors.InactiveWarehouse;
 					throw be;
 				}
 				
@@ -224,7 +225,7 @@ public class ProductASImp implements ProductAS {
 					et.rollback();
 				}
 				else {
-					res = UnespectedError;
+					res = Errors.UnespectedError;
 				}
 			} finally {
 				em.close();
@@ -235,7 +236,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int deleteProduct(int productId) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -243,12 +244,12 @@ public class ProductASImp implements ProductAS {
 			BusinessException be = new BusinessException();
 			ProductBO productBO = em.find(ProductBO.class, productId);
 			if (productBO == null) {
-				res = NonexistentProduct;
+				res = Errors.NonexistentProduct;
 				throw be;
 			}
 			
 			if (!productBO.isActive()) {
-				res = InactiveProduct;
+				res = Errors.InactiveProduct;
 				throw be;
 			}
 			
@@ -263,7 +264,7 @@ public class ProductASImp implements ProductAS {
 				et.rollback();
 			}
 			else {
-				res = UnespectedError;
+				res = Errors.UnespectedError;
 			}
 		} finally {
 			em.close();

@@ -6,6 +6,7 @@ import java.util.List;
 import business.entityManagerFactory.EMFFactory;
 import business.sintaxChecker.SintaxChecker;
 import utilities.BusinessException;
+import utilities.Errors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -15,13 +16,13 @@ import javax.persistence.TypedQuery;
 public class ClientASImp implements ClientAS {
 	
 	public int createClient(ClientTransfer client) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		if (this.isValid(client)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			try {
-				BusinessException be = new BusinessException();
+//				BusinessException be = new BusinessException();
 				TypedQuery<ClientBO> query = em.createNamedQuery("business.client.ClientBO.findBynif", ClientBO.class);
 				query.setParameter("nif", client.getNif());
 				ClientBO clientBO = null;
@@ -36,13 +37,13 @@ public class ClientASImp implements ClientAS {
 					clientBO = query.getResultList().get(0);
 					if (clientBO.isActive()) {
 						et.rollback();
-						res = ActiveClient;
+						res = Errors.ActiveClient;
 					}
 					else {
 						clientBO.setActive(true);
 						clientBO = new ClientBO(client.getNif(), client.getName(), client.getBalance());
 						et.commit();
-						res = InactiveClient;
+						res = Errors.InactiveClient;
 					}
 				}
 			} catch (Exception e) {
@@ -50,7 +51,7 @@ public class ClientASImp implements ClientAS {
 					et.rollback();
 				}
 				else {
-					res = UnespectedError;
+					res = Errors.UnespectedError;
 				}
 			} finally {
 				em.close();
@@ -97,7 +98,7 @@ public class ClientASImp implements ClientAS {
 	}
 
 	public int updateClient(ClientTransfer client) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		if (this.isValid(client)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -107,7 +108,7 @@ public class ClientASImp implements ClientAS {
 				ClientBO clientBO = em.find(ClientBO.class, client.getId());
 				
 				if (clientBO == null) {
-					res = NonexistentClient;
+					res = Errors.NonexistentClient;
 					throw be;
 				}
 
@@ -121,7 +122,7 @@ public class ClientASImp implements ClientAS {
 					et.rollback();
 				}
 				else {
-					res = UnespectedError;
+					res = Errors.UnespectedError;
 				}
 			} finally {
 				em.close();
@@ -131,7 +132,7 @@ public class ClientASImp implements ClientAS {
 	}
 
 	public int deleteClient(int clientId) {
-		int res = SintaxError;
+		int res = Errors.SintaxError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -140,12 +141,12 @@ public class ClientASImp implements ClientAS {
 			ClientBO clientBO = em.find(ClientBO.class, clientId);
 			
 			if (clientBO == null) {
-				res = NonexistentClient;
+				res = Errors.NonexistentClient;
 				throw be;
 			}
 			
 			if (!clientBO.isActive()) {
-				res = InactiveClient;
+				res = Errors.InactiveClient;
 				throw be;
 			}
 			
@@ -158,7 +159,7 @@ public class ClientASImp implements ClientAS {
 				et.rollback();
 			}
 			else {
-				res = UnespectedError;
+				res = Errors.UnespectedError;
 			}
 		} finally {
 			em.close();
