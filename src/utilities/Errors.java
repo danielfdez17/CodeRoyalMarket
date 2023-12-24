@@ -21,6 +21,9 @@ public class Errors {
 	public static final int ActiveProductsAssigned = -305;
 	
 	public static final int NonexistentSale = -400;
+	public static final int ProductNotBought = -401;
+	public static final int MoreAmountThanBought = -402;
+	public static final int InsufficientStock = -403;
 	
 	public static final int NonexistentWarehouse = -500;
 	public static final int InactiveWarehouse = -501;
