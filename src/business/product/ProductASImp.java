@@ -256,6 +256,10 @@ public class ProductASImp implements ProductAS {
 			productBO.getWarehouseBO().getProducts().remove(productBO);
 			productBO.setWarehouseBO(null);
 			productBO.setActive(false);
+			for (ProviderBO p : productBO.getProviders()) {
+				p.getProducts().remove(productBO);
+			}
+			productBO.getProviders().removeAll(productBO.getProviders());
 			et.commit();
 			res = productId;
 			
