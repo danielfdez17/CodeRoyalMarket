@@ -16,6 +16,9 @@ public class Errors {
 	public static final int NonexistentProvider = -300;
 	public static final int InactiveProvider = -301;
 	public static final int ActiveProvider = -302;
+	public static final int ProductAlreadyAssigned = -303;
+	public static final int ProductAlreadyUnassigned = -304;
+	public static final int ActiveProductsAssigned = -305;
 	
 	public static final int NonexistentSale = -400;
 	
