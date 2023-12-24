@@ -5,6 +5,8 @@ import java.util.List;
 
 import business.entityManagerFactory.EMFFactory;
 import business.sintaxChecker.SintaxChecker;
+import utilities.BusinessException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
@@ -19,6 +21,7 @@ public class ClientASImp implements ClientAS {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			try {
+				BusinessException be = new BusinessException();
 				TypedQuery<ClientBO> query = em.createNamedQuery("business.client.ClientBO.findBynif", ClientBO.class);
 				query.setParameter("nif", client.getNif());
 				ClientBO clientBO = null;
@@ -36,14 +39,19 @@ public class ClientASImp implements ClientAS {
 						res = ActiveClient;
 					}
 					else {
-						client.setActive(true);
-						clientBO = new ClientBO(client);
+						clientBO.setActive(true);
+						clientBO = new ClientBO(client.getNif(), client.getName(), client.getBalance());
 						et.commit();
 						res = InactiveClient;
 					}
 				}
 			} catch (Exception e) {
-				res = UnespectedError;
+				if (e instanceof BusinessException) {
+					et.rollback();
+				}
+				else {
+					res = UnespectedError;
+				}
 			} finally {
 				em.close();
 			}
@@ -57,15 +65,19 @@ public class ClientASImp implements ClientAS {
 		EntityTransaction et = em.getTransaction();
 		et.begin();
 		try {
+			BusinessException be = new BusinessException();
 			ClientBO clientBO = em.find(ClientBO.class, clientId, LockModeType.OPTIMISTIC);
 			if (clientBO == null) {
+				throw be;
+			}
+			
+			et.commit();
+			res = clientBO.toTransfer();
+			
+		} catch (Exception e) {
+			if (e instanceof BusinessException) {
 				et.rollback();
 			}
-			else {
-				et.commit();
-				res = clientBO.toTransfer();
-			}
-		} catch (Exception e) {
 			res = null;
 		} finally {
 			em.close();
@@ -91,19 +103,26 @@ public class ClientASImp implements ClientAS {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			try {
+				BusinessException be = new BusinessException();
 				ClientBO clientBO = em.find(ClientBO.class, client.getId());
-				if (clientBO != null) {
-					client.setActive(true);
-					clientBO = new ClientBO(client);
-					et.commit();
-					res = client.getId();
+				
+				if (clientBO == null) {
+					res = NonexistentClient;
+					throw be;
+				}
+
+				client.setActive(true);
+				clientBO = new ClientBO(client);
+				et.commit();
+				res = client.getId();
+				
+			} catch(Exception e) {
+				if (e instanceof BusinessException) {
+					et.rollback();
 				}
 				else {
-					et.rollback();
-					res = NonexistentClient;
+					res = UnespectedError;
 				}
-			} catch(Exception e) {
-				res = UnespectedError;
 			} finally {
 				em.close();
 			}
@@ -117,24 +136,30 @@ public class ClientASImp implements ClientAS {
 		EntityTransaction et = em.getTransaction();
 		et.begin();
 		try {
+			BusinessException be = new BusinessException();
 			ClientBO clientBO = em.find(ClientBO.class, clientId);
-			if (clientBO != null) {
-				if (clientBO.isActive()) {
-					clientBO.setActive(false);
-					et.commit();
-					res = clientId;
-				}
-				else {
-					et.rollback();
-					res = InactiveClient;
-				}
+			
+			if (clientBO == null) {
+				res = NonexistentClient;
+				throw be;
+			}
+			
+			if (!clientBO.isActive()) {
+				res = InactiveClient;
+				throw be;
+			}
+			
+			clientBO.setActive(false);
+			et.commit();
+			res = clientId;
+			
+		} catch(Exception e) {
+			if (e instanceof BusinessException) {
+				et.rollback();
 			}
 			else {
-				et.rollback();
-				res = NonexistentClient;
+				res = UnespectedError;
 			}
-		} catch(Exception e) {
-			res = UnespectedError;
 		} finally {
 			em.close();
 		}
