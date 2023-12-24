@@ -18,15 +18,30 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "business.product.ProductBO.findByid", query = "select obj from ProductBO obj where :id = obj.id "),
-		@NamedQuery(name = "business.product.ProductBO.findByversion", query = "select obj from ProductBO obj where :version = obj.version "),
-		@NamedQuery(name = "business.product.ProductBO.findByname", query = "select obj from ProductBO obj where :name = obj.name "),
-		@NamedQuery(name = "business.product.ProductBO.findBystock", query = "select obj from ProductBO obj where :stock = obj.stock "),
-		@NamedQuery(name = "business.product.ProductBO.findByprice", query = "select obj from ProductBO obj where :price = obj.price "),
-		@NamedQuery(name = "business.product.ProductBO.findByactive", query = "select obj from ProductBO obj where :active = obj.active "),
-		@NamedQuery(name = "business.product.ProductBO.findByproviderBO", query = "select obj from ProductBO obj where :providerBO MEMBER OF obj.providerBO "),
-		@NamedQuery(name = "business.product.ProductBO.findBywarehouseBO", query = "select obj from ProductBO obj where :warehouseBO = obj.warehouseBO "),
-		@NamedQuery(name = "business.product.ProductBO.findAll", query = "select obj from ProductBO obj"),
+		@NamedQuery(name = "business.product.ProductBO.findByid", 
+					query = "select obj from ProductBO obj where :id = obj.id "),
+		@NamedQuery(name = "business.product.ProductBO.findByversion", 
+					query = "select obj from ProductBO obj where :version = obj.version "),
+		@NamedQuery(name = "business.product.ProductBO.findByname", 
+					query = "select obj from ProductBO obj where :name = obj.name "),
+		@NamedQuery(name = "business.product.ProductBO.findBystock", 
+					query = "select obj from ProductBO obj where :stock = obj.stock "),
+		@NamedQuery(name = "business.product.ProductBO.findByprice", 
+					query = "select obj from ProductBO obj where :price = obj.price "),
+		@NamedQuery(name = "business.product.ProductBO.findByactive", 
+					query = "select obj from ProductBO obj where :active = obj.active "),
+		@NamedQuery(name = "business.product.ProductBO.findByproviderBO", 
+					query = "select obj from ProductBO obj where :providerBO MEMBER OF obj.providerBO "),
+		@NamedQuery(name = "business.product.ProductBO.findBywarehouseBO", 
+					query = "select obj from ProductBO obj where :warehouseBO = obj.warehouseBO "),
+		@NamedQuery(name = "business.product.ProductBO.findAll", 
+					query = "select obj from ProductBO obj"),
+		@NamedQuery(name = "business.product.ProductBO.findAllBySale", 
+					query = "select p from ProductBO p"
+							+ "left join SaleLineBO sl"
+							+ "where p.id = sl.productBO.id "
+							+ "and"
+							+ "sl.saleBO.id = :saleId"),
 })
 public class ProductBO implements Serializable {
 	private static final long serialVersionUID = 0;
@@ -43,13 +58,16 @@ public class ProductBO implements Serializable {
 	private double price;
 	private boolean active;
 	
-	@ManyToMany()
-	private List<ProviderBO> providerBO;
+	@ManyToMany(mappedBy = "providers")
+	private List<ProviderBO> providers;
 	@ManyToOne
 	private WarehouseBO warehouseBO;
 	
 	public ProductBO(String name, int stock, double price) {
 		super();
+		this.setName(name);
+		this.setStock(stock);
+		this.setPrice(price);
 	}
 	
 	public ProductBO(int id, String name, int stock, double price, boolean active) {
@@ -60,6 +78,11 @@ public class ProductBO implements Serializable {
 
 	public ProductBO(ProductTransfer product) {
 		this(product.getId(), product.getName(), product.getStock(), product.getPrice(), product.isActive());
+	}
+	
+	public ProductBO(ProductTransfer product, WarehouseBO warehouseBO) {
+		this(product.getId(), product.getName(), product.getStock(), product.getPrice(), product.isActive());
+		this.warehouseBO = warehouseBO;
 	}
 	
 	public int getId() {
@@ -102,12 +125,12 @@ public class ProductBO implements Serializable {
 		this.active = active;
 	}
 
-	public List<ProviderBO> getProviderBO() {
-		return providerBO;
+	public List<ProviderBO> getProviders() {
+		return providers;
 	}
 
-	public void setProviderBO(List<ProviderBO> providerBO) {
-		this.providerBO = providerBO;
+	public void setProviders(List<ProviderBO> providers) {
+		this.providers = providers;
 	}
 
 	public WarehouseBO getWarehouseBO() {
