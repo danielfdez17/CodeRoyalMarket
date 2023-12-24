@@ -1,5 +1,6 @@
 package business.saleLine;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import business.sale.SaleBO;
 import javax.persistence.NamedQueries;
 import business.product.ProductBO;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 @NamedQueries({
@@ -18,37 +20,79 @@ import javax.persistence.ManyToOne;
 		@NamedQuery(name = "business.saleLine.SaleLineBO.findByprice", query = "select obj from SaleLineBO obj where :price = obj.price "),
 		@NamedQuery(name = "business.saleLine.SaleLineBO.findByamount", query = "select obj from SaleLineBO obj where :amount = obj.amount "),
 		@NamedQuery(name = "business.saleLine.SaleLineBO.findBysaleBO", query = "select obj from SaleLineBO obj where :saleBO = obj.saleBO "),
-		@NamedQuery(name = "business.saleLine.SaleLineBO.findByproductBO", query = "select obj from SaleLineBO obj where :productBO = obj.productBO ") })
+		@NamedQuery(name = "business.saleLine.SaleLineBO.findByproductBO", query = "select obj from SaleLineBO obj where :productBO = obj.productBO "),
+		@NamedQuery(name = "business.saleLine.SaleLineBO.findAll", query = "select obj from SaleLineBO obj"),
+})
 public class SaleLineBO implements Serializable {
 	private static final long serialVersionUID = 0;
 
-	public SaleLineBO() {
-	}
+	public SaleLineBO() {}
 
-	@OneToOne
-	@Id
+	@EmbeddedId
 	private SaleLineBOEmbeddable id;
-	@OneToOne
-	private SaleBO sale;
-	@OneToOne
-	private ProductBO product;
+	
 	private double price;
 	private int amount;
+	
 	@ManyToOne
+	@MapsId("saleId")
 	private SaleBO saleBO;
+	
 	@ManyToOne
+	@MapsId("productId")
 	private ProductBO productBO;
 
+	
+	
 	public SaleLineBO(SaleBO sale, ProductBO product, double price, int amount) {
-		// begin-user-code
-		// TODO Auto-generated constructor stub
-		// end-user-code
+		this.saleBO = sale;
+		this.productBO = product;
+		this.price = price;
+		this.amount = amount;
+		this.id = new SaleLineBOEmbeddable();
+	}
+	
+	public SaleLineBOEmbeddable getId() {
+		return id;
+	}
+
+	public void setId(SaleLineBOEmbeddable id) {
+		this.id = id;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public SaleBO getSaleBO() {
+		return saleBO;
+	}
+
+	public void setSaleBO(SaleBO saleBO) {
+		this.saleBO = saleBO;
+	}
+
+	public ProductBO getProductBO() {
+		return productBO;
+	}
+
+	public void setProductBO(ProductBO productBO) {
+		this.productBO = productBO;
 	}
 
 	public SaleLineTransfer toTransfer() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+		return new SaleLineTransfer(saleBO.getId(), productBO.getId(), price, amount);
 	}
 }
