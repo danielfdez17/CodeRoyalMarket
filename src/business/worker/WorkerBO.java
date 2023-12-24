@@ -1,9 +1,16 @@
 package business.worker;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import java.io.Serializable;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 import javax.persistence.NamedQueries;
 import business.warehouse.WarehouseBO;
 import javax.persistence.ManyToOne;
@@ -16,31 +23,45 @@ import javax.persistence.ManyToOne;
 		@NamedQuery(name = "business.worker.WorkerBO.findByname", query = "select obj from WorkerBO obj where :name = obj.name "),
 		@NamedQuery(name = "business.worker.WorkerBO.findByactive", query = "select obj from WorkerBO obj where :active = obj.active "),
 		@NamedQuery(name = "business.worker.WorkerBO.findBywarehouseBO", query = "select obj from WorkerBO obj where :warehouseBO = obj.warehouseBO ") })
-public class WorkerBO implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class WorkerBO implements Serializable {
 	private static final long serialVersionUID = 0;
 
-	public WorkerBO() {
-	}
+	public WorkerBO() {}
 
-	@Id
-	private int id;
-	private int version;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected int id;
+	@Version
+	protected int version;
+	@Column(unique = true, nullable = false)
 	protected String nif;
+	@Column(nullable = false)
 	protected String name;
 	protected boolean active;
+	
 	@ManyToOne
-	private WarehouseBO warehouseBO;
+	protected WarehouseBO warehouseBO;
+	
+	public WorkerBO(int id, String nif, String name, boolean active) {
+		super();
+		this.id = id;
+		this.nif = nif;
+		this.name = name;
+		this.active = active;
+	}
 
+	public WorkerBO(int id, String nif, String name, boolean active, WarehouseBO warehouseBO) {
+		super();
+		this.id = id;
+		this.nif = nif;
+		this.name = name;
+		this.active = active;
+		this.warehouseBO = warehouseBO;
+	}
+	
 	public WorkerBO(WorkerTransfer worker) {
-		// begin-user-code
-		// TODO Auto-generated constructor stub
-		// end-user-code
+		this(worker.getId(), worker.getNif(), worker.getName(), worker.isActive());
 	}
 
-	public WorkerTransfer toTransfer() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
-	}
+	public abstract WorkerTransfer toTransfer();
 }
