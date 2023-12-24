@@ -3,8 +3,6 @@ package business.saleLine;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.NamedQuery;
 import business.sale.SaleBO;
 import javax.persistence.NamedQueries;

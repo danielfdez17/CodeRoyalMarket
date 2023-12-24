@@ -1,11 +1,7 @@
 package business.saleLine;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.NamedQueries;
 
 @Embeddable
 public class SaleLineBOEmbeddable implements Serializable {
