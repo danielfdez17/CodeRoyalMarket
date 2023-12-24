@@ -22,7 +22,7 @@ public class ClientASImp implements ClientAS {
 			EntityTransaction et = em.getTransaction();
 			et.begin();
 			try {
-//				BusinessException be = new BusinessException();
+				BusinessException be = new BusinessException();
 				TypedQuery<ClientBO> query = em.createNamedQuery("business.client.ClientBO.findBynif", ClientBO.class);
 				query.setParameter("nif", client.getNif());
 				ClientBO clientBO = null;
@@ -35,16 +35,16 @@ public class ClientASImp implements ClientAS {
 				}
 				else {
 					clientBO = query.getResultList().get(0);
+
 					if (clientBO.isActive()) {
-						et.rollback();
 						res = Errors.ActiveClient;
+						throw be;
 					}
-					else {
-						clientBO.setActive(true);
-						clientBO = new ClientBO(client.getNif(), client.getName(), client.getBalance());
-						et.commit();
-						res = Errors.InactiveClient;
-					}
+					
+					clientBO.setActive(true);
+					clientBO = new ClientBO(client.getNif(), client.getName(), client.getBalance());
+					et.commit();
+					res = Errors.InactiveClient;
 				}
 			} catch (Exception e) {
 				if (e instanceof BusinessException) {
