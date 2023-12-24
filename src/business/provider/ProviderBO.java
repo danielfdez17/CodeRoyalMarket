@@ -38,8 +38,8 @@ public class ProviderBO implements Serializable {
 	private String name;
 	private int phoneNumber;
 	private boolean active;
-	@ManyToMany(mappedBy = "providerBO")
-	private List<ProductBO> productBO;
+	@ManyToMany(mappedBy = "providers")
+	private List<ProductBO> products;
 	
 	public ProviderBO(String name, int phoneNumber) {
 		super();
@@ -90,12 +90,12 @@ public class ProviderBO implements Serializable {
 		this.active = active;
 	}
 
-	public List<ProductBO> getProductBO() {
-		return productBO;
+	public List<ProductBO> getProducts() {
+		return products;
 	}
 
-	public void setProductBO(List<ProductBO> productBO) {
-		this.productBO = productBO;
+	public void setProducts(List<ProductBO> products) {
+		this.products = products;
 	}
 
 	public ProviderTransfer toTransfer() {
