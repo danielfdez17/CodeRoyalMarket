@@ -16,13 +16,20 @@ import javax.persistence.Version;
 
 @Entity
 @NamedQueries({
-		@NamedQuery(name = "business.sale.SaleBO.findByid", query = "select obj from SaleBO obj where :id = obj.id "),
-		@NamedQuery(name = "business.sale.SaleBO.findByversion", query = "select obj from SaleBO obj where :version = obj.version "),
-		@NamedQuery(name = "business.sale.SaleBO.findBycost", query = "select obj from SaleBO obj where :cost = obj.cost "),
-		@NamedQuery(name = "business.sale.SaleBO.findBydate", query = "select obj from SaleBO obj where :date = obj.date "),
-		@NamedQuery(name = "business.sale.SaleBO.findByactive", query = "select obj from SaleBO obj where :active = obj.active "),
-		@NamedQuery(name = "business.sale.SaleBO.findByclientBO", query = "select obj from SaleBO obj where :clientBO = obj.clientBO "),
-		@NamedQuery(name = "business.sale.SaleBO.findAll", query = "select obj from SaleBO"),
+		@NamedQuery(name = "business.sale.SaleBO.findByid", 
+					query = "select obj from SaleBO obj where :id = obj.id "),
+		@NamedQuery(name = "business.sale.SaleBO.findByversion", 
+					query = "select obj from SaleBO obj where :version = obj.version "),
+		@NamedQuery(name = "business.sale.SaleBO.findBycost", 
+					query = "select obj from SaleBO obj where :cost = obj.cost "),
+		@NamedQuery(name = "business.sale.SaleBO.findBydate", 
+					query = "select obj from SaleBO obj where :date = obj.date "),
+		@NamedQuery(name = "business.sale.SaleBO.findByactive", 
+					query = "select obj from SaleBO obj where :active = obj.active "),
+		@NamedQuery(name = "business.sale.SaleBO.findByclientBO", 
+					query = "select obj from SaleBO obj where :clientBO = obj.clientBO "),
+		@NamedQuery(name = "business.sale.SaleBO.findAll", 
+					query = "select obj from SaleBO"),
 })
 
 public class SaleBO implements Serializable {
