@@ -29,6 +29,8 @@ public class Errors {
 	public static final int NonexistentWarehouse = -500;
 	public static final int InactiveWarehouse = -501;
 	public static final int ActiveWarehouse = -502;
+	public static final int WarehouseWithActiveProducts = -503;
+	public static final int WarehouseWithActiveWorkers = -504;
 	
 	public static final int NonexistentWorker = -600;
 	public static final int InactiveWorker = -601;

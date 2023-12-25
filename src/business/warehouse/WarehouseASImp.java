@@ -9,7 +9,9 @@ import javax.persistence.LockModeType;
 import javax.persistence.TypedQuery;
 
 import business.entityManagerFactory.EMFFactory;
+import business.product.ProductBO;
 import business.sintaxChecker.SintaxChecker;
+import business.worker.WorkerBO;
 import utilities.BusinessException;
 import utilities.Errors;
 
@@ -123,7 +125,9 @@ public class WarehouseASImp implements WarehouseAS {
 					throw be;
 				}
 				
-				warehouseBO = new WarehouseBO(warehouse.getName(), warehouse.getCity());
+				warehouseBO.setName(warehouse.getName());
+				warehouseBO.setCity(warehouse.getCity());
+				warehouseBO.setActive(true);
 				et.commit();
 				res = warehouseBO.getId();
 				
@@ -159,6 +163,32 @@ public class WarehouseASImp implements WarehouseAS {
 			
 			if (!warehouseBO.isActive()) {
 				res = Errors.InactiveWarehouse;
+				throw be;
+			}
+			
+			boolean warehouseWithActiveProducts = false;
+			for (ProductBO p : warehouseBO.getProducts()) {
+				if (p.isActive()) {
+					warehouseWithActiveProducts = true;
+					break;
+				}
+			}
+			
+			if (warehouseWithActiveProducts) {
+				res = Errors.WarehouseWithActiveProducts;
+				throw be;
+			}
+			
+			boolean warehouseWithActiveWorkers = false;
+			for (WorkerBO w : warehouseBO.getWorkers()) {
+				if (w.isActive()) {
+					warehouseWithActiveWorkers = true;
+					break;
+				}
+			}
+			
+			if (warehouseWithActiveWorkers) {
+				res = Errors.WarehouseWithActiveWorkers;
 				throw be;
 			}
 			
