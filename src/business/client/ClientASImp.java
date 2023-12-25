@@ -86,7 +86,7 @@ public class ClientASImp implements ClientAS {
 		return res;
 	}
 
-	public List<ClientTransfer> readAllCllients() {
+	public List<ClientTransfer> readClients() {
 		List<ClientTransfer> res = new ArrayList<ClientTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<ClientBO> query = em.createNamedQuery("business.client.ClientBO.findAll", ClientBO.class);
