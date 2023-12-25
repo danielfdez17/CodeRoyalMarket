@@ -22,6 +22,17 @@ public class FullTimeWorkerBO extends WorkerBO implements Serializable {
 
 	private double salary;
 	
+	public FullTimeWorkerBO(String nif, String name, double salary) {
+		super(nif, name);
+		this.salary = salary;
+	}
+
+	public FullTimeWorkerBO(String nif, String name, double salary, WarehouseBO warehouseBO) {
+		super(nif, name);
+		this.salary = salary;
+		this.warehouseBO = warehouseBO;
+	}
+	
 	public FullTimeWorkerBO(int id, String nif, String name, boolean active, WarehouseBO warehouseBO, double salary) {
 		super(id, nif, name, active, warehouseBO);
 		this.salary = salary;
@@ -34,6 +45,11 @@ public class FullTimeWorkerBO extends WorkerBO implements Serializable {
 
 	public FullTimeWorkerBO(FullTimeWorkerTransfer fullTime) {
 		this(fullTime.getId(), fullTime.getNif(), fullTime.getName(), fullTime.isActive(), fullTime.getSalary());
+	}
+	
+	public FullTimeWorkerBO(FullTimeWorkerTransfer fullTime, WarehouseBO warehouseBO) {
+		this(fullTime.getId(), fullTime.getNif(), fullTime.getName(), fullTime.isActive(), fullTime.getSalary());
+		this.warehouseBO = warehouseBO;
 	}
 
 	@Override

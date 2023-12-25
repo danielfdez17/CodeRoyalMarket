@@ -10,6 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.NamedQueries;
 import java.util.List;
 import business.product.ProductBO;
+import business.worker.WorkerBO;
+
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
@@ -37,6 +39,8 @@ public class WarehouseBO implements Serializable {
 	private boolean active;
 	@OneToMany
 	private List<ProductBO> products;
+	@OneToMany
+	private List<WorkerBO> workers;
 	
 	public WarehouseBO(String name, String city) {
 		super();
@@ -94,6 +98,14 @@ public class WarehouseBO implements Serializable {
 
 	public void setProducts(List<ProductBO> products) {
 		this.products = products;
+	}
+	
+	public List<WorkerBO> getWorkers() {
+		return workers;
+	}
+
+	public void setWorkers(List<WorkerBO> workers) {
+		this.workers = workers;
 	}
 
 	public WarehouseTransfer toTransfer() {
