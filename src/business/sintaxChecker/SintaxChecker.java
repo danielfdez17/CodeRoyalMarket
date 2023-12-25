@@ -5,42 +5,50 @@ public class SintaxChecker {
 	private static final int LENGTH = 9;
 	
 	public static boolean isNif(String nif) {
-		if (nif.length() != LENGTH) return false;
-//		int i = 0; 
-		boolean exit = false;
-		for (int i = 0; i < LENGTH - 1 && !exit; ++i) {
-			exit = Character.isDigit(nif.charAt(i));
+		if (nif == null || nif.length() != LENGTH || nif.isEmpty()) 
+			return false;
+		boolean isNif = true;
+		for (int i = 0; i < LENGTH - 1 && isNif; ++i) {
+			isNif = Character.isDigit(nif.charAt(i));
 		}
-//		while (i < LENGTH - 1 && !exit) {
-//			exit = Character.isDigit(nif.charAt(i));
-//			++i;
-//		}
-		return !exit && Character.isLetter(nif.charAt(LENGTH - 1));
+		return isNif && 
+				Character.isLetter(nif.charAt(LENGTH - 1)) && 
+				Character.isUpperCase(nif.charAt(LENGTH - 1));
 	}
 
 	public static boolean isName(String name) {
-		if (name.isEmpty() || name.length() == 0) return false;
+		if (name == null || name.isEmpty() || name.length() == 0) 
+			return false;
 		boolean isName = true;
+		int whiteSpaces = 0;
 		for (int i = 0; i < name.length() && isName; ++i) {
-			isName = Character.isLetter(name.charAt(i)) || Character.isWhitespace(name.charAt(i));
+			isName = Character.isLetter(name.charAt(i)) ||
+					Character.isWhitespace(name.charAt(i));
+			if (Character.isWhitespace(name.charAt(i)))
+				++whiteSpaces;
 		}
-		return !isName;
+		return isName && whiteSpaces != name.length();
 	}
 
 	public static boolean isCity(String city) {
-		if (city.isEmpty() || city.length() == 0) return false;
-		boolean isCity = true;
+		if (city == null || city.isEmpty() || city.length() == 0) 
+			return false;
+		boolean isCity = true; int whiteSpaces = 0;
 		for (int i = 0; i < city.length() && isCity; ++i) {
-			isCity = Character.isLetter(city.charAt(i)) || Character.isWhitespace(city.charAt(i));
+			isCity = Character.isLetter(city.charAt(i)) || 
+					Character.isWhitespace(city.charAt(i));
+			if (Character.isWhitespace(city.charAt(i)))
+				++whiteSpaces;
 		}
-		return !isCity;
+		return isCity && whiteSpaces != city.length();
 	}
 
 	public static boolean isPhoneNumber(String phoneNumber) {
-		if (phoneNumber.length() != LENGTH) return false;
+		if (phoneNumber == null || phoneNumber.length() != LENGTH || phoneNumber.isEmpty()) 
+			return false;
 		boolean isPhone = true;
 		for (int i = 0; i < LENGTH && isPhone; ++i) {
-			isPhone = !Character.isDigit(phoneNumber.charAt(i));
+			isPhone = Character.isDigit(phoneNumber.charAt(i));
 		}
 		return isPhone;
 	}
