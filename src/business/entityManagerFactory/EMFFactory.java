@@ -7,7 +7,8 @@ public class EMFFactory {
 	private static EntityManagerFactory instance;
 
 	public synchronized static EntityManagerFactory getInstance() {
-		if (instance == null) instance = Persistence.createEntityManagerFactory("CodeRoyalMarket");
+		if (instance == null) 
+			instance = Persistence.createEntityManagerFactory("CodeRoyalMarket");
 		return instance;
 	}
 

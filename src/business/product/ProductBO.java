@@ -30,18 +30,15 @@ import javax.persistence.ManyToOne;
 					query = "select obj from ProductBO obj where :price = obj.price "),
 		@NamedQuery(name = "business.product.ProductBO.findByactive", 
 					query = "select obj from ProductBO obj where :active = obj.active "),
-		@NamedQuery(name = "business.product.ProductBO.findByproviderBO", 
-					query = "select obj from ProductBO obj where :providerBO MEMBER OF obj.providerBO "),
+//		@NamedQuery(name = "business.product.ProductBO.findByproviderBO", 
+//					query = "select obj from ProductBO obj where :providerBO MEMBER OF obj.providerBO "),
 		@NamedQuery(name = "business.product.ProductBO.findBywarehouseBO", 
 					query = "select obj from ProductBO obj where :warehouseBO = obj.warehouseBO "),
 		@NamedQuery(name = "business.product.ProductBO.findAll", 
 					query = "select obj from ProductBO obj"),
-		@NamedQuery(name = "business.product.ProductBO.findAllBySale", 
-					query = "select p from ProductBO p"
-							+ "left join SaleLineBO sl"
-							+ "where p.id = sl.productBO.id "
-							+ "and"
-							+ "sl.saleBO.id = :saleId"),
+//		@NamedQuery(name = "business.product.ProductBO.findAllBySale", 
+//					query = "select sl from SaleLineBO where "
+//							+ "sl.saleBO.id = :saleId"),
 })
 public class ProductBO implements Serializable {
 	private static final long serialVersionUID = 0;
@@ -58,7 +55,7 @@ public class ProductBO implements Serializable {
 	private double price;
 	private boolean active;
 	
-	@ManyToMany(mappedBy = "providers")
+	@ManyToMany
 	private List<ProviderBO> providers;
 	@ManyToOne
 	private WarehouseBO warehouseBO;

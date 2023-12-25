@@ -22,8 +22,8 @@ import javax.persistence.ManyToMany;
 		@NamedQuery(name = "business.provider.ProviderBO.findByname", query = "select obj from ProviderBO obj where :name = obj.name "),
 		@NamedQuery(name = "business.provider.ProviderBO.findByphoneNumber", query = "select obj from ProviderBO obj where :phoneNumber = obj.phoneNumber "),
 		@NamedQuery(name = "business.provider.ProviderBO.findByactive", query = "select obj from ProviderBO obj where :active = obj.active "),
-		@NamedQuery(name = "business.provider.ProviderBO.findByproductBO", query = "select obj from ProviderBO obj where :productBO MEMBER OF obj.productBO "),
-		@NamedQuery(name = "business.provider.ProviderBO.findAll", query = "select obj from ProviderBO"),
+//		@NamedQuery(name = "business.provider.ProviderBO.findByproductBO", query = "select obj from ProviderBO obj where :productBO MEMBER OF obj.productBO "),
+		@NamedQuery(name = "business.provider.ProviderBO.findAll", query = "select obj from ProviderBO obj"),
 })
 public class ProviderBO implements Serializable {
 	private static final long serialVersionUID = 0;

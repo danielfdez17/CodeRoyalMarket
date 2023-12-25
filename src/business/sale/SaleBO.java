@@ -29,7 +29,7 @@ import javax.persistence.Version;
 		@NamedQuery(name = "business.sale.SaleBO.findByclientBO", 
 					query = "select obj from SaleBO obj where :clientBO = obj.clientBO "),
 		@NamedQuery(name = "business.sale.SaleBO.findAll", 
-					query = "select obj from SaleBO"),
+					query = "select obj from SaleBO obj"),
 })
 
 public class SaleBO implements Serializable {

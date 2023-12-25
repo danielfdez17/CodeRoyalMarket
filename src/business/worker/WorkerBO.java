@@ -28,7 +28,10 @@ import javax.persistence.ManyToOne;
 		@NamedQuery(name = "business.worker.WorkerBO.findByactive", 
 					query = "select obj from WorkerBO obj where :active = obj.active "),
 		@NamedQuery(name = "business.worker.WorkerBO.findBywarehouseBO", 
-					query = "select obj from WorkerBO obj where :warehouseBO = obj.warehouseBO ") })
+					query = "select obj from WorkerBO obj where :warehouseBO = obj.warehouseBO "),
+		@NamedQuery(name = "business.worker.WorkerBO.findAll",
+					query = "select obj from WorkerBO obj"),
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class WorkerBO implements Serializable {
 	private static final long serialVersionUID = 0;
