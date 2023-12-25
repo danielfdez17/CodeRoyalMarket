@@ -15,6 +15,7 @@ public class ClientTransfer {
 		this.nif = nif;
 		this.name = name;
 		this.balance = balance;
+		this.active = true;
 	}
 
 	public ClientTransfer(int id, String nif, String name, double balance, boolean active) {

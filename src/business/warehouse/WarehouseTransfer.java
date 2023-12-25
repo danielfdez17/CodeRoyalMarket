@@ -13,6 +13,7 @@ public class WarehouseTransfer {
 		super();
 		this.name = name;
 		this.city = city;
+		this.setActive(true);
 	}
 
 	public WarehouseTransfer(int id, String name, String city, boolean active) {

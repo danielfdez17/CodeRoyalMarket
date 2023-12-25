@@ -16,6 +16,7 @@ public class ProductTransfer {
 		this.stock = stock;
 		this.price = price;
 		this.warehouseId = warehouseId;
+		this.setActive(true);
 	}
 
 	public ProductTransfer(int id, String name, int stock, double price, int warehouseId, boolean active) {

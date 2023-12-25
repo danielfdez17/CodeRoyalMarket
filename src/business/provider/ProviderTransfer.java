@@ -12,6 +12,7 @@ public class ProviderTransfer {
 		super();
 		this.name = name;
 		this.phoneNumber = phoneNumber;
+		this.setActive(true);
 	}
 
 	public ProviderTransfer(int id, String name, int phoneNumber, boolean active) {

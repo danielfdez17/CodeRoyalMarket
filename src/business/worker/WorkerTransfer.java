@@ -15,6 +15,7 @@ public class WorkerTransfer {
 		this.nif = nif;
 		this.name = name;
 		this.warehouseId = warehouseId;
+		this.setActive(true);
 	}
 
 	public WorkerTransfer(int id, String nif, String name, int warehouseId, boolean active) {

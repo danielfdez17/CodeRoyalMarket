@@ -46,6 +46,7 @@ public class WarehouseBO implements Serializable {
 		super();
 		this.name = name;
 		this.city = city;
+		this.setActive(true);
 	}
 	
 	public WarehouseBO(int id, String name, String city, boolean active) {

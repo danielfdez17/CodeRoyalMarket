@@ -65,6 +65,7 @@ public class ProductBO implements Serializable {
 		this.setName(name);
 		this.setStock(stock);
 		this.setPrice(price);
+		this.setActive(true);
 	}
 	
 	public ProductBO(int id, String name, int stock, double price, boolean active) {
