@@ -37,7 +37,7 @@ import javax.persistence.ManyToOne;
 		@NamedQuery(name = "business.product.ProductBO.findAll", 
 					query = "select obj from ProductBO obj"),
 //		@NamedQuery(name = "business.product.ProductBO.findAllBySale", 
-//					query = "select sl from SaleLineBO where "
+//					query = "select sl from SaleLineBO sl where "
 //							+ "sl.saleBO.id = :saleId"),
 })
 public class ProductBO implements Serializable {

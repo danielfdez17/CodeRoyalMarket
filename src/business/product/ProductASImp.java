@@ -163,8 +163,8 @@ public class ProductASImp implements ProductAS {
 			if (saleBO == null) {
 				throw be;
 			}
-			TypedQuery<ProductBO> query = em.createNamedQuery("business.product.ProductBO.findAllBySale", ProductBO.class);
-			query.setParameter("saleId", saleId);
+			TypedQuery<ProductBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBysaleBO", ProductBO.class);
+			query.setParameter("saleBO", saleId);
 			
 			for (ProductBO p : query.getResultList()) {
 				em.lock(p, LockModeType.OPTIMISTIC);
