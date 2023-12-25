@@ -168,7 +168,9 @@ public class SaleASImp implements SaleAS {
 			for (SaleLineBO saleLineBO : query.getResultList()) {
 				em.remove(saleLineBO);
 			}
-			
+			em.merge(saleBO.getClientBO());
+			saleBO.getClientBO().setActive(true);
+			saleBO.getClientBO().setBalance(saleBO.getClientBO().getBalance() + saleBO.getCost());
 			saleBO.setActive(false);
 			saleBO.setCost(0.0);
 			et.commit();
@@ -235,6 +237,8 @@ public class SaleASImp implements SaleAS {
 			}
 			
 			saleBO.setActive(false);
+			em.merge(saleBO.getClientBO());
+			saleBO.getClientBO().setBalance(saleBO.getClientBO().getBalance() + (amount * saleLineBO.getPrice()));
 			saleBO.setCost(saleBO.getCost() - (amount * saleLineBO.getPrice()));
 			et.commit();
 			res = saleId;
@@ -306,7 +310,13 @@ public class SaleASImp implements SaleAS {
 				em.persist(new SaleLineBO(saleBO, productBO, productBO.getPrice(), line.getAmount()));
 			}
 			
+			if (saleBO.getCost() > clientBO.getBalance()) {
+				res = Errors.NotEnoughBalance;
+				throw be;
+			}
+			
 			em.persist(saleBO);
+			clientBO.setBalance(clientBO.getBalance() - saleBO.getCost());
 			et.commit();
 			res = saleBO.getId();
 			shoppingCart.getSale().setId(res);
