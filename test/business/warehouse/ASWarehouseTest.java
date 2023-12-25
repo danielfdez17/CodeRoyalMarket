@@ -69,5 +69,49 @@ public class ASWarehouseTest {
 		as.createWarehouse(warehouse);
 		assertTrue(as.updateWarehouse(warehouse) == warehouse.getId());
 	}
+	
+	@Test
+	public void updateKOSintaxError() {
+		warehouse = new WarehouseTransfer(" 2 ", " 4 ");
+		assertTrue(as.updateWarehouse(warehouse) == Errors.SintaxError);
+		warehouse.setName("nameOK");
+		assertTrue(as.updateWarehouse(warehouse) == Errors.SintaxError);
+	}
+	
+	@Test
+	public void updateKONonexistentWarehouse() {
+		warehouse = new WarehouseTransfer("updateWarehouseKONonexistentWarhouse", city);
+		assertTrue(as.updateWarehouse(warehouse) == Errors.NonexistentWarehouse);
+	}
 
+	@Test
+	public void deleteOK() {
+		warehouse = new WarehouseTransfer("deleteWarehouseOK", city);
+		as.createWarehouse(warehouse);
+		assertTrue(as.deleteWarehouse(warehouse.getId()) == warehouse.getId());
+	}
+	
+	@Test
+	public void deleteKONonexistentWarehouse() {
+		assertTrue(as.deleteWarehouse(0) == Errors.NonexistentWarehouse);
+	}
+	
+	@Test
+	public void deleteKOInactiveWarehouse() {
+		warehouse = new WarehouseTransfer("deleteWarehouseKOInactiveWarehouse", city);
+		as.createWarehouse(warehouse);
+		as.deleteWarehouse(warehouse.getId());
+		assertTrue(as.deleteWarehouse(warehouse.getId()) == Errors.InactiveWarehouse);
+	}
+	
+	@Test
+	public void deleteKOWithActiveProducts() {
+		assertTrue(false);
+	}
+	
+	@Test
+	public void deleteKOWithActiveWorkers() {
+		assertTrue(false);
+	}
+	
 }
