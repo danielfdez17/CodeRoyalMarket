@@ -1,4 +1,7 @@
 package presentation.controller;
 
-public class Events {
+public enum Events {
+	
+	MainGUI,
+	
 }

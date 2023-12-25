@@ -1,10 +1,12 @@
 package main;
 
-public class Main {
-	public static void main(String args) {
-		// begin-user-code
-		// TODO Auto-generated method stub
+import business.entityManagerFactory.EMFFactory;
+import presentation.controller.Controller;
+import presentation.controller.Events;
+import presentation.controller.view.Context;
 
-		// end-user-code
+public class Main {
+	public static void main(String[] args) {
+		Controller.getInstance().action(new Context(Events.MainGUI, null));
 	}
 }
