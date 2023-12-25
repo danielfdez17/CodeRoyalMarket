@@ -32,6 +32,7 @@ public class WarehouseASImp implements WarehouseAS {
 				if (query.getResultList().isEmpty()) {
 					warehouseBO = new WarehouseBO(warehouse);
 					em.persist(warehouseBO);
+					et.commit();
 					res = warehouseBO.getId();
 					warehouse.setId(res);
 				}
@@ -44,10 +45,10 @@ public class WarehouseASImp implements WarehouseAS {
 					
 					warehouseBO = new WarehouseBO(warehouse.getName(), warehouse.getCity());
 					warehouseBO.setActive(true);
+					et.commit();
 					res = Errors.InactiveWarehouse;
 				}
 				
-				et.commit();
 				
 			} catch (Exception e) {
 				if (e instanceof BusinessException) {
