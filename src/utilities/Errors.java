@@ -8,6 +8,7 @@ public class Errors {
 	public static final int NonexistentClient = -100;
 	public static final int InactiveClient = -101;
 	public static final int ActiveClient = -102;
+	public static final int NotEnoughBalance = -103;
 	
 	public static final int NonexistentProduct = -200;
 	public static final int InactiveProduct = -201;
