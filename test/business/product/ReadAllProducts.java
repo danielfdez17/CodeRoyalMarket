@@ -39,6 +39,7 @@ public class ReadAllProducts {
 	private static ClientTransfer client;
 	private static int warehouseId;
 	private static int providerId;
+	private static int productId;
 	private static int saleId;
 	private static int clientId;
 	
@@ -55,16 +56,18 @@ public class ReadAllProducts {
 	private void setAS(String name) {
 		warehouse = new WarehouseTransfer(name, city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
+		
 		provider = new ProviderTransfer(name, phoneNumber);
 		providerId = providerAS.createProvider(provider);
+
+		product = new ProductTransfer(name, stock, price, warehouseId);
+		productId = productAS.createProduct(product);
 	}
 	
 	@Test
 	public void readAllOK() {
 		String name = "readAllProductsOK";
 		setAS(name);
-		product = new ProductTransfer(name, stock, price, warehouseId);
-		productAS.createProduct(product);
 		List<ProductTransfer> res = productAS.readProducts();
 		assertFalse(res.isEmpty());
 	}
