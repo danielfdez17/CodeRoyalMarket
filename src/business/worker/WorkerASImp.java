@@ -45,6 +45,7 @@ public class WorkerASImp implements WorkerAS {
 				if (query.getResultList().isEmpty()) {
 					workerBO = new FullTimeWorkerBO(fullTime, warehouseBO);
 					em.persist(workerBO);
+					warehouseBO.getWorkers().add(workerBO);
 					et.commit();
 					res = workerBO.getId();
 					fullTime.setId(res);
@@ -56,13 +57,14 @@ public class WorkerASImp implements WorkerAS {
 						throw be;
 					}
 					
-					if (!workerBO.getWarehouseBO().equals(warehouseBO)) {
+					if (!workerBO.getWarehouseBO().getName().equals(warehouseBO.getName())) {
 						warehouseBO.getWorkers().remove(workerBO);
 						workerBO.setWarehouseBO(warehouseBO);
 						warehouseBO.getWorkers().add(workerBO);
 					}
 					
-					workerBO = new FullTimeWorkerBO(fullTime.getNif(), fullTime.getName(), fullTime.getSalary());
+					workerBO.setName(fullTime.getName());
+					((FullTimeWorkerBO) workerBO).setSalary(fullTime.getSalary());
 					et.commit();
 					res = Errors.InactiveWorker;
 					
@@ -112,6 +114,7 @@ public class WorkerASImp implements WorkerAS {
 				if (query.getResultList().isEmpty()) {
 					workerBO = new PartTimeWorkerBO(partTime, warehouseBO);
 					em.persist(workerBO);
+					warehouseBO.getWorkers().add(workerBO);
 					et.commit();
 					res = workerBO.getId();
 					partTime.setId(res);
@@ -123,13 +126,15 @@ public class WorkerASImp implements WorkerAS {
 						throw be;
 					}
 					
-					if (!workerBO.getWarehouseBO().equals(warehouseBO)) {
+					if (!workerBO.getWarehouseBO().getName().equals(warehouseBO.getName())) {
 						warehouseBO.getWorkers().remove(workerBO);
 						workerBO.setWarehouseBO(warehouseBO);
 						warehouseBO.getWorkers().add(workerBO);
 					}
 					
-					workerBO = new PartTimeWorkerBO(partTime.getNif(), partTime.getName(), partTime.getHourPrice(), partTime.getHours());
+					workerBO.setName(partTime.getName());
+					((PartTimeWorkerBO) workerBO).setHourPrice(partTime.getHourPrice());
+					((PartTimeWorkerBO) workerBO).setHours(partTime.getHours());
 					et.commit();
 					res = Errors.InactiveWorker;
 					
@@ -255,7 +260,8 @@ public class WorkerASImp implements WorkerAS {
 					warehouseBO.getWorkers().add(fullTimeBO);
 				}
 				
-				fullTimeBO = new FullTimeWorkerBO(fullTime.getNif(), fullTime.getName(), fullTime.getSalary(), warehouseBO);
+				fullTimeBO.setName(fullTime.getName());
+				((FullTimeWorkerBO) fullTimeBO).setSalary(fullTime.getSalary());
 				et.commit();
 				res = fullTimeBO.getId();
 				
@@ -307,7 +313,9 @@ public class WorkerASImp implements WorkerAS {
 					warehouseBO.getWorkers().add(partTimeBO);
 				}
 				
-				partTimeBO = new PartTimeWorkerBO(partTime.getNif(), partTime.getName(), partTime.getHourPrice(), partTime.getHours(), warehouseBO);
+				partTimeBO.setName(partTime.getName());
+				((PartTimeWorkerBO) partTimeBO).setHourPrice(partTime.getHourPrice());
+				((PartTimeWorkerBO) partTimeBO).setHours(partTime.getHours());
 				et.commit();
 				res = partTimeBO.getId();
 				

@@ -51,6 +51,14 @@ public class FullTimeWorkerBO extends WorkerBO implements Serializable {
 		this(fullTime.getId(), fullTime.getNif(), fullTime.getName(), fullTime.isActive(), fullTime.getSalary());
 		this.warehouseBO = warehouseBO;
 	}
+	
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
 
 	@Override
 	public WorkerTransfer toTransfer() {

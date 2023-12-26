@@ -58,6 +58,14 @@ public abstract class WorkerBO implements Serializable {
 		this.active = true;
 	}
 	
+	public WorkerBO(String nif, String name, WarehouseBO warehouseBO) {
+		super();
+		this.nif = nif;
+		this.name = name;
+		this.active = true;
+		this.warehouseBO = warehouseBO;
+	}
+	
 	public WorkerBO(int id, String nif, String name, boolean active) {
 		super();
 		this.id = id;
