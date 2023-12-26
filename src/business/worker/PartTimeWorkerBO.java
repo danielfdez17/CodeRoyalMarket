@@ -38,10 +38,9 @@ public class PartTimeWorkerBO extends WorkerBO implements Serializable {
 	}
 
 	public PartTimeWorkerBO(String nif, String name, double hourPrice, int hours, WarehouseBO warehouseBO) {
-		super(nif, name);
+		super(nif, name, warehouseBO);
 		this.hourPrice = hourPrice;
 		this.hours = hours;
-		this.warehouseBO = warehouseBO;
 	}
 	
 	public PartTimeWorkerBO(int id, String nif, String name, boolean active, double hourPrice, int hours) {
@@ -59,6 +58,21 @@ public class PartTimeWorkerBO extends WorkerBO implements Serializable {
 		this.warehouseBO = warehouseBO;
 	}
 
+	public double getHourPrice() {
+		return hourPrice;
+	}
+
+	public void setHourPrice(double hourPrice) {
+		this.hourPrice = hourPrice;
+	}
+
+	public int getHours() {
+		return hours;
+	}
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
 
 	@Override
 	public WorkerTransfer toTransfer() {
