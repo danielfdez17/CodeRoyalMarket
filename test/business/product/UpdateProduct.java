@@ -1,11 +1,12 @@
 package business.product;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,7 +21,7 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class ASProductTest {
+public class UpdateProduct {
 	
 	private static final String name = "name", city = "city", nif = "12345678T";
 	private static final int stock = 4, phoneNumber = 123456789;
@@ -202,27 +203,4 @@ public class ASProductTest {
 		assertTrue(warehouseAS.deleteWarehouse(warehouseId) > 0);
 		assertTrue(productAS.updateProduct(product) == Errors.InactiveWarehouse);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
