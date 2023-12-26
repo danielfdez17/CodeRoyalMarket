@@ -75,7 +75,10 @@ public class UpdateProvider {
 		assertTrue(providerAS.updateProvider(provider) == Errors.SintaxError);
 	}
 	
-	
+	@Test public void updateKONonexistentProvider() {
+		provider = new ProviderTransfer("doesnotmatter", phoneNumber);
+		assertEquals(providerAS.updateProvider(provider), Errors.NonexistentProvider);
+	}
 	
 	
 	
