@@ -54,13 +54,14 @@ public class ASProductTest {
 	private void setAS(String name) {
 		warehouse = new WarehouseTransfer(name, city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
+		provider = new ProviderTransfer(name, phoneNumber);
+		providerId = providerAS.createProvider(provider);
 	}
 	
 	@Test
 	public void createOK() {
 		String name = "createProductOK";
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		assertTrue(productAS.createProduct(product) > 0);
 	}
@@ -89,8 +90,7 @@ public class ASProductTest {
 	@Test
 	public void createKOInactiveWarehouse() {
 		String name = "createKOInactiveWarehouse";
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		warehouseAS.deleteWarehouse(warehouseId);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		assertTrue(productAS.createProduct(product) == Errors.InactiveWarehouse);
@@ -99,8 +99,7 @@ public class ASProductTest {
 	@Test
 	public void createKOActiveProduct() {
 		String name = "createKOActiveProduct";
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		productAS.createProduct(product);
 		assertTrue(productAS.createProduct(product) == Errors.ActiveProduct);
@@ -109,8 +108,7 @@ public class ASProductTest {
 	@Test
 	public void createKOInactiveProduct() {
 		String name = "createKOInactiveProduct";
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		productAS.createProduct(product);
 		assertTrue(productAS.createProduct(product) == Errors.ActiveProduct);
@@ -119,8 +117,7 @@ public class ASProductTest {
 	@Test
 	public void readOK() {
 		String name = "readProductOK";
-		warehouse = new WarehouseTransfer(name, name);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		productAS.createProduct(product);
 		assertNotNull(productAS.readProduct(product.getId()));
@@ -134,8 +131,7 @@ public class ASProductTest {
 	@Test
 	public void readAllOK() {
 		String name = "readAllProductsOK";
-		warehouse = new WarehouseTransfer(name, name);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		productAS.createProduct(product);
 		List<ProductTransfer> res = productAS.readProducts();
@@ -151,6 +147,7 @@ public class ASProductTest {
 	@Test
 	public void readByProviderOK() {
 		String name = "readProductsByProviderOK";
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		assertTrue(false);
 	}
@@ -165,8 +162,7 @@ public class ASProductTest {
 	
 	@Test public void updateOK() {
 		String name = "updateProductOK";
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
+		setAS(name);
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		assertTrue(productAS.createProduct(product) > 0);
 		assertTrue(productAS.updateProduct(product) == product.getId());
