@@ -58,4 +58,39 @@ public class UpdateProvider {
 		
 		providerProduct = new ProviderProductTransfer(providerId, productId, amount);
 	}
+	
+	@Test public void updateOK() {
+		String name = "updateProviderOK";
+		this.setASs(name);
+		assertEquals(providerAS.updateProvider(provider), providerId);
+	}
+	
+	@Test public void updateKOSintaxError() {
+		String name = " 43 ";
+		int phoneNumber = 12345678;
+		provider = new ProviderTransfer(name, phoneNumber);
+		assertTrue(providerAS.updateProvider(provider) == Errors.SintaxError);
+		name = "nameOK";
+		provider.setName(name);
+		assertTrue(providerAS.updateProvider(provider) == Errors.SintaxError);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

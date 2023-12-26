@@ -1,15 +1,13 @@
 package business.provider;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 import business.businessFactory.BusinessFactory;
 import business.product.ProductAS;
@@ -19,7 +17,7 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class DeleteProvider {
+public class ProvideProduct {
 	private static final int phoneNumber = 123456879,
 			stock = 4,
 			amount = 10,
@@ -59,29 +57,51 @@ public class DeleteProvider {
 		providerProduct = new ProviderProductTransfer(providerId, productId, amount);
 	}
 	
-	@Test public void deleteOK() {
-		String name = "deleteProviderOK";
-		this.setASs(name);
-		assertEquals(providerAS.deleteProvider(providerId), providerId);
-	}
-	
-	@Test public void deleteKONonexistentProvider() {
-		assertEquals(providerAS.deleteProvider(providerId), Errors.NonexistentProvider);
-	}
-	
-	@Test public void deleteKOInactiveProvider() {
-		String name = "deleteProviderKOInactiveProvider";
-		this.setASs(name);
-		assertEquals(providerAS.deleteProvider(providerId), providerId);
-		assertEquals(providerAS.deleteProvider(providerId), Errors.InactiveProvider);
-	}
-	
-	@Test public void deleteProviderKOActiveProductAssigned() {
-		String name = "deleteProviderKOActiveProductAssigned";
+	@Test public void provideProductOK() {
+		String name = "provideProductOK";
 		this.setASs(name);
 		assertTrue(providerAS.assingProduct(providerProduct) > 0);
-		assertEquals(providerAS.deleteProvider(providerId), Errors.ActiveProductsAssigned);
+		assertTrue(providerAS.provideProduct(providerProduct) > 0);
+		product = productAS.readProduct(productId);
+		assertEquals(product.getStock(), stock + amount);
 	}
+	
+	@Test public void provideProductKONonexistentProvider() {
+		providerProduct = new ProviderProductTransfer(INF, productId, amount);
+		assertTrue(providerAS.provideProduct(providerProduct) == Errors.NonexistentProvider);
+	}
+	
+	@Test public void provideProductKOInactiveProvider() {
+		String name = "provideProductKOInactiveProvider";
+		this.setASs(name);
+		providerAS.deleteProvider(providerId);
+		assertEquals(providerAS.provideProduct(providerProduct), Errors.InactiveProvider);
+	}
+	
+	@Test public void provideProductKONonexistentProduct() {
+		providerProduct = new ProviderProductTransfer(providerId, INF, amount);
+		assertTrue(providerAS.provideProduct(providerProduct) == Errors.NonexistentProvider);
+	}
+	
+	@Test public void provideProductKOInactiveProduct() {
+		String name = "provideProductKOInactiveProduct";
+		this.setASs(name);
+		productAS.deleteProduct(productId);
+		assertEquals(providerAS.provideProduct(providerProduct), Errors.InactiveProduct);
+	}
+	
+	@Test public void providerProductKOProductAlreadyUnassigned() {
+		String name = "providerProductKOProductAlreadyUnassigned";
+		this.setASs(name);
+		providerAS.assingProduct(providerProduct);
+		providerAS.unassingProduct(providerProduct);
+		assertEquals(providerAS.provideProduct(providerProduct), Errors.ProductAlreadyUnassigned);
+	}
+	
+	
+	
+	
+	
 	
 	
 	

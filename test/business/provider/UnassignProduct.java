@@ -58,4 +58,58 @@ public class UnassignProduct {
 		
 		providerProduct = new ProviderProductTransfer(providerId, productId, amount);
 	}
+	
+	@Test public void unassignProductOK() {
+		String name = "unassignProductOK";
+		this.setASs(name);
+		providerAS.assingProduct(providerProduct);
+		assertTrue(providerAS.unassingProduct(providerProduct) > 0);
+	}
+	
+	@Test public void unassignProductKONonexistenProvider() {
+		providerProduct = new ProviderProductTransfer(INF, productId, amount);
+		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.NonexistentProvider);
+	}
+	
+	@Test public void unassignProductKOInactiveProvider() {
+		String name = "unassignProductKOInactiveProvider";
+		this.setASs(name);
+		providerAS.deleteProvider(providerId);
+		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.InactiveProvider);
+	}
+	
+	@Test public void unassignProductKONonexistentProduct() {
+		providerProduct = new ProviderProductTransfer(providerId, INF, amount);
+		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.NonexistentProvider);
+	}
+	
+	@Test public void unassignProductKOInactiveProduct() {
+		String name = "unassignProductKOInactiveProduct";
+		this.setASs(name);
+		productAS.deleteProduct(productId);
+		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.InactiveProduct);
+	}
+	
+	@Test public void unassignProductKOProductAlreadyUnassigned() {
+		String name = "unassignProductKOProductAlreadyUnassigned";
+		this.setASs(name);
+		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.ProductAlreadyUnassigned);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

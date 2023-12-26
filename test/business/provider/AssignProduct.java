@@ -81,4 +81,37 @@ public class AssignProduct {
 		providerProduct = new ProviderProductTransfer(providerId, INF, amount);
 		assertTrue(providerAS.assingProduct(providerProduct) == Errors.NonexistentProvider);
 	}
+	
+	@Test public void assignProductKOInactiveProduct() {
+		String name = "assignProductKOInactiveProduct";
+		this.setASs(name);
+		assertEquals(productAS.deleteProduct(productId), productId);
+		assertTrue(providerAS.assingProduct(providerProduct) == Errors.InactiveProduct);
+	}
+	
+	@Test public void assignProductKOProductAlreadAssinged() {
+		String name = "assignProductKOProductAlreadAssinged";
+		this.setASs(name);
+		assertTrue(providerAS.assingProduct(providerProduct) > 0);
+		assertEquals(providerAS.assingProduct(providerProduct), Errors.ProductAlreadyAssigned);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

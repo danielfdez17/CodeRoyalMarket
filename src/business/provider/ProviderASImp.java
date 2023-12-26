@@ -100,7 +100,7 @@ public class ProviderASImp implements ProviderAS {
 	public List<ProviderTransfer> readProviders() {
 		List<ProviderTransfer> res = new ArrayList<ProviderTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
-		TypedQuery<ProviderBO> query = em.createNamedQuery("business.provider.findAll", ProviderBO.class);
+		TypedQuery<ProviderBO> query = em.createNamedQuery("business.provider.ProviderBO.findAll", ProviderBO.class);
 		for (ProviderBO p : query.getResultList()) {
 			res.add(p.toTransfer());
 		}
@@ -315,7 +315,9 @@ public class ProviderASImp implements ProviderAS {
 					throw be;
 				}
 				
-				providerBO = new ProviderBO(provider.getName(), provider.getPhoneNumber());
+				providerBO.setActive(true);
+				providerBO.setName(provider.getName());
+				providerBO.setPhoneNumber(provider.getPhoneNumber());
 				et.commit();
 				res = providerBO.getId();
 				
