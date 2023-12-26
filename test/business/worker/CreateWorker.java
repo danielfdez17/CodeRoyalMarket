@@ -95,7 +95,11 @@ public class CreateWorker {
 	@Test public void createWorkerKOInactiveWarehouse() {
 		String name = "createWorkerKOInactiveWarehouse", nif1 = nif + "G", nif2 = nif + "H";
 		this.setASs(name, nif1, nif2);
+		warehouse = new WarehouseTransfer(name + "vdos", city);
+		warehouseId = warehouseAS.createWarehouse(warehouse);
 		warehouseAS.deleteWarehouse(warehouseId);
+		fullTime.setWarehouseId(warehouseId);
+		partTime.setWarehouseId(warehouseId);
 		fullTimeId = workerAS.createFullTimeWorker(fullTime);
 		partTimeId = workerAS.createPartTimeWorker(partTime);
 		assertEquals(fullTimeId, Errors.InactiveWarehouse);
@@ -153,5 +157,4 @@ public class CreateWorker {
 	
 	
 	
->>>>>>> 0bfd4318ae765dff683059dc4b5d8dcf14a676df
 }
