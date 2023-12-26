@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -75,5 +76,9 @@ public class DeleteProduct {
 		this.setAS(name);
 		productAS.deleteProduct(productId);
 		assertTrue(productAS.deleteProduct(productId) == Errors.InactiveProduct);
+	}
+	
+	@Test public void deleteKONonexistentProduct() {
+		assertEquals(productAS.deleteProduct(0), Errors.NonexistentProduct);
 	}
 }
