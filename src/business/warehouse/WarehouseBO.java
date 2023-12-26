@@ -1,5 +1,6 @@
 package business.warehouse;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,9 @@ public class WarehouseBO implements Serializable {
 	private int id;
 	@Version
 	private int version;
+	@Column(unique = true, nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String city;
 	private boolean active;
 	@OneToMany
