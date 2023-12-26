@@ -1,5 +1,5 @@
 package business.worker;
 
-public class ASWorkerTest {
+public class UpdateWorker {
 
 }
