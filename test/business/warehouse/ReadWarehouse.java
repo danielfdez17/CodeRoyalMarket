@@ -11,11 +11,11 @@ import business.businessFactory.BusinessFactory;
 public class ReadWarehouse {
 	private static final String city = "city";
 	
-	private BusinessFactory bf;
-	private WarehouseAS as;
+	private static BusinessFactory bf;
+	private static WarehouseAS as;
 	private WarehouseTransfer warehouse;
 	
-	@BeforeClass public void setUp() {
+	@BeforeClass public static void setUp() {
 		bf = BusinessFactory.getInstance();
 		as = bf.createWarehouseAS();
 	}
