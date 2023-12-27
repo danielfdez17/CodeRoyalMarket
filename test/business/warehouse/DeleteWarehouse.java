@@ -3,7 +3,6 @@ package business.warehouse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,7 +27,7 @@ public class DeleteWarehouse {
 	private WarehouseTransfer warehouse;
 	private ProductTransfer product;
 	private FullTimeWorkerTransfer fullTime;
-	private int warehouseId, productId, workerId;
+	private int warehouseId, productId;
 	
 	@BeforeClass public static void setUp() {
 		bf = BusinessFactory.getInstance();

@@ -1,7 +1,6 @@
 package business.worker;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import business.warehouse.WarehouseTransfer;
 public class ReadAllWorkers {
 
 	private static final String nif = "12345678", city = "city";
-	private static final int hours = 38, INF = 999999999;
+	private static final int hours = 38;
 	private static final double hourPrice = 42, salary = 2889;
 	
 	private static BusinessFactory bf;
@@ -26,7 +25,7 @@ public class ReadAllWorkers {
 	private PartTimeWorkerTransfer partTime;
 	private WarehouseTransfer warehouse;
 	
-	private int warehouseId, fullTimeId, partTimeId;
+	private int warehouseId;
 	
 	@BeforeClass public static void setUp() {
 		bf = BusinessFactory.getInstance();
@@ -39,10 +38,10 @@ public class ReadAllWorkers {
 		warehouseId = warehouseAS.createWarehouse(warehouse);
 		
 		fullTime = new FullTimeWorkerTransfer(nif1, name, warehouseId, salary);
-		fullTimeId = workerAS.createFullTimeWorker(fullTime);
+		workerAS.createFullTimeWorker(fullTime);
 		
 		partTime = new PartTimeWorkerTransfer(nif2, name, warehouseId, hourPrice, hours);
-		partTimeId = workerAS.createPartTimeWorker(partTime);
+		workerAS.createPartTimeWorker(partTime);
 	}
 	
 	@Test public void readAllWorkersOK() {

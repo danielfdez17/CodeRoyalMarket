@@ -15,7 +15,7 @@ import business.warehouse.WarehouseTransfer;
 public class ReadAllWorkersByWarehouse {
 
 	private static final String nif = "12345678", city = "city";
-	private static final int hours = 38, INF = 999999999;
+	private static final int hours = 38;
 	private static final double hourPrice = 42, salary = 2889;
 	
 	private static BusinessFactory bf;
@@ -26,7 +26,7 @@ public class ReadAllWorkersByWarehouse {
 	private PartTimeWorkerTransfer partTime;
 	private WarehouseTransfer warehouse;
 	
-	private int warehouseId, fullTimeId, partTimeId;
+	private int warehouseId;
 	
 	@BeforeClass public static void setUp() {
 		bf = BusinessFactory.getInstance();
@@ -39,10 +39,10 @@ public class ReadAllWorkersByWarehouse {
 		warehouseId = warehouseAS.createWarehouse(warehouse);
 		
 		fullTime = new FullTimeWorkerTransfer(nif1, name, warehouseId, salary);
-		fullTimeId = workerAS.createFullTimeWorker(fullTime);
+		workerAS.createFullTimeWorker(fullTime);
 		
 		partTime = new PartTimeWorkerTransfer(nif2, name, warehouseId, hourPrice, hours);
-		partTimeId = workerAS.createPartTimeWorker(partTime);
+		workerAS.createPartTimeWorker(partTime);
 	}
 	
 	@Test public void readAllWorkersByWarehouseOK() {

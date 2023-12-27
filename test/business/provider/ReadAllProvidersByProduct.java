@@ -1,9 +1,6 @@
 package business.provider;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -17,7 +14,6 @@ import business.product.ProductTransfer;
 import business.providerProduct.ProviderProductTransfer;
 import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
-import utilities.Errors;
 
 public class ReadAllProvidersByProduct {
 	private static final int phoneNumber = 123456879,

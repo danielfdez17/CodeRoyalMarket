@@ -1,12 +1,7 @@
 package business.provider;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,8 +17,7 @@ import utilities.Errors;
 public class DeleteProvider {
 	private static final int phoneNumber = 123456879,
 			stock = 4,
-			amount = 10,
-			INF = 999999999;
+			amount = 10;
 	private static final String city = "city";
 	private static final double price = 84;
 	
