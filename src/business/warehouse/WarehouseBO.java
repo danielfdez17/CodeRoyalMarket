@@ -40,9 +40,9 @@ public class WarehouseBO implements Serializable {
 	@Column(nullable = false)
 	private String city;
 	private boolean active;
-	@OneToMany
+	@OneToMany(mappedBy = "warehouseBO")
 	private List<ProductBO> products;
-	@OneToMany
+	@OneToMany(mappedBy = "warehouseBO")
 	private List<WorkerBO> workers;
 	
 	public WarehouseBO(String name, String city) {
