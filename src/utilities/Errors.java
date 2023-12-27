@@ -13,6 +13,7 @@ public class Errors {
 	public static final int NonexistentProduct = -200;
 	public static final int InactiveProduct = -201;
 	public static final int ActiveProduct = -202;
+	public static final int ProductWithActiveProviders = -203;
 	
 	public static final int NonexistentProvider = -300;
 	public static final int InactiveProvider = -301;
