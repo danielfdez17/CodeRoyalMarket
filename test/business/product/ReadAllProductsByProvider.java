@@ -73,7 +73,7 @@ public class ReadAllProductsByProvider {
 	public void readByProviderOK() {
 		String name = "readProductsByProviderOK";
 		this.setAS(name);
-		providerAS.assingProduct(providerProduct);
+		providerAS.assignProduct(providerProduct);
 		List<ProductTransfer> res = productAS.readProductsByProvider(providerId);
 		assertFalse(res.isEmpty());
 	}

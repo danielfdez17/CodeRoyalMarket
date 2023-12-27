@@ -79,7 +79,7 @@ public class DeleteProvider {
 	@Test public void deleteProviderKOActiveProductAssigned() {
 		String name = "deleteProviderKOActiveProductAssigned";
 		this.setASs(name);
-		assertTrue(providerAS.assingProduct(providerProduct) > 0);
+		assertTrue(providerAS.assignProduct(providerProduct) > 0);
 		assertEquals(providerAS.deleteProvider(providerId), Errors.ActiveProductsAssigned);
 	}
 	

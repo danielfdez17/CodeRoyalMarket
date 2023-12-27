@@ -10,8 +10,8 @@ public interface ProviderAS {
 	public ProviderTransfer readProvider(int providerId);
 	public List<ProviderTransfer> readProviders();
 	public List<ProviderTransfer> readProvidersByProduct(int productId);
-	public int assingProduct(ProviderProductTransfer providerProduct);
-	public int unassingProduct(ProviderProductTransfer providerProduct);
+	public int assignProduct(ProviderProductTransfer providerProduct);
+	public int unassignProduct(ProviderProductTransfer providerProduct);
 	public int provideProduct(ProviderProductTransfer providerProduct);
 	public int updateProvider(ProviderTransfer provider);
 	public int deleteProvider(int providerId);

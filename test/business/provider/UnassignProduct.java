@@ -62,38 +62,38 @@ public class UnassignProduct {
 	@Test public void unassignProductOK() {
 		String name = "unassignProductOK";
 		this.setASs(name);
-		providerAS.assingProduct(providerProduct);
-		assertTrue(providerAS.unassingProduct(providerProduct) > 0);
+		providerAS.assignProduct(providerProduct);
+		assertTrue(providerAS.unassignProduct(providerProduct) > 0);
 	}
 	
 	@Test public void unassignProductKONonexistentProvider() {
 		providerProduct = new ProviderProductTransfer(INF, productId, amount);
-		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.NonexistentProvider);
+		assertTrue(providerAS.unassignProduct(providerProduct) == Errors.NonexistentProvider);
 	}
 	
 	@Test public void unassignProductKOInactiveProvider() {
 		String name = "unassignProductKOInactiveProvider";
 		this.setASs(name);
 		providerAS.deleteProvider(providerId);
-		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.InactiveProvider);
+		assertTrue(providerAS.unassignProduct(providerProduct) == Errors.InactiveProvider);
 	}
 	
 	@Test public void unassignProductKONonexistentProduct() {
 		providerProduct = new ProviderProductTransfer(providerId, INF, amount);
-		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.NonexistentProvider);
+		assertTrue(providerAS.unassignProduct(providerProduct) == Errors.NonexistentProvider);
 	}
 	
 	@Test public void unassignProductKOInactiveProduct() {
 		String name = "unassignProductKOInactiveProduct";
 		this.setASs(name);
 		productAS.deleteProduct(productId);
-		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.InactiveProduct);
+		assertTrue(providerAS.unassignProduct(providerProduct) == Errors.InactiveProduct);
 	}
 	
 	@Test public void unassignProductKOProductAlreadyUnassigned() {
 		String name = "unassignProductKOProductAlreadyUnassigned";
 		this.setASs(name);
-		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.ProductAlreadyUnassigned);
+		assertTrue(providerAS.unassignProduct(providerProduct) == Errors.ProductAlreadyUnassigned);
 	}
 	
 	

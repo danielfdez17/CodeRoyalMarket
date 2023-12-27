@@ -62,7 +62,7 @@ public class ReadAllProvidersByProduct {
 	@Test public void readProvidersByProductOK() {
 		String name = "readAllProvidersByProductOK";
 		this.setASs(name);
-		assertTrue(providerAS.assingProduct(providerProduct) > 0);
+		assertTrue(providerAS.assignProduct(providerProduct) > 0);
 		List<ProviderTransfer> res = providerAS.readProvidersByProduct(productId);
 		assertFalse(res.isEmpty());
 	}

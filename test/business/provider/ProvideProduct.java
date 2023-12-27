@@ -60,7 +60,7 @@ public class ProvideProduct {
 	@Test public void provideProductOK() {
 		String name = "provideProductOK";
 		this.setASs(name);
-		assertTrue(providerAS.assingProduct(providerProduct) > 0);
+		assertTrue(providerAS.assignProduct(providerProduct) > 0);
 		assertTrue(providerAS.provideProduct(providerProduct) > 0);
 		product = productAS.readProduct(productId);
 		assertEquals(product.getStock(), stock + amount);
@@ -93,8 +93,8 @@ public class ProvideProduct {
 	@Test public void providerProductKOProductAlreadyUnassigned() {
 		String name = "providerProductKOProductAlreadyUnassigned";
 		this.setASs(name);
-		providerAS.assingProduct(providerProduct);
-		providerAS.unassingProduct(providerProduct);
+		providerAS.assignProduct(providerProduct);
+		providerAS.unassignProduct(providerProduct);
 		assertEquals(providerAS.provideProduct(providerProduct), Errors.ProductAlreadyUnassigned);
 	}
 	
