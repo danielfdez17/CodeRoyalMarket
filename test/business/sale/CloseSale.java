@@ -65,7 +65,7 @@ public class CloseSale {
 	@Test public void closeSaleOK() {
 		String name = "closeSaleOK";
 		this.setASs(name, nif + "A");
-		saleLine = new SaleLineTransfer(productId, price, stock);
+		saleLine = new SaleLineTransfer(productId, stock);
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);
 		assertTrue(saleId > 0);

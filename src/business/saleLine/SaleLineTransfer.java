@@ -16,6 +16,12 @@ public class SaleLineTransfer {
 		this.price = price;
 		this.amount = amount;
 	}
+	
+	public SaleLineTransfer(int productId, int amount) {
+		super();
+		this.productId = productId;
+		this.amount = amount;
+	}
 
 	public int getSaleId() {
 		return saleId;
