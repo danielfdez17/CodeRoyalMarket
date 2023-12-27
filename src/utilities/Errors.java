@@ -2,8 +2,8 @@ package utilities;
 
 public class Errors {
 	
-	public static final int UnespectedError = 0;
-	public static final int SintaxError = -1;
+	public static final int UnexpectedError = 0;
+	public static final int SyntaxError = -1;
 	
 	public static final int NonexistentClient = -100;
 	public static final int InactiveClient = -101;
