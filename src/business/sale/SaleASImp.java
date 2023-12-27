@@ -181,7 +181,7 @@ public class SaleASImp implements SaleAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -248,7 +248,7 @@ public class SaleASImp implements SaleAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -258,7 +258,7 @@ public class SaleASImp implements SaleAS {
 
 	@Override
 	public int closeSale(ShoppingCartTransfer shoppingCart) {
-		int res = Errors.UnespectedError;
+		int res = Errors.UnexpectedError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -327,7 +327,7 @@ public class SaleASImp implements SaleAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();

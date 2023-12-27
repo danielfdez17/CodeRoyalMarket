@@ -67,17 +67,17 @@ public class UpdateProduct {
 		assertTrue(productAS.updateProduct(product) == product.getId());
 	}
 	
-	@Test public void updateKOSintaxError() {
-		String name = "updateProductKOSintaxError";
+	@Test public void updateKOSyntaxError() {
+		String name = "updateProductKOSyntaxError";
 		setAS(name);
 		product = new ProductTransfer(" 2 ", -1, 0.0, 0);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setName("nameOK");
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setStock(0);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setPrice(1);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 	}
 	
 	@Test public void updateKONonexistentProduct() {

@@ -32,21 +32,21 @@ public class CreateWarehouse {
 		assertTrue(warehouseAS.createWarehouse(warehouse) > 0);
 	}
 	
-	@Test public void createKOSintaxError() {
+	@Test public void createKOSyntaxError() {
 		warehouse = new WarehouseTransfer(" 2 ", " 4 ");
-		assertTrue(warehouseAS.createWarehouse(warehouse) == Errors.SintaxError);
+		assertTrue(warehouseAS.createWarehouse(warehouse) == Errors.SyntaxError);
 		warehouse.setName("nameOK");
-		assertTrue(warehouseAS.createWarehouse(warehouse) == Errors.SintaxError);
+		assertTrue(warehouseAS.createWarehouse(warehouse) == Errors.SyntaxError);
 	}
 	
-	@Test public void createWarhouseKOActiveWarehouse() {
-		String name = "createWarhouseKOActiveWarehouse";
+	@Test public void createWarehouseKOActiveWarehouse() {
+		String name = "createWarehouseKOActiveWarehouse";
 		this.setASs(name);
 		assertEquals(warehouseAS.createWarehouse(warehouse), Errors.ActiveWarehouse);
 	}
 	
 	@Test public void createWarehouseKOInactiveWarehouse() {
-		String name = "createWarhouseKOInactiveWarehouse";
+		String name = "createWarehouseKOInactiveWarehouse";
 		this.setASs(name);
 		warehouseAS.deleteWarehouse(warehouseId);
 		assertEquals(warehouseAS.createWarehouse(warehouse), Errors.InactiveWarehouse);

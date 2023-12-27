@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.entityManagerFactory.EMFFactory;
-import business.sintaxChecker.SintaxChecker;
+import business.syntaxChecker.SyntaxChecker;
 import utilities.BusinessException;
 import utilities.Errors;
 
@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 public class ClientASImp implements ClientAS {
 	
 	public int createClient(ClientTransfer client) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(client)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -51,7 +51,7 @@ public class ClientASImp implements ClientAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -98,7 +98,7 @@ public class ClientASImp implements ClientAS {
 	}
 
 	public int updateClient(ClientTransfer client) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(client)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -122,7 +122,7 @@ public class ClientASImp implements ClientAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -132,7 +132,7 @@ public class ClientASImp implements ClientAS {
 	}
 
 	public int deleteClient(int clientId) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -159,7 +159,7 @@ public class ClientASImp implements ClientAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -169,8 +169,8 @@ public class ClientASImp implements ClientAS {
 	
 	private boolean isValid(ClientTransfer client) {
 		return client != null && 
-				SintaxChecker.isNif(client.getNif()) &&
-				SintaxChecker.isName(client.getName()) &&
+				SyntaxChecker.isNif(client.getNif()) &&
+				SyntaxChecker.isName(client.getName()) &&
 				client.getBalance() >= 0.0;
 	}
 }

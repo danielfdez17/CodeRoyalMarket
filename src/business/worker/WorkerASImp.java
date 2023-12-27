@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import business.entityManagerFactory.EMFFactory;
-import business.sintaxChecker.SintaxChecker;
+import business.syntaxChecker.SyntaxChecker;
 import business.warehouse.WarehouseBO;
 import javax.persistence.LockModeType;
 
@@ -19,7 +19,7 @@ public class WorkerASImp implements WorkerAS {
 
 	@Override
 	public int createFullTimeWorker(FullTimeWorkerTransfer fullTime) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isFullTimeValid(fullTime)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -76,7 +76,7 @@ public class WorkerASImp implements WorkerAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -88,7 +88,7 @@ public class WorkerASImp implements WorkerAS {
 
 	@Override
 	public int createPartTimeWorker(PartTimeWorkerTransfer partTime) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isPartTimeValid(partTime)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -146,7 +146,7 @@ public class WorkerASImp implements WorkerAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -228,7 +228,7 @@ public class WorkerASImp implements WorkerAS {
 
 	@Override
 	public int updateFullTimeWorker(FullTimeWorkerTransfer fullTime) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isFullTimeValid(fullTime)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -270,7 +270,7 @@ public class WorkerASImp implements WorkerAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -281,7 +281,7 @@ public class WorkerASImp implements WorkerAS {
 
 	@Override
 	public int updatePartTimeWorker(PartTimeWorkerTransfer partTime) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isPartTimeValid(partTime)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -324,7 +324,7 @@ public class WorkerASImp implements WorkerAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -362,7 +362,7 @@ public class WorkerASImp implements WorkerAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -383,8 +383,8 @@ public class WorkerASImp implements WorkerAS {
 	
 	private boolean isValid(WorkerTransfer worker) {
 		return worker != null &&
-				SintaxChecker.isName(worker.getName()) && 
-				SintaxChecker.isNif(worker.getNif()) &&
+				SyntaxChecker.isName(worker.getName()) && 
+				SyntaxChecker.isNif(worker.getNif()) &&
 				worker.getWarehouseId() > 0;
 	}
 	

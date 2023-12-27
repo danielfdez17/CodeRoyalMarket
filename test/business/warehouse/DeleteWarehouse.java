@@ -57,7 +57,7 @@ public class DeleteWarehouse {
 	}
 	
 	@Test public void deleteKOWithActiveProducts() {
-		String name = "deleteWarehouseKOWarehouseWithActivePrducts";
+		String name = "deleteWarehouseKOWarehouseWithActiveProducts";
 		this.setASs(name);
 		assertEquals(warehouseAS.deleteWarehouse(warehouseId), Errors.WarehouseWithActiveProducts);
 	}

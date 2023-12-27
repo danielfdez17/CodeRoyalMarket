@@ -63,17 +63,17 @@ public class CreateProduct {
 	}
 	
 	@Test
-	public void createKOSintaxError() {
-		warehouse = new WarehouseTransfer("createKOSintaxError", city);
+	public void createKOSyntaxError() {
+		warehouse = new WarehouseTransfer("createKOSyntaxError", city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
 		product = new ProductTransfer(" 2 ", -1, 0.0, 0);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setName("nameOK");
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setStock(0);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		product.setPrice(1);
-		assertTrue(productAS.createProduct(product) == Errors.SintaxError);
+		assertTrue(productAS.createProduct(product) == Errors.SyntaxError);
 		
 	}
 

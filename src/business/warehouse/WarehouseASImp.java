@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 import business.entityManagerFactory.EMFFactory;
 import business.product.ProductBO;
-import business.sintaxChecker.SintaxChecker;
+import business.syntaxChecker.SyntaxChecker;
 import business.worker.WorkerBO;
 import utilities.BusinessException;
 import utilities.Errors;
@@ -19,7 +19,7 @@ public class WarehouseASImp implements WarehouseAS {
 
 	@Override
 	public int createWarehouse(WarehouseTransfer warehouse) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(warehouse)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -57,7 +57,7 @@ public class WarehouseASImp implements WarehouseAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -110,7 +110,7 @@ public class WarehouseASImp implements WarehouseAS {
 
 	@Override
 	public int updateWarehouse(WarehouseTransfer warehouse) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(warehouse)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -136,7 +136,7 @@ public class WarehouseASImp implements WarehouseAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -147,7 +147,7 @@ public class WarehouseASImp implements WarehouseAS {
 
 	@Override
 	public int deleteWarehouse(int warehouseId) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -201,7 +201,7 @@ public class WarehouseASImp implements WarehouseAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -211,8 +211,8 @@ public class WarehouseASImp implements WarehouseAS {
 	
 	private boolean isValid(WarehouseTransfer warehouse) {
 		return warehouse != null &&
-				SintaxChecker.isCity(warehouse.getCity()) &&
-				SintaxChecker.isName(warehouse.getName());
+				SyntaxChecker.isCity(warehouse.getCity()) &&
+				SyntaxChecker.isName(warehouse.getName());
 	}
 	
 }

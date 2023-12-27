@@ -62,38 +62,38 @@ public class AssignProduct {
 	@Test public void assignProductOK() {
 		String name = "assignProductOK";
 		this.setASs(name);
-		assertTrue(providerAS.assingProduct(providerProduct) > 0);
+		assertTrue(providerAS assignProduct(providerProduct) > 0);
 	}
 	
 	@Test public void assignProductKONonexistentProvider() {
 		providerProduct = new ProviderProductTransfer(INF, productId, amount);
-		assertTrue(providerAS.assingProduct(providerProduct) == Errors.NonexistentProvider);
+		assertTrue(providerAS assignProduct(providerProduct) == Errors.NonexistentProvider);
 	}
 	
 	@Test public void assignProductKOInactiveProvider() {
 		String name = "assignProductKOInactiveProvider";
 		this.setASs(name);
 		providerId = providerAS.deleteProvider(providerId);
-		assertTrue(providerAS.assingProduct(providerProduct) == Errors.InactiveProvider);
+		assertTrue(providerAS assignProduct(providerProduct) == Errors.InactiveProvider);
 	}
 	
-	@Test public void assingProductKONonexistentProduct() {
+	@Test public void assignProductKONonexistentProduct() {
 		providerProduct = new ProviderProductTransfer(providerId, INF, amount);
-		assertTrue(providerAS.assingProduct(providerProduct) == Errors.NonexistentProvider);
+		assertTrue(providerAS assignProduct(providerProduct) == Errors.NonexistentProvider);
 	}
 	
 	@Test public void assignProductKOInactiveProduct() {
 		String name = "assignProductKOInactiveProduct";
 		this.setASs(name);
 		assertEquals(productAS.deleteProduct(productId), productId);
-		assertTrue(providerAS.assingProduct(providerProduct) == Errors.InactiveProduct);
+		assertTrue(providerAS assignProduct(providerProduct) == Errors.InactiveProduct);
 	}
 	
-	@Test public void assignProductKOProductAlreadAssinged() {
-		String name = "assignProductKOProductAlreadAssinged";
+	@Test public void assignProductKOProductAlreadyAssigned() {
+		String name = "assignProductKOProductAlreadyAssigned";
 		this.setASs(name);
-		assertTrue(providerAS.assingProduct(providerProduct) > 0);
-		assertEquals(providerAS.assingProduct(providerProduct), Errors.ProductAlreadyAssigned);
+		assertTrue(providerAS assignProduct(providerProduct) > 0);
+		assertEquals(providerAS assignProduct(providerProduct), Errors.ProductAlreadyAssigned);
 	}
 	
 	

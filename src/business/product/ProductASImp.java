@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 import business.entityManagerFactory.EMFFactory;
 import business.provider.ProviderBO;
 import business.sale.SaleBO;
-import business.sintaxChecker.SintaxChecker;
+import business.syntaxChecker.SyntaxChecker;
 import business.warehouse.WarehouseBO;
 import utilities.BusinessException;
 import utilities.Errors;
@@ -21,7 +21,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int createProduct(ProductTransfer product) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(product)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -73,7 +73,7 @@ public class ProductASImp implements ProductAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -185,7 +185,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int updateProduct(ProductTransfer product) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(product)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -225,7 +225,7 @@ public class ProductASImp implements ProductAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -236,7 +236,7 @@ public class ProductASImp implements ProductAS {
 
 	@Override
 	public int deleteProduct(int productId) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
@@ -268,7 +268,7 @@ public class ProductASImp implements ProductAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -277,7 +277,7 @@ public class ProductASImp implements ProductAS {
 	}
 	private boolean isValid(ProductTransfer product) {
 		return product != null &&
-				SintaxChecker.isName(product.getName()) &&
+				SyntaxChecker.isName(product.getName()) &&
 				product.getStock() >= 0 && 
 				product.getPrice() > 0.0 &&
 				product.getWarehouseId() > 0;

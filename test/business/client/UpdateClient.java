@@ -30,13 +30,13 @@ public class UpdateClient {
 	}
 	
 	@Test
-	public void updateKOSintaxError() {
+	public void updateKOSyntaxError() {
 		client = new ClientTransfer(nif, " 2 ", -1);
-		assertTrue(clientAS.updateClient(client) == Errors.SintaxError);
+		assertTrue(clientAS.updateClient(client) == Errors.SyntaxError);
 		client.setNif(nif + "A");
-		assertTrue(clientAS.updateClient(client) == Errors.SintaxError);
-		client.setName("updateKOSintaxError");
-		assertTrue(clientAS.updateClient(client) == Errors.SintaxError);
+		assertTrue(clientAS.updateClient(client) == Errors.SyntaxError);
+		client.setName("updateKOSyntaxError");
+		assertTrue(clientAS.updateClient(client) == Errors.SyntaxError);
 		
 	}
 	

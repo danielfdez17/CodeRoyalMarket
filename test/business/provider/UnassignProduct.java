@@ -66,7 +66,7 @@ public class UnassignProduct {
 		assertTrue(providerAS.unassingProduct(providerProduct) > 0);
 	}
 	
-	@Test public void unassignProductKONonexistenProvider() {
+	@Test public void unassignProductKONonexistentProvider() {
 		providerProduct = new ProviderProductTransfer(INF, productId, amount);
 		assertTrue(providerAS.unassingProduct(providerProduct) == Errors.NonexistentProvider);
 	}

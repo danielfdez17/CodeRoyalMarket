@@ -50,7 +50,7 @@ public class CreateWorker {
 		assertTrue(fullTimeId > 0 && partTimeId > 0);
 	}
 	
-	@Test public void createWorkerKOSintaxError() {
+	@Test public void createWorkerKOSyntaxError() {
 		String name = " 2 ";
 		warehouseId = 0;
 		double hourPrice = 0.0;
@@ -58,32 +58,32 @@ public class CreateWorker {
 		double salary = 0.0;
 		fullTime = new FullTimeWorkerTransfer(nif, name, warehouseId, salary);
 		partTime = new PartTimeWorkerTransfer(nif, name, warehouseId, hourPrice, hours);
-		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SintaxError);
-		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SintaxError);
+		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SyntaxError);
+		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SyntaxError);
 		name = "nameOK";
 		fullTime.setName(name);
 		partTime.setName(name);
-		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SintaxError);
-		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SintaxError);
+		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SyntaxError);
+		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SyntaxError);
 		fullTime.setNif(nif + "C");
 		partTime.setNif(nif + "D");
-		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SintaxError);
-		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SintaxError);
+		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SyntaxError);
+		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SyntaxError);
 		warehouseId = 1;
 		fullTime.setWarehouseId(warehouseId);
 		partTime.setWarehouseId(warehouseId);
-		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SintaxError);
-		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SintaxError);
+		assertEquals(workerAS.createFullTimeWorker(fullTime), Errors.SyntaxError);
+		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SyntaxError);
 		salary = 1;
 		fullTime.setSalary(salary);
 		partTime.setHourPrice(salary);
-		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SintaxError);
+		assertEquals(workerAS.createPartTimeWorker(partTime), Errors.SyntaxError);
 		partTime.setHours(1);
 		
 	}
 	
 	@Test public void createWorkerKONonexistentWarehouse() {
-		String name = "asdfh", nif1 = nif + "E", nif2 = nif + "F";
+		String name = "nameOK", nif1 = nif + "E", nif2 = nif + "F";
 		this.setASs(name, nif1, nif2);
 		warehouseId = INF;
 		fullTime.setWarehouseId(warehouseId);
@@ -95,7 +95,7 @@ public class CreateWorker {
 	@Test public void createWorkerKOInactiveWarehouse() {
 		String name = "createWorkerKOInactiveWarehouse", nif1 = nif + "G", nif2 = nif + "H";
 		this.setASs(name, nif1, nif2);
-		warehouse = new WarehouseTransfer(name + "vdos", city);
+		warehouse = new WarehouseTransfer(name + "versionTwo", city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
 		warehouseAS.deleteWarehouse(warehouseId);
 		fullTime.setWarehouseId(warehouseId);

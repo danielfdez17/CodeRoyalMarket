@@ -65,14 +65,14 @@ public class UpdateProvider {
 		assertEquals(providerAS.updateProvider(provider), providerId);
 	}
 	
-	@Test public void updateKOSintaxError() {
+	@Test public void updateKOSyntaxError() {
 		String name = " 43 ";
 		int phoneNumber = 12345678;
 		provider = new ProviderTransfer(name, phoneNumber);
-		assertTrue(providerAS.updateProvider(provider) == Errors.SintaxError);
+		assertTrue(providerAS.updateProvider(provider) == Errors.SyntaxError);
 		name = "nameOK";
 		provider.setName(name);
-		assertTrue(providerAS.updateProvider(provider) == Errors.SintaxError);
+		assertTrue(providerAS.updateProvider(provider) == Errors.SyntaxError);
 	}
 	
 	@Test public void updateKONonexistentProvider() {

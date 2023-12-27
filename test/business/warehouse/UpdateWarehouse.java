@@ -26,11 +26,11 @@ public class UpdateWarehouse {
 		assertTrue(as.updateWarehouse(warehouse) == warehouse.getId());
 	}
 	
-	@Test public void updateKOSintaxError() {
+	@Test public void updateKOSyntaxError() {
 		warehouse = new WarehouseTransfer(" 2 ", " 4 ");
-		assertTrue(as.updateWarehouse(warehouse) == Errors.SintaxError);
+		assertTrue(as.updateWarehouse(warehouse) == Errors.SyntaxError);
 		warehouse.setName("nameOK");
-		assertTrue(as.updateWarehouse(warehouse) == Errors.SintaxError);
+		assertTrue(as.updateWarehouse(warehouse) == Errors.SyntaxError);
 	}
 	
 	@Test public void updateKONonexistentWarehouse() {

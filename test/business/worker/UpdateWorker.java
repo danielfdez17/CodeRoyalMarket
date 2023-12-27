@@ -60,7 +60,7 @@ public class UpdateWorker {
 	@Test public void updateWorkerKOInactiveWarehouse() {
 		String name = "updateWorkerKOInactiveWarehouse", nif1 = nif + "C", nif2 = nif + "D";
 		this.setASs(name, nif1, nif2);
-		warehouse = new WarehouseTransfer(name + "vdos", city);
+		warehouse = new WarehouseTransfer(name + "versionTwo", city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
 		warehouseAS.deleteWarehouse(warehouseId);
 		fullTime.setWarehouseId(warehouseId);
@@ -79,5 +79,5 @@ public class UpdateWorker {
 		assertEquals(workerAS.updatePartTimeWorker(partTime), Errors.NonexistentWorker);
 	}
 	
-	// Sintax error equals in CreateWorker tests
+	// Syntax error equals in CreateWorker tests
 }

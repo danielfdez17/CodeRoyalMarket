@@ -61,14 +61,14 @@ public class CreateProvider {
 		assertTrue(providerId > 0);
 	}
 	
-	@Test public void createKOSintaxError() {
+	@Test public void createKOSyntaxError() {
 		String name = " 43 ";
 		int phoneNumber = 12345678;
 		provider = new ProviderTransfer(name, phoneNumber);
-		assertTrue(providerAS.createProvider(provider) == Errors.SintaxError);
+		assertTrue(providerAS.createProvider(provider) == Errors.SyntaxError);
 		name = "nameOK";
 		provider.setName(name);
-		assertTrue(providerAS.createProvider(provider) == Errors.SintaxError);
+		assertTrue(providerAS.createProvider(provider) == Errors.SyntaxError);
 		
 	}
 	

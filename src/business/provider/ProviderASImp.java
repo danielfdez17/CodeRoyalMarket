@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import business.entityManagerFactory.EMFFactory;
 import business.product.ProductBO;
 import business.providerProduct.ProviderProductTransfer;
-import business.sintaxChecker.SintaxChecker;
+import business.syntaxChecker.SyntaxChecker;
 import utilities.BusinessException;
 import utilities.Errors;
 
@@ -19,7 +19,7 @@ public class ProviderASImp implements ProviderAS {
 
 	@Override
 	public int createProvider(ProviderTransfer provider) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(provider)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -59,7 +59,7 @@ public class ProviderASImp implements ProviderAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.clear();
@@ -142,7 +142,7 @@ public class ProviderASImp implements ProviderAS {
 	}
 
 	@Override
-	public int assingProduct(ProviderProductTransfer providerProduct) {
+	public int assignProduct(ProviderProductTransfer providerProduct) {
 		int res = 1;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
@@ -186,7 +186,7 @@ public class ProviderASImp implements ProviderAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -195,7 +195,7 @@ public class ProviderASImp implements ProviderAS {
 	}
 
 	@Override
-	public int unassingProduct(ProviderProductTransfer providerProduct) {
+	public int unassignProduct(ProviderProductTransfer providerProduct) {
 		int res = 1;
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
@@ -239,7 +239,7 @@ public class ProviderASImp implements ProviderAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -291,7 +291,7 @@ public class ProviderASImp implements ProviderAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -301,7 +301,7 @@ public class ProviderASImp implements ProviderAS {
 
 	@Override
 	public int updateProvider(ProviderTransfer provider) {
-		int res = Errors.SintaxError;
+		int res = Errors.SyntaxError;
 		if (this.isValid(provider)) {
 			EntityManager em = EMFFactory.getInstance().createEntityManager();
 			EntityTransaction et = em.getTransaction();
@@ -326,7 +326,7 @@ public class ProviderASImp implements ProviderAS {
 					et.rollback();
 				}
 				else {
-					res = Errors.UnespectedError;
+					res = Errors.UnexpectedError;
 				}
 			} finally {
 				em.close();
@@ -383,7 +383,7 @@ public class ProviderASImp implements ProviderAS {
 				et.rollback();
 			}
 			else {
-				res = Errors.UnespectedError;
+				res = Errors.UnexpectedError;
 			}
 		} finally {
 			em.close();
@@ -393,7 +393,7 @@ public class ProviderASImp implements ProviderAS {
 	
 	private boolean isValid(ProviderTransfer provider) {
 		return provider != null &&
-				SintaxChecker.isName(provider.getName()) &&
-				SintaxChecker.isPhoneNumber(provider.getPhoneNumber() + "");
+				SyntaxChecker.isName(provider.getName()) &&
+				SyntaxChecker.isPhoneNumber(provider.getPhoneNumber() + "");
 		}
 }

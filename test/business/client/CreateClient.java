@@ -28,15 +28,15 @@ public class CreateClient {
 	}
 	
 	@Test 
-	public void createKOSintaxError() {
-		client = new ClientTransfer(nif, "createClientKOSintaxError", balance);
-		assertTrue(clientAS.createClient(client) == Errors.SintaxError);
+	public void createKOSyntaxError() {
+		client = new ClientTransfer(nif, "createClientKOSyntaxError", balance);
+		assertTrue(clientAS.createClient(client) == Errors.SyntaxError);
 		client.setNif(nif + "A");
 		client.setBalance(-1);
-		assertTrue(clientAS.createClient(client) == Errors.SintaxError);
+		assertTrue(clientAS.createClient(client) == Errors.SyntaxError);
 		client.setBalance(balance);
 		client.setName("  3  ");
-		assertTrue(clientAS.createClient(client) == Errors.SintaxError);
+		assertTrue(clientAS.createClient(client) == Errors.SyntaxError);
 	}
 	
 	@Test

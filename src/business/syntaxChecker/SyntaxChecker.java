@@ -1,6 +1,6 @@
-package business.sintaxChecker;
+package business.syntaxChecker;
 
-public class SintaxChecker {
+public class SyntaxChecker {
 	
 	private static final int LENGTH = 9;
 	
