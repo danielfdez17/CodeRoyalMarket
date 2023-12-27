@@ -44,7 +44,7 @@ public class DeleteWorker {
 	}
 	
 	@Test public void deleteWorkerOK() {
-		String name = "deleteWorkerOK", nif1 = nif + "A", nif2 = nif + "B";
+		String name = "deleteWorkerOK", nif1 = nif + "M", nif2 = nif + "N";
 		this.setASs(name, nif1, nif2);
 		assertEquals(workerAS.deleteWorker(fullTimeId), fullTimeId);
 		assertEquals(workerAS.deleteWorker(partTimeId), partTimeId);
@@ -55,7 +55,7 @@ public class DeleteWorker {
 	}
 	
 	@Test public void deleteWorkerKOInactiveWorker() {
-		String name = "deleteWorkerKOInactiveWorker", nif1 = nif + "C", nif2 = nif + "D";
+		String name = "deleteWorkerKOInactiveWorker", nif1 = nif + "O", nif2 = nif + "P";
 		this.setASs(name, nif1, nif2);
 		workerAS.deleteWorker(fullTimeId);
 		workerAS.deleteWorker(partTimeId);

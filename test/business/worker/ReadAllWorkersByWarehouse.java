@@ -46,7 +46,7 @@ public class ReadAllWorkersByWarehouse {
 	}
 	
 	@Test public void readAllWorkersByWarehouseOK() {
-		String name = "readAllWorkersOK", nif1 = nif + "A", nif2 = nif + "B";
+		String name = "readAllWorkersOK", nif1 = nif + "S", nif2 = nif + "T";
 		this.setASs(name, nif1, nif2);
 		List<WorkerTransfer> res = workerAS.readWorkersByWarehouse(warehouseId);
 		assertFalse(res.isEmpty());

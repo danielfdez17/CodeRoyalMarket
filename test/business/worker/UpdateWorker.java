@@ -12,7 +12,7 @@ import utilities.Errors;
 
 public class UpdateWorker {
 	
-	private static final String nif = "12345678", city = "city";
+	private static final String nif = "12347578", city = "city";
 	private static final int hours = 38, INF = 999999999;
 	private static final double hourPrice = 42, salary = 2889;
 	
@@ -44,7 +44,7 @@ public class UpdateWorker {
 	}
 	
 	@Test public void updateWorkerOK() {
-		String name = "updateWorkerOK", nif1 = nif + "A", nif2 = nif + "B";
+		String name = "updateWorkerOK", nif1 = nif + "W", nif2 = nif + "X";
 		this.setASs(name, nif1, nif2);
 		assertEquals(workerAS.updateFullTimeWorker(fullTime), fullTimeId);
 		assertEquals(workerAS.updatePartTimeWorker(partTime), partTimeId);
@@ -58,7 +58,7 @@ public class UpdateWorker {
 	}
 	
 	@Test public void updateWorkerKOInactiveWarehouse() {
-		String name = "updateWorkerKOInactiveWarehouse", nif1 = nif + "C", nif2 = nif + "D";
+		String name = "updateWorkerKOInactiveWarehouse", nif1 = nif + "Y", nif2 = nif + "Z";
 		this.setASs(name, nif1, nif2);
 		warehouse = new WarehouseTransfer(name + "versionTwo", city);
 		warehouseId = warehouseAS.createWarehouse(warehouse);
