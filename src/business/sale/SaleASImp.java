@@ -303,19 +303,21 @@ public class SaleASImp implements SaleAS {
 				
 			}
 			
+			
+			if (saleBO.getCost() > clientBO.getBalance()) {
+				res = Errors.NotEnoughBalance;
+				throw be;
+			}
+
 			saleBO.setClientBO(clientBO);
+			em.persist(saleBO);
 			
 			for (SaleLineTransfer line : shoppingCart.getLines()) {
 				ProductBO productBO = em.find(ProductBO.class, line.getProductId(), LockModeType.OPTIMISTIC);
 				em.persist(new SaleLineBO(saleBO, productBO, productBO.getPrice(), line.getAmount()));
 			}
 			
-			if (saleBO.getCost() > clientBO.getBalance()) {
-				res = Errors.NotEnoughBalance;
-				throw be;
-			}
 			
-			em.persist(saleBO);
 			clientBO.setBalance(clientBO.getBalance() - saleBO.getCost());
 			et.commit();
 			res = saleBO.getId();

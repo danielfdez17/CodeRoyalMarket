@@ -4,6 +4,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
+
 import business.sale.SaleBO;
 import javax.persistence.NamedQueries;
 import business.product.ProductBO;
@@ -42,9 +44,6 @@ public class SaleLineBO implements Serializable {
 	@EmbeddedId
 	private SaleLineBOEmbeddable id;
 	
-	private double price;
-	private int amount;
-	
 	@ManyToOne
 	@MapsId("saleId")
 	private SaleBO saleBO;
@@ -52,10 +51,15 @@ public class SaleLineBO implements Serializable {
 	@ManyToOne
 	@MapsId("productId")
 	private ProductBO productBO;
+	
+	@Version
+	private int version;
 
+	private double price;
+	private int amount;
 	
 	
-	public SaleLineBO(SaleBO sale, ProductBO product, double price, int amount) {
+	public SaleLineBO(final SaleBO sale, final ProductBO product, final double price, final int amount) {
 		this.saleBO = sale;
 		this.productBO = product;
 		this.price = price;
