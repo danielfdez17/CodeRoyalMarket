@@ -8,10 +8,15 @@ import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.persistence.NamedQueries;
 import java.util.List;
+
 import business.provider.ProviderBO;
+import business.sale.SaleBO;
+import business.saleLine.SaleLineBO;
+
 import javax.persistence.ManyToMany;
 import business.warehouse.WarehouseBO;
 import javax.persistence.ManyToOne;
@@ -59,6 +64,8 @@ public class ProductBO implements Serializable {
 	private List<ProviderBO> providers;
 	@ManyToOne
 	private WarehouseBO warehouseBO;
+	@ManyToMany(mappedBy = "productId")
+	private List<SaleLineBO>sales;
 	
 	public ProductBO(String name, int stock, double price) {
 		super();

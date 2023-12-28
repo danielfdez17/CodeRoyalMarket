@@ -311,10 +311,11 @@ public class SaleASImp implements SaleAS {
 
 			saleBO.setClientBO(clientBO);
 			em.persist(saleBO);
-			
+			em.flush();
 			for (SaleLineTransfer line : shoppingCart.getLines()) {
 				ProductBO productBO = em.find(ProductBO.class, line.getProductId(), LockModeType.OPTIMISTIC);
-				em.persist(new SaleLineBO(saleBO, productBO, productBO.getPrice(), line.getAmount()));
+				SaleLineBO saleLineBO = new SaleLineBO(saleBO, productBO, productBO.getPrice(), line.getAmount());
+				em.persist(saleLineBO);
 			}
 			
 			
@@ -329,6 +330,7 @@ public class SaleASImp implements SaleAS {
 				et.rollback();
 			}
 			else {
+				System.out.println(e.getMessage());
 				res = Errors.UnexpectedError;
 			}
 		} finally {

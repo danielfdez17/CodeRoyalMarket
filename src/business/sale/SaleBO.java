@@ -6,11 +6,17 @@ import javax.persistence.GenerationType;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.NamedQueries;
 import business.client.ClientBO;
+import business.product.ProductBO;
+import business.saleLine.SaleLineBO;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
@@ -46,6 +52,8 @@ public class SaleBO implements Serializable {
 	private boolean active;
 	@OneToOne
 	private ClientBO clientBO;
+	@ManyToMany(mappedBy = "saleId")
+	private List<SaleLineBO>products;
 	
 	
 	public SaleBO(int id, double cost, Date date, boolean active) {

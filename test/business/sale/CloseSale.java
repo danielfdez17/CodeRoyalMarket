@@ -45,7 +45,7 @@ public class CloseSale {
 		productAS = bf.createProductAS();
 		warehouseAS = bf.createWarehouseAS();
 		clientAS = bf.createClientAS();
-		EMFFactory.getInstance();
+//		EMFFactory.getInstance();
 	}
 	
 	private void setASs(String name, String nif) {
