@@ -2,8 +2,11 @@ package business.saleLine;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
 import java.io.Serializable;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import business.sale.SaleBO;
@@ -44,11 +47,10 @@ public class SaleLineBO implements Serializable {
 	@EmbeddedId
 	private SaleLineBOEmbeddable id;
 	
-	@ManyToOne
-	@MapsId("saleId")
+	@ManyToMany(targetEntity = business.sale.SaleBO.class, mappedBy = "saleId")
 	private SaleBO saleBO;
 	
-	@ManyToOne
+	@ManyToMany
 	@MapsId("productId")
 	private ProductBO productBO;
 	
