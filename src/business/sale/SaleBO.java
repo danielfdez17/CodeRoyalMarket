@@ -52,7 +52,7 @@ public class SaleBO implements Serializable {
 	private boolean active;
 	@OneToOne
 	private ClientBO clientBO;
-	@ManyToMany(mappedBy = "saleId")
+	@OneToMany(mappedBy = "saleBO")
 	private List<SaleLineBO>products;
 	
 	

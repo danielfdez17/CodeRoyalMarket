@@ -47,10 +47,11 @@ public class SaleLineBO implements Serializable {
 	@EmbeddedId
 	private SaleLineBOEmbeddable id;
 	
-	@ManyToMany(targetEntity = business.sale.SaleBO.class, mappedBy = "saleId")
+	@ManyToOne
+	@MapsId("saleId")
 	private SaleBO saleBO;
 	
-	@ManyToMany
+	@ManyToOne
 	@MapsId("productId")
 	private ProductBO productBO;
 	

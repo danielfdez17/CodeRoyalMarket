@@ -64,7 +64,7 @@ public class ProductBO implements Serializable {
 	private List<ProviderBO> providers;
 	@ManyToOne
 	private WarehouseBO warehouseBO;
-	@ManyToMany(mappedBy = "productId")
+	@OneToMany(mappedBy = "productBO")
 	private List<SaleLineBO>sales;
 	
 	public ProductBO(String name, int stock, double price) {
