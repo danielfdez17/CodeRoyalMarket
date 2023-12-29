@@ -1,5 +1,6 @@
 package business.sale;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,8 +53,8 @@ public class SaleBO implements Serializable {
 	private boolean active;
 	@OneToOne
 	private ClientBO clientBO;
-	@OneToMany(mappedBy = "saleBO")
-	private List<SaleLineBO>products;
+	@OneToMany(mappedBy = "saleBO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SaleLineBO> saleLines;
 	
 	
 	public SaleBO(int id, double cost, Date date, boolean active) {

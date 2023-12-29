@@ -1,5 +1,6 @@
 package business.product;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -64,8 +65,8 @@ public class ProductBO implements Serializable {
 	private List<ProviderBO> providers;
 	@ManyToOne
 	private WarehouseBO warehouseBO;
-	@OneToMany(mappedBy = "productBO")
-	private List<SaleLineBO>sales;
+    @OneToMany(mappedBy = "productBO", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SaleLineBO> saleLines;
 	
 	public ProductBO(String name, int stock, double price) {
 		super();
