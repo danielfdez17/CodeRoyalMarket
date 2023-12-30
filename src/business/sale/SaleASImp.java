@@ -32,8 +32,8 @@ public class SaleASImp implements SaleAS {
 				throw be;
 			}
 			
-			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBysaleBO", SaleLineBO.class);
-			query.setParameter("saleBO", saleBO);
+			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBySaleId", SaleLineBO.class);
+			query.setParameter("saleId", saleBO.getId());
 			
 			List<SaleLineTransfer> lines = new ArrayList<SaleLineTransfer>();
 			
@@ -50,6 +50,7 @@ public class SaleASImp implements SaleAS {
 			if (e instanceof BusinessException) {
 				et.rollback();
 			}
+			System.out.println(e.getMessage());
 			res = null;
 		} finally {
 			em.close();
@@ -79,7 +80,7 @@ public class SaleASImp implements SaleAS {
 		et.begin();
 		try {
 			BusinessException be = new BusinessException();
-			ProductBO clientBO = em.find(ProductBO.class, clientId, LockModeType.OPTIMISTIC);
+			ClientBO clientBO = em.find(ClientBO.class, clientId, LockModeType.OPTIMISTIC);
 			
 			if (clientBO == null) {
 				throw be;
@@ -121,8 +122,8 @@ public class SaleASImp implements SaleAS {
 				throw be;
 			}
 			
-			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findByproductBO", SaleLineBO.class);
-			query.setParameter("productBO", productBO);
+			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findByProductId", SaleLineBO.class);
+			query.setParameter("productId", productBO.getId());
 			
 			for (SaleLineBO lineBO : query.getResultList()) {
 				em.lock(lineBO, LockModeType.OPTIMISTIC);
@@ -135,6 +136,7 @@ public class SaleASImp implements SaleAS {
 			if (e instanceof BusinessException) {
 				et.rollback();
 			}
+			System.out.println(e.getMessage());
 			res = new ArrayList<SaleTransfer>();
 		} finally {
 			em.close();
