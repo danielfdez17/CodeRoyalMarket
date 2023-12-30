@@ -8,33 +8,23 @@ import org.junit.Test;
 import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
-public class UpdateWarehouse {
-	private static final String city = "city";
-	
-	private static BusinessFactory bf;
-	private static WarehouseAS as;
-	private WarehouseTransfer warehouse;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		as = bf.createWarehouseAS();
-	}
+public class UpdateWarehouse extends WarehouseTests {
 	
 	@Test public void updateOK() {
-		warehouse = new WarehouseTransfer("updateWarehouseOK", city);
-		as.createWarehouse(warehouse);
-		assertTrue(as.updateWarehouse(warehouse) == warehouse.getId());
+		String name = "updateWarehouseOK";
+		this.setASs(name);
+		assertTrue(warehouseAS.updateWarehouse(warehouse) == warehouseId);
 	}
 	
 	@Test public void updateKOSyntaxError() {
 		warehouse = new WarehouseTransfer(" 2 ", " 4 ");
-		assertTrue(as.updateWarehouse(warehouse) == Errors.SyntaxError);
+		assertTrue(warehouseAS.updateWarehouse(warehouse) == Errors.SyntaxError);
 		warehouse.setName("nameOK");
-		assertTrue(as.updateWarehouse(warehouse) == Errors.SyntaxError);
+		assertTrue(warehouseAS.updateWarehouse(warehouse) == Errors.SyntaxError);
 	}
 	
 	@Test public void updateKONonexistentWarehouse() {
 		warehouse = new WarehouseTransfer("updateWarehouseKONonexistentWarhouse", city);
-		assertTrue(as.updateWarehouse(warehouse) == Errors.NonexistentWarehouse);
+		assertTrue(warehouseAS.updateWarehouse(warehouse) == Errors.NonexistentWarehouse);
 	}
 }

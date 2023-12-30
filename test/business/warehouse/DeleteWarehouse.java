@@ -14,40 +14,14 @@ import business.worker.FullTimeWorkerTransfer;
 import business.worker.WorkerAS;
 import utilities.Errors;
 
-public class DeleteWarehouse {
-	
-	private static final String city = "city", nif = "12345678";
-	private static final int stock = 19;
-	private static final double price = 38, salary = 83;
-	
-	private static BusinessFactory bf;
-	private static WarehouseAS warehouseAS;
-	private static ProductAS productAS;
-	private static WorkerAS workerAS;
-	private WarehouseTransfer warehouse;
-	private ProductTransfer product;
-	private FullTimeWorkerTransfer fullTime;
-	private int warehouseId, productId;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		warehouseAS = bf.createWarehouseAS();
-		productAS = bf.createProductAS();
-		workerAS = bf.createWorkerAS();
-		EMFFactory.getInstance();
-	}
+public class DeleteWarehouse extends WarehouseTests {
 	
 	private void setASs(String name, String nif) {
-		warehouse = new WarehouseTransfer(name, name);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-		
-		product = new ProductTransfer(name, stock, price, warehouseId);
-		productId = productAS.createProduct(product);
-		
+		super.setASs(name);
 		fullTime = new FullTimeWorkerTransfer(nif, name, warehouseId, salary);
 		workerAS.createFullTimeWorker(fullTime);
 	}
-
+	
 	@Test public void deleteOK() {
 		warehouse = new WarehouseTransfer("deleteWarehouseOK", city);
 		warehouseAS.createWarehouse(warehouse);

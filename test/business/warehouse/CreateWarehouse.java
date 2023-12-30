@@ -9,23 +9,7 @@ import org.junit.Test;
 import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
-public class CreateWarehouse {
-	private static final String city = "city";
-	
-	private static BusinessFactory bf;
-	private static WarehouseAS warehouseAS;
-	private WarehouseTransfer warehouse;
-	private int warehouseId;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		warehouseAS = bf.createWarehouseAS();
-	}
-	
-	private void setASs(String name) {
-		warehouse = new WarehouseTransfer(name, name);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-	}
+public class CreateWarehouse extends WarehouseTests {
 	
 	@Test public void createOK() {
 		warehouse = new WarehouseTransfer("createWarehouseOK", city);
@@ -48,6 +32,8 @@ public class CreateWarehouse {
 	@Test public void createWarehouseKOInactiveWarehouse() {
 		String name = "createWarehouseKOInactiveWarehouse";
 		this.setASs(name);
+		warehouse = new WarehouseTransfer(name + "vtwo", city);
+		warehouseId = warehouseAS.createWarehouse(warehouse);
 		warehouseAS.deleteWarehouse(warehouseId);
 		assertEquals(warehouseAS.createWarehouse(warehouse), Errors.InactiveWarehouse);
 	}

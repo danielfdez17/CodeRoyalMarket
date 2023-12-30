@@ -7,22 +7,12 @@ import org.junit.Test;
 
 import business.businessFactory.BusinessFactory;
 
-public class ReadAllWarehouses {
-	private static final String city = "city";
-	
-	private static BusinessFactory bf;
-	private static WarehouseAS as;
-	private WarehouseTransfer warehouse;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		as = bf.createWarehouseAS();
-	}
+public class ReadAllWarehouses extends WarehouseTests {
 	
 	@Test public void readAllOK() {
-		warehouse = new WarehouseTransfer("readAllWarehousesOK", city);
-		as.createWarehouse(warehouse);
-		assertFalse(as.readWarehouses().isEmpty());
+		String name = "readAllWarehousesOK";
+		this.setASs(name);
+		assertFalse(warehouseAS.readWarehouses().isEmpty());
 	}
 	
 //	@Test public void readAllKO() {

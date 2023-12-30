@@ -8,25 +8,15 @@ import org.junit.Test;
 
 import business.businessFactory.BusinessFactory;
 
-public class ReadWarehouse {
-	private static final String city = "city";
-	
-	private static BusinessFactory bf;
-	private static WarehouseAS as;
-	private WarehouseTransfer warehouse;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		as = bf.createWarehouseAS();
-	}
+public class ReadWarehouse extends WarehouseTests {
 	
 	@Test public void readOK() {
-		warehouse = new WarehouseTransfer("readWarehouseOK", city);
-		as.createWarehouse(warehouse);
-		assertNotNull(as.readWarehouse(warehouse.getId()));
+		String name = "readWarehouseOK";
+		this.setASs(name);
+		assertNotNull(warehouseAS.readWarehouse(warehouseId));
 	}
 	
 	@Test public void readKO() {
-		assertNull(as.readWarehouse(-1));
+		assertNull(warehouseAS.readWarehouse(-1));
 	}
 }
