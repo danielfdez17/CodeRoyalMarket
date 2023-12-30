@@ -7,8 +7,24 @@ public class Context {
 	private Object data;
 
 	public Context(Events event, Object data) {
-		// begin-user-code
-		// TODO Auto-generated constructor stub
-		// end-user-code
+		this.event = event;
+		this.data = data;
 	}
+
+	public Events getEvent() {
+		return event;
+	}
+
+	public void setEvent(Events event) {
+		this.event = event;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+	
 }

@@ -6,12 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Panel {
+public class FieldPanel {
 
 	private JPanel panel;
 	private JTextField text;
 	
-	public Panel(String fieldName) {
+	public FieldPanel(String fieldName) {
 		this.initPanel(fieldName);
 	}
 	private void initPanel(String fieldName) {
