@@ -1,5 +1,6 @@
 package business.product;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
@@ -10,36 +11,13 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class CreateProduct {
-	
-	private static final String city = "city";
-	private static final int stock = 4;
-	private static final double price = 4.5;
-	private static BusinessFactory bf;
-	private static ProductAS productAS;
-	private static WarehouseAS warehouseAS;
-	private ProductTransfer product;
-	private static WarehouseTransfer warehouse;
-	private static int warehouseId;
-	
-	@BeforeClass
-	public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		productAS = bf.createProductAS();
-		warehouseAS = bf.createWarehouseAS();
-	}
-	
-	private void setAS(String name) {
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-	}
-	
+public class CreateProduct extends ProductTests {
+
 	@Test
 	public void createOK() {
 		String name = "createProductOK";
 		setAS(name);
-		product = new ProductTransfer(name, stock, price, warehouseId);
-		assertTrue(productAS.createProduct(product) > 0);
+		assertTrue(productId > 0);
 	}
 	
 	@Test
@@ -67,7 +45,9 @@ public class CreateProduct {
 	public void createKOInactiveWarehouse() {
 		String name = "createKOInactiveWarehouse";
 		setAS(name);
-		warehouseAS.deleteWarehouse(warehouseId);
+		warehouse = new WarehouseTransfer(name + "vtwo", city);
+		warehouseId = warehouseAS.createWarehouse(warehouse);
+		assertEquals(warehouseId, warehouseAS.deleteWarehouse(warehouseId));
 		product = new ProductTransfer(name, stock, price, warehouseId);
 		assertTrue(productAS.createProduct(product) == Errors.InactiveWarehouse);
 	}

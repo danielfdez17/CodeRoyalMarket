@@ -13,35 +13,7 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class UpdateProduct {
-	
-	private static final String name = "name", city = "city";
-	private static final int stock = 4;
-	private static final double price = 4.5;
-	private static BusinessFactory bf;
-	private static ProductAS productAS;
-	private static WarehouseAS warehouseAS;
-	private ProductTransfer product;
-	private static WarehouseTransfer warehouse;
-	private static int warehouseId;
-	private static int productId;
-	
-	@BeforeClass
-	public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		productAS = bf.createProductAS();
-		warehouseAS = bf.createWarehouseAS();
-		EMFFactory.getInstance();
-	}
-	
-	private void setAS(String name) {
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-		
-		product = new ProductTransfer(name, stock, price, warehouseId);
-		productId = productAS.createProduct(product);
-		
-	}
+public class UpdateProduct extends ProductTests {
 	
 	@Test public void updateOK() {
 		String name = "updateProductOK";
@@ -63,7 +35,7 @@ public class UpdateProduct {
 	}
 	
 	@Test public void updateKONonexistentProduct() {
-		product = new ProductTransfer(name, stock, price, warehouseId);
+		product = new ProductTransfer("name", stock, price, warehouseId);
 		assertTrue(productAS.updateProduct(product) == Errors.NonexistentProduct);
 	}
 	

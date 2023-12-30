@@ -15,40 +15,7 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class DeleteProduct {
-	
-	private static final String city = "city";
-	private static final int stock = 4, phoneNumber = 123456789;
-	private static final double price = 4.5;
-	private static BusinessFactory bf;
-	private static ProductAS productAS;
-	private static WarehouseAS warehouseAS;
-	private static ProviderAS providerAS;
-	private ProductTransfer product;
-	private static WarehouseTransfer warehouse;
-	private static ProviderTransfer provider;
-	private static int warehouseId;
-	private static int providerId;
-	private static int productId;
-	
-	@BeforeClass
-	public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		productAS = bf.createProductAS();
-		warehouseAS = bf.createWarehouseAS();
-		providerAS = bf.createProviderAS();
-	}
-	
-	private void setAS(String name) {
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-		
-		product = new ProductTransfer(name, stock, price, warehouseId);
-		productId = productAS.createProduct(product);
-		
-		provider = new ProviderTransfer(name, phoneNumber);
-		providerId = providerAS.createProvider(provider);
-	}
+public class DeleteProduct extends ProductTests {
 	
 	@Test public void deleteOK() {
 		String name = "deleteProductOK";
