@@ -3,10 +3,8 @@ package business.client;
 import static org.junit.Assert.assertTrue;
 
 
-import org.junit.Before;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
 public class DeleteClient extends ClientTests {

@@ -1,6 +1,5 @@
 package main;
 
-import business.entityManagerFactory.EMFFactory;
 import presentation.controller.Controller;
 import presentation.controller.Events;
 import presentation.controller.view.Context;

@@ -3,15 +3,9 @@ package business.warehouse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.entityManagerFactory.EMFFactory;
-import business.product.ProductAS;
-import business.product.ProductTransfer;
 import business.worker.FullTimeWorkerTransfer;
-import business.worker.WorkerAS;
 import utilities.Errors;
 
 public class DeleteWarehouse extends WarehouseTests {

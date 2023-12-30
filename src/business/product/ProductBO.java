@@ -15,7 +15,6 @@ import javax.persistence.NamedQueries;
 import java.util.List;
 
 import business.provider.ProviderBO;
-import business.sale.SaleBO;
 import business.saleLine.SaleLineBO;
 
 import javax.persistence.ManyToMany;

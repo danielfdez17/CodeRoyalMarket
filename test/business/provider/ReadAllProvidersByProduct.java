@@ -5,15 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.product.ProductAS;
-import business.product.ProductTransfer;
-import business.providerProduct.ProviderProductTransfer;
-import business.warehouse.WarehouseAS;
-import business.warehouse.WarehouseTransfer;
 
 public class ReadAllProvidersByProduct extends ProviderTests {
 	

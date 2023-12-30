@@ -1,17 +1,11 @@
 package business.provider;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import business.businessFactory.BusinessFactory;
-import business.product.ProductAS;
-import business.product.ProductTransfer;
 import business.providerProduct.ProviderProductTransfer;
-import business.warehouse.WarehouseAS;
-import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
 public class ProvideProduct extends ProviderTests {

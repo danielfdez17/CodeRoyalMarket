@@ -3,15 +3,8 @@ package business.provider;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.product.ProductAS;
-import business.product.ProductTransfer;
-import business.providerProduct.ProviderProductTransfer;
-import business.warehouse.WarehouseAS;
-import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
 public class DeleteProvider extends ProviderTests {

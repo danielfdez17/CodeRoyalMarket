@@ -11,7 +11,6 @@ import business.entityManagerFactory.EMFFactory;
 import business.provider.ProviderBO;
 import business.sale.SaleBO;
 import business.saleLine.SaleLineBO;
-import business.saleLine.SaleLineBOEmbeddable;
 import business.syntaxChecker.SyntaxChecker;
 import business.warehouse.WarehouseBO;
 import utilities.BusinessException;

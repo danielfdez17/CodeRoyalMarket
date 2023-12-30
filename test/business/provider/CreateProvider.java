@@ -3,10 +3,8 @@ package business.provider;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
 public class CreateProvider extends ProviderTests {

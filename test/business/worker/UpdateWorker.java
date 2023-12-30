@@ -2,11 +2,8 @@ package business.worker;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 

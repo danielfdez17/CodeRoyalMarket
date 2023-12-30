@@ -3,10 +3,8 @@ package business.warehouse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
 public class CreateWarehouse extends WarehouseTests {

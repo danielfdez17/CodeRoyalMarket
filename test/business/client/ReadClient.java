@@ -3,10 +3,8 @@ package business.client;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
 
 public class ReadClient extends ClientTests {
 	

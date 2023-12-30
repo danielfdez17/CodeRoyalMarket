@@ -1,26 +1,15 @@
 package business.product;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.client.ClientAS;
 import business.client.ClientTransfer;
-import business.provider.ProviderAS;
-import business.provider.ProviderTransfer;
-import business.sale.SaleAS;
 import business.sale.SaleTransfer;
 import business.sale.ShoppingCartTransfer;
 import business.saleLine.SaleLineTransfer;
-import business.warehouse.WarehouseAS;
-import business.warehouse.WarehouseTransfer;
-import utilities.Errors;
 
 public class ReadAllProductsBySale extends ProductTests {
 	

@@ -4,12 +4,8 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.businessFactory.BusinessFactory;
-import business.warehouse.WarehouseAS;
-import business.warehouse.WarehouseTransfer;
 
 public class ReadWorker extends WorkerTests {
 

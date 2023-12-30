@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 
 import business.businessFactory.BusinessFactory;
 import business.client.ClientAS;
-import business.client.ClientTests;
 import business.client.ClientTransfer;
 import business.provider.ProviderAS;
 import business.provider.ProviderTransfer;

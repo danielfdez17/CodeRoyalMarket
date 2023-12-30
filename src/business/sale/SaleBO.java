@@ -10,12 +10,10 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.NamedQueries;
 import business.client.ClientBO;
-import business.product.ProductBO;
 import business.saleLine.SaleLineBO;
 
 import javax.persistence.OneToOne;
