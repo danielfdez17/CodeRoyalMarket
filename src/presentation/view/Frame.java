@@ -1,9 +1,10 @@
-package presentation.gui;
+package presentation.view;
 
 import javax.swing.JFrame;
+
 import presentation.controller.view.Context;
 
-public abstract class Panel extends JFrame {
+public abstract class Frame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -14,4 +15,5 @@ public abstract class Panel extends JFrame {
 	public abstract String getErrorMsg(int error);
 
 	public abstract boolean areTextFieldsEmpty();
+	
 }

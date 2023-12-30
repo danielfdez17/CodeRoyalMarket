@@ -1,31 +1,18 @@
-package presentation.gui.client;
+package presentation.view.main;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javax.swing.JFrame;
-
-import utilities.Utils;
-
-public class ClientGUI extends JFrame {
-
+public class MainGUIImp extends MainGUI {
+	
 	private static final long serialVersionUID = 1L;
+	private static final int BUTTONS = 6;
 	
-	private static ClientGUI instance;
-	
-	public ClientGUI() {
+	public MainGUIImp() {
 		this.initGUI();
 	}
 	
-	public synchronized static ClientGUI getInstance() {
-		if (instance == null) instance = new ClientGUI();
-		return instance;
-	}
-
 	private void initGUI() {
-		this.setTitle(Utils.ClientsTitle);
-		
-		
 		
 		Dimension dims_frame = this.getContentPane().getSize();
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,8 +20,9 @@ public class ClientGUI extends JFrame {
 		
 		this.setPreferredSize(new Dimension(400, 400));
 		this.setLocation(dim.width / 2 - frame.getSize().width / 2 - 200, dim.height / 2 - frame.getSize().height / 2 - 200);
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.pack();
 		this.setVisible(false);
 	}
+
 }

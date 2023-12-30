@@ -1,7 +1,7 @@
 package presentation.controller.commands;
 
 import presentation.controller.Events;
-import presentation.gui.GUIMSG;
+import presentation.view.GUIMSG;
 
 public class CommandFactoryImp extends CommandFactory {
 	

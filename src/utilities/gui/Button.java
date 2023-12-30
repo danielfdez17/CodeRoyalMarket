@@ -6,10 +6,8 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class Button extends JButton {
+public class Button {
 
-	private static final long serialVersionUID = 1L;
-	
 	private String name;
 	private JButton button;
 	
@@ -21,8 +19,8 @@ public class Button extends JButton {
 	private void initButton() {
 		this.button = new JButton(this.name);
 		
-		this.button.setBackground(Color.BLACK);
-		this.button.setForeground(Color.WHITE);
+		this.button.setBackground(Color.CYAN);
+		this.button.setForeground(Color.BLACK);
 		
 		this.button.setFont(new Font(Font.MONOSPACED, Font.BOLD, 15));
 		this.button.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));

@@ -1,4 +1,4 @@
-package presentation.gui;
+package presentation.view;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
