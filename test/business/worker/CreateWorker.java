@@ -11,38 +11,7 @@ import business.warehouse.WarehouseAS;
 import business.warehouse.WarehouseTransfer;
 import utilities.Errors;
 
-public class CreateWorker {
-	
-	private static final String nif = "12345678", city = "city";
-	private static final int hours = 38, INF = 999999999;
-	private static final double hourPrice = 42, salary = 2889;
-	
-	private static BusinessFactory bf;
-	private static WorkerAS workerAS;
-	private static WarehouseAS warehouseAS;
-	
-	private FullTimeWorkerTransfer fullTime;
-	private PartTimeWorkerTransfer partTime;
-	private WarehouseTransfer warehouse;
-	
-	private int warehouseId, fullTimeId, partTimeId;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		workerAS = bf.createWorkerAS();
-		warehouseAS = bf.createWarehouseAS();
-	}
-	
-	private void setASs(String name, String nif1, String nif2) {
-		warehouse = new WarehouseTransfer(name, city);
-		warehouseId = warehouseAS.createWarehouse(warehouse);
-		
-		fullTime = new FullTimeWorkerTransfer(nif1, name, warehouseId, salary);
-		fullTimeId = workerAS.createFullTimeWorker(fullTime);
-		
-		partTime = new PartTimeWorkerTransfer(nif2, name, warehouseId, hourPrice, hours);
-		partTimeId = workerAS.createPartTimeWorker(partTime);
-	}
+public class CreateWorker extends WorkerTests {
 	
 	@Test public void createWorkerOK() {
 		String name = "createWorkerOK", nif1 = nif + "A", nif2 = nif + "B";
