@@ -9,25 +9,7 @@ import org.junit.Test;
 import business.businessFactory.BusinessFactory;
 import utilities.Errors;
 
-public class CreateProvider {
-	private static final int phoneNumber = 123456879;
-	
-	private static BusinessFactory bf;
-	private static ProviderAS providerAS;
-	
-	private ProviderTransfer provider;
-	
-	private int providerId;
-	
-	@BeforeClass public static void setUp() {
-		bf = BusinessFactory.getInstance();
-		providerAS = bf.createProviderAS();
-	}
-	
-	private void setASs(String name) {
-		provider = new ProviderTransfer(name, phoneNumber);
-		providerId = providerAS.createProvider(provider);
-	}
+public class CreateProvider extends ProviderTests {
 	
 	@Test public void createOK() {
 		String name = "createProviderOK";
