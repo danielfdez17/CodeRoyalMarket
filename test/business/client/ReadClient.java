@@ -8,18 +8,7 @@ import org.junit.Test;
 
 import business.businessFactory.BusinessFactory;
 
-public class ReadClient {
-	private BusinessFactory bf;
-	private ClientAS clientAS;
-	private ClientTransfer client;
-	private static final String nif = "12345678";
-	private static final double balance = 500;
-	
-	@Before
-	public void setUp() {
-		bf = BusinessFactory.getInstance();
-		clientAS = bf.createClientAS();
-	}
+public class ReadClient extends ClientTests {
 	
 	@Test
 	public void readOK() {
