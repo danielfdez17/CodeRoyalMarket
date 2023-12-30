@@ -112,8 +112,10 @@ public class ClientASImp implements ClientAS {
 					throw be;
 				}
 
-				client.setActive(true);
-				clientBO = new ClientBO(client);
+				clientBO.setActive(true);
+				clientBO.setName(client.getName());
+				clientBO.setNif(client.getNif());
+				clientBO.setBalance(client.getBalance());
 				et.commit();
 				res = client.getId();
 				
