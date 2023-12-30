@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 import business.entityManagerFactory.EMFFactory;
 import business.provider.ProviderBO;
 import business.sale.SaleBO;
+import business.saleLine.SaleLineBO;
+import business.saleLine.SaleLineBOEmbeddable;
 import business.syntaxChecker.SyntaxChecker;
 import business.warehouse.WarehouseBO;
 import utilities.BusinessException;
@@ -163,12 +165,12 @@ public class ProductASImp implements ProductAS {
 			if (saleBO == null) {
 				throw be;
 			}
-			TypedQuery<ProductBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBysaleBO", ProductBO.class);
-			query.setParameter("saleBO", saleId);
+			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBySaleId", SaleLineBO.class);
+			query.setParameter("saleId", saleId);
 			
-			for (ProductBO p : query.getResultList()) {
-				em.lock(p, LockModeType.OPTIMISTIC);
-				res.add(p.toTransfer());
+			for (SaleLineBO s : query.getResultList()) {
+				em.lock(s, LockModeType.OPTIMISTIC);
+				res.add(s.getProductBO().toTransfer());
 			}
 			et.commit();
 			
@@ -176,6 +178,7 @@ public class ProductASImp implements ProductAS {
 			if (e instanceof BusinessException) {
 				et.rollback();
 			}
+			System.out.println(e.getMessage());
 			res = new ArrayList<ProductTransfer>();
 		} finally {
 			em.close();

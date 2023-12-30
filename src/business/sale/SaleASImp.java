@@ -12,6 +12,7 @@ import business.product.ProductBO;
 import business.client.ClientBO;
 import business.entityManagerFactory.EMFFactory;
 import business.saleLine.SaleLineBO;
+import business.saleLine.SaleLineBOEmbeddable;
 import business.saleLine.SaleLineTransfer;
 import utilities.BusinessException;
 import utilities.Errors;
@@ -158,8 +159,8 @@ public class SaleASImp implements SaleAS {
 				throw be;
 			}
 			
-			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBysaleBO", SaleLineBO.class);
-			query.setParameter("saleBO", saleBO);
+			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBySaleId", SaleLineBO.class);
+			query.setParameter("saleId", saleBO.getId());
 			
 			for (SaleLineBO saleLineBO : query.getResultList()) {
 				ProductBO productBO = saleLineBO.getProductBO();
@@ -183,6 +184,7 @@ public class SaleASImp implements SaleAS {
 				et.rollback();
 			}
 			else {
+				System.out.println(e.getMessage());
 				res = Errors.UnexpectedError;
 			}
 		} finally {
@@ -214,9 +216,8 @@ public class SaleASImp implements SaleAS {
 				throw be;
 			}
 			
-			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.saleLineBO.findBySaleAndProduct", SaleLineBO.class);
-			query.setParameter("saleBO", saleBO);
-			query.setParameter("productBO", productBO);
+			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findById", SaleLineBO.class);
+			query.setParameter("id", new SaleLineBOEmbeddable(saleId, productId));
 			
 			if (query.getResultList().isEmpty()) {
 				res = Errors.ProductNotBought;
@@ -322,6 +323,7 @@ public class SaleASImp implements SaleAS {
 			
 			
 			clientBO.setBalance(clientBO.getBalance() - saleBO.getCost());
+			saleBO.setActive(false);
 			et.commit();
 			res = saleBO.getId();
 			shoppingCart.getSale().setId(res);

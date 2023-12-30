@@ -17,6 +17,8 @@ import javax.persistence.MapsId;
 
 @Entity
 @NamedQueries({
+		@NamedQuery(name = "business.saleLine.SaleLineBO.findById", 
+					query = "select obj from SaleLineBO obj where :id = obj.id "),
 		@NamedQuery(name = "business.saleLine.SaleLineBO.findBySaleId", 
 					query = "select obj from SaleLineBO obj where :saleId = obj.saleBO.id "),
 		@NamedQuery(name = "business.saleLine.SaleLineBO.findByProductId",

@@ -12,7 +12,7 @@ public class ReadSale extends SaleTests {
 	
 	@Test public void readSaleOK() {
 		String name = "readSaleOK";
-		this.setASs(name, nif + "A");
+		this.setASs(name, nif + "J");
 		saleLine = new SaleLineTransfer(productId, product.getStock());
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);

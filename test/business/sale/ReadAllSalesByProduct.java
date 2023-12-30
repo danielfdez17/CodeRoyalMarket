@@ -13,7 +13,7 @@ public class ReadAllSalesByProduct extends SaleTests {
 	
 	@Test public void readAllSalesByProductOK() {
 		String name = "readAllSalesByProductOK";
-		this.setASs(name, nif + "A");
+		this.setASs(name, nif + "I");
 		saleLine = new SaleLineTransfer(productId, product.getStock());
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);
