@@ -1,12 +1,18 @@
 package presentation.controller.commands;
 
 import presentation.controller.Events;
+import presentation.controller.commands.client.CommandCreateClient;
+import presentation.controller.commands.client.CommandReadClients;
+import presentation.controller.commands.main.CommandMainGUI;
 import presentation.view.GUIMSG;
 
 public class CommandFactoryImp extends CommandFactory {
 	
 	private static Command commands[] = {
-			
+		new CommandMainGUI(),
+		
+		new CommandCreateClient(),
+		new CommandReadClients(),
 	};
 
 	@Override

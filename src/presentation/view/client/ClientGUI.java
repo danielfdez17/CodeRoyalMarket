@@ -5,6 +5,9 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import business.client.ClientTransfer;
+import presentation.controller.Controller;
+import presentation.controller.Events;
+import presentation.controller.view.Context;
 
 public abstract class ClientGUI extends JFrame {
 
@@ -14,6 +17,7 @@ public abstract class ClientGUI extends JFrame {
 
 	public synchronized static ClientGUI getInstance() {
 		if (instance == null) instance = new ClientGUIImp();
+		Controller.getInstance().action(new Context(Events.ReadClients, null));
 		return instance;
 	}
 	

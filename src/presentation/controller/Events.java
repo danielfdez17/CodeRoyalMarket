@@ -4,9 +4,18 @@ public enum Events {
 	
 	MainGUI,
 	
+	ClientGUI,
+	CreateClientGUI,
+	UpdateClientGUI,
+	DeleteClientGUI,
+	
 	CreateClient,
 	CreateClientOK,
 	CreateClientKO,
+	
+	ReadClients,
+	ReadClientsOK,
+	ReadClientsKO,
 	
 	UpdateClient,
 	UpdateClientOK,

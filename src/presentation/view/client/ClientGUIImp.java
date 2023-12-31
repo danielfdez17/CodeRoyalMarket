@@ -98,6 +98,7 @@ public class ClientGUIImp extends ClientGUI {
 			}
 			this.model.addRow(new Object[] {id, nif, name, balance});
 		}
+		this.model.fireTableStructureChanged();
 	}
 	
 	private String toBold(String s) {

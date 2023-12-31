@@ -2,6 +2,9 @@ package utilities;
 
 public class Utils {
 	
+	// RoyalMarket
+	public static final String RoyalMarket = "Royal Market";
+	
 	// toString()
 	public static final String JUMP = "\n";
 	
@@ -44,6 +47,7 @@ public class Utils {
 	public static final String EmptyTextFields = "Empty textfields";
 	public static final String RestoreValues = "Restore values";
 	public static final String NotConsideredResponse = "Response not considered";
+	public static final String NotConsideredView = "View not considered";
 	public static final String SyntaxError = "Syntax error";
 	public static final String UnexpectedError = "Unexpected error";
 

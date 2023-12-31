@@ -1,19 +1,12 @@
 package presentation.controller.view;
 
-public class ViewFactory {
+public abstract class ViewFactory {
 	private static ViewFactory instance;
 
-	public static ViewFactory getInstance() {
-		// begin-user-code
-		// TODO Auto-generated method stub
-		return null;
-		// end-user-code
+	public static synchronized ViewFactory getInstance() {
+		if (instance == null) instance = new ViewFactoryImp();
+		return instance;
 	}
 
-	public void createView(Context context) {
-		// begin-user-code
-		// TODO Auto-generated method stub
-
-		// end-user-code
-	}
+	public abstract void createView(Context context);
 }

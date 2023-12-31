@@ -105,6 +105,7 @@ public class CreateClientFrame extends Frame {
 		case CreateClientOK:
 			ClientTransfer client = (ClientTransfer)context.getData();
 			GUIMSG.showMessage(Utils.ClientSuccessfullyCreated + client.toString(), FromWhere, false);
+			Controller.getInstance().action(new Context(Events.ReadClients, null));
 			break;
 		case CreateClientKO:
 			GUIMSG.showMessage(this.getErrorMsg((int)context.getData()), FromWhere, true);
