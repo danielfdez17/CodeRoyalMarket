@@ -13,13 +13,17 @@ public class Utils {
 	public static final String Name = "Name";
 	public static final String Nif = "NIF";
 	public static final String Balance = "Balance";
+	public static final String Stock = "Stock";
+	public static final String Price = "Price";
+	public static final String WarehouseId = "Warehouse " + Id;
+	public static final String PhoneNumber = "Phone number";
 	
 	// Clients
 	public static final String ClientsTitle = "Clients";
 	public static final String ClientsHeaders[] = {Id, Nif, Name, Balance};
 	public static final String CreateClient = "Create client";
-	public static final String ReadAllClients = "Read all clients";
 	public static final String ReadClient = "Read client";
+	public static final String ReadAllClients = "Read all clients";
 	public static final String UpdateClient = "Update client";
 	public static final String DeleteClient = "Delete client";
 	public static final String NonexistentClient = "The client with id %d does not exist";
@@ -30,9 +34,35 @@ public class Utils {
 	
 	// Products
 	public static final String ProductsTitle = "Products";
+	public static final String ProductsHeaders[] = {Id, Name, Stock, Price, WarehouseId};
+	public static final String CreateProduct = "Create product";
+	public static final String ReadProduct = "Read product";
+	public static final String ReadAllProducts = "Read all products";
+	public static final String ReadAllProductsByProvider = "Read all products by provider";
+	public static final String ReadAllProductsBySale = "Read all products by sale";
+	public static final String UpdateProduct = "Update product";
+	public static final String DeleteProduct = "Delete product";
+	public static final String ProductSuccessfullyCreated = "Product successfully created\n";
+	public static final String ProductSuccessfullyUpdated = "Product successfully updated\n";
+	public static final String ProductSuccessfullyDeactivated = "Product with id &d successfully deactivated\n";
+	public static final String ExistentProduct = "The product exists\n";
 	
 	// Providers
 	public static final String ProvidersTitle = "Providers";
+	public static final String ProvidersHeaders[] = {Id, Name, PhoneNumber};
+	public static final String CreateProvider = "Create provider";
+	public static final String ReadProvider = "Read provider";
+	public static final String ReadAllProviders = "Read all provider";
+	public static final String ReadAllProvidersByProduct = "Read all providers by product";
+	public static final String AssignProduct = "Assign product";
+	public static final String UnassignProduct = "Unassign product";
+	public static final String ProvideProduct = "Provide product";
+	public static final String UpdateProvider = "Update provider";
+	public static final String DeleteProvider = "Delete provider";
+	public static final String ProviderSuccessfullyCreated = "Provider successfully created\n";
+	public static final String ProviderSuccessfullyUpdated = "Provider successfully updated\n";
+	public static final String ProviderSuccessfullyDeactivated = "Provider with id &d successfully deactivated\n";
+	public static final String ExistentProvider = "The provider exists\n";
 	
 	// Sales
 	public static final String SalesTitle = "Sales";
