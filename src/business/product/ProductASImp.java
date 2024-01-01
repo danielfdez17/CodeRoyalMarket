@@ -131,7 +131,13 @@ public class ProductASImp implements ProductAS {
 		try {
 			BusinessException be = new BusinessException();
 			ProviderBO providerBO = em.find(ProviderBO.class, providerId, LockModeType.OPTIMISTIC);
-			if (providerBO == null || !providerBO.isActive()) {
+			if (providerBO == null) {
+				providerId = Errors.NonexistentProvider;
+				throw be;
+			}
+			
+			if (!providerBO.isActive()) {
+				providerId = Errors.InactiveProvider;
 				throw be;
 			}
 			
@@ -144,6 +150,9 @@ public class ProductASImp implements ProductAS {
 		} catch (Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				providerId = Errors.UnexpectedError;
 			}
 			res = new ArrayList<ProductTransfer>();
 		} finally {
@@ -162,6 +171,7 @@ public class ProductASImp implements ProductAS {
 			BusinessException be = new BusinessException();
 			SaleBO saleBO = em.find(SaleBO.class, saleId, LockModeType.OPTIMISTIC);
 			if (saleBO == null) {
+				saleId = Errors.NonexistentSale;
 				throw be;
 			}
 			TypedQuery<SaleLineBO> query = em.createNamedQuery("business.saleLine.SaleLineBO.findBySaleId", SaleLineBO.class);
@@ -176,6 +186,9 @@ public class ProductASImp implements ProductAS {
 		} catch (Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				saleId = Errors.UnexpectedError;
 			}
 			System.out.println(e.getMessage());
 			res = new ArrayList<ProductTransfer>();

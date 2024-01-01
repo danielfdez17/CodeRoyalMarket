@@ -3,6 +3,7 @@ package presentation.controller.commands;
 import presentation.controller.Events;
 import presentation.controller.commands.main.CommandMainGUI;
 import presentation.view.GUIMSG;
+import utilities.Utils;
 
 public class CommandFactoryImp extends CommandFactory {
 	
@@ -18,7 +19,7 @@ public class CommandFactoryImp extends CommandFactory {
 		for (Command c : commands) 
 			if (c.getId() == id)
 				return c;
-		GUIMSG.showMessage("Nonexistent command, add it to the list", FromWhere	, true);
+		GUIMSG.showMessage(Utils.NotConsideredCommand, FromWhere , true);
 		return null;
 	}
 

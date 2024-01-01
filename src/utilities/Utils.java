@@ -17,6 +17,8 @@ public class Utils {
 	public static final String Price = "Price";
 	public static final String WarehouseId = "Warehouse " + Id;
 	public static final String PhoneNumber = "Phone number";
+	public static final String ProviderId = "Provider " + Id;
+	public static final String SaleId = "Sale " + Id;
 	
 	// Clients
 	public static final String ClientsTitle = "Clients";
@@ -26,10 +28,11 @@ public class Utils {
 	public static final String ReadAllClients = "Read all clients";
 	public static final String UpdateClient = "Update client";
 	public static final String DeleteClient = "Delete client";
-	public static final String NonexistentClient = "The client with id %d does not exist";
+	public static final String ActiveClient = "The client is already active";
+	public static final String NonexistentClient = "The client with id %s does not exist";
 	public static final String ClientSuccessfullyCreated = "Client successfully created\n";
 	public static final String ClientSuccessfullyUpdated = "Client successfully updated\n";
-	public static final String ClientSuccessfullyDeactivated = "Client with id &d successfully deactivated";
+	public static final String ClientSuccessfullyDeactivated = "Client with id %s successfully deactivated";
 	public static final String ExistentClient = "The client exists\n";
 	
 	// Products
@@ -44,8 +47,11 @@ public class Utils {
 	public static final String DeleteProduct = "Delete product";
 	public static final String ProductSuccessfullyCreated = "Product successfully created\n";
 	public static final String ProductSuccessfullyUpdated = "Product successfully updated\n";
-	public static final String ProductSuccessfullyDeactivated = "Product with id &d successfully deactivated\n";
+	public static final String ProductSuccessfullyDeactivated = "Product with id %s successfully deactivated\n";
 	public static final String ExistentProduct = "The product exists\n";
+	public static final String ActiveProduct = "The product id already active";
+	public static final String NonexistentProduct = "The product with id %s does not exist";
+	public static final String ProductWithActiveProviders = "The product has active providers";
 	
 	// Providers
 	public static final String ProvidersTitle = "Providers";
@@ -61,8 +67,10 @@ public class Utils {
 	public static final String DeleteProvider = "Delete provider";
 	public static final String ProviderSuccessfullyCreated = "Provider successfully created\n";
 	public static final String ProviderSuccessfullyUpdated = "Provider successfully updated\n";
-	public static final String ProviderSuccessfullyDeactivated = "Provider with id &d successfully deactivated\n";
+	public static final String ProviderSuccessfullyDeactivated = "Provider with id %s successfully deactivated\n";
 	public static final String ExistentProvider = "The provider exists\n";
+	public static final String NonexistentProvider = "The provider with id %s does not exist\n";
+	public static final String InactiveProvider = "The provider is inactive";
 	
 	// Sales
 	public static final String SalesTitle = "Sales";
@@ -76,6 +84,7 @@ public class Utils {
 	public static final String ReturnSale = "Return sale";
 	public static final String ReturnProduct = "Return product";
 	public static final String CloseSale = "Close sale";
+	public static final String NonexistentSale = "The sale with id %s does not exist";
 	
 	// Warehouses
 	public static final String WarehousesTitle = "Warehouses";
@@ -84,6 +93,8 @@ public class Utils {
 	public static final String ReadAllWarehouses = "Read all warehouses";
 	public static final String UpdateWarehouse = "Update warehouse";
 	public static final String DeleteWarehouse = "Delete warehouse";
+	public static final String NonexistentWarehouse = "The warehouse with id %s does not exist";
+	public static final String InactiveWarehouse = "The warehouse with id %s is inactive";
 	
 	// Workers
 	public static final String WorkersTitle = "Workers";
@@ -104,7 +115,8 @@ public class Utils {
 	public static final String RestoreValues = "Restore values";
 	public static final String NotConsideredResponse = "Response not considered";
 	public static final String NotConsideredView = "View not considered";
+	public static final String NotConsideredCommand = "Command not considered, add it to the list";
 	public static final String SyntaxError = "Syntax error";
 	public static final String UnexpectedError = "Unexpected error";
-
+	
 }

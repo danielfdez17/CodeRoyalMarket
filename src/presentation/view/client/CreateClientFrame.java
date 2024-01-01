@@ -136,7 +136,7 @@ public class CreateClientFrame extends Frame {
 		case Errors.SyntaxError:
 			return Utils.SyntaxError;
 		case Errors.ActiveClient:
-			return "The client is already active";
+			return Utils.ActiveClient;
 		case Errors.InactiveClient:
 			return "Inactive client, now client is active";
 		case Errors.UnexpectedError:

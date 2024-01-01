@@ -23,7 +23,7 @@ public class ReadClientFrame extends Frame {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String FromWhere = ReadClientFrame.class.getSimpleName();
-	private static final int ROWS = 3, COLS = 1;
+	private static final int ROWS = 1, COLS = 1;
 	
 	private static ReadClientFrame instance;
 	

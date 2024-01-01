@@ -23,7 +23,7 @@ public class DeleteClientFrame extends Frame {
 	
 	private static final long serialVersionUID = 1L;
 	private static final String FromWhere = DeleteClientFrame.class.getSimpleName();
-	private static final int ROWS = 3, COLS = 1;
+	private static final int ROWS = 1, COLS = 1;
 	
 	private static DeleteClientFrame instance;
 	
@@ -99,7 +99,8 @@ public class DeleteClientFrame extends Frame {
 	public void update(Context context) {
 		switch (context.getEvent()) {
 		case DeleteClientOK:
-			GUIMSG.showMessage(Utils.ClientSuccessfullyDeactivated, FromWhere, false);
+			int id = (int)context.getData();
+			GUIMSG.showMessage(String.format(Utils.ClientSuccessfullyDeactivated, id), FromWhere, false);
 			break;
 		case DeleteClientKO:
 			GUIMSG.showMessage(this.getErrorMsg((int)context.getData()), FromWhere, true);
