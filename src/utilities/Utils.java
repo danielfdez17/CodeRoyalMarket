@@ -66,6 +66,16 @@ public class Utils {
 	
 	// Sales
 	public static final String SalesTitle = "Sales";
+	public static final String OpenSale = "Open sale";
+	public static final String ReadSale = "Read sale";
+	public static final String ReadAllSales = "Read all sales";
+	public static final String ReadAllSalesByClient = "Read all sales by client";
+	public static final String ReadAllSalesByProduct = "Read all sales by product";
+	public static final String AddProduct = "Add product";
+	public static final String RemoveProduct = "Remove product";
+	public static final String ReturnSale = "Return sale";
+	public static final String ReturnProduct = "Return product";
+	public static final String CloseSale = "Close sale";
 	
 	// Warehouses
 	public static final String WarehousesTitle = "Warehouses";

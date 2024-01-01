@@ -4,6 +4,8 @@ public enum Events {
 	
 	MainGUI,
 	
+	
+	// CLIENTS
 	ClientsGUI,
 	
 	CreateClientGUI,
@@ -32,6 +34,8 @@ public enum Events {
 	DeleteClientOK,
 	DeleteClientKO,
 	
+	
+	// PRODUCTS
 	ProductsGUI,
 	
 	CreateProductGUI,
@@ -70,6 +74,7 @@ public enum Events {
 	DeleteProductOK,
 	DeleteProductKO,
 	
+	// PROVIDERS
 	ProvidersGUI,
 
 	CreateProviderGUI,
@@ -117,6 +122,7 @@ public enum Events {
 	DeleteProviderOK,
 	DeleteProviderKO,
 
+	// SALES
 	SalesGUI,
 
 	OpenSaleGUI,
@@ -167,6 +173,7 @@ public enum Events {
 	CLoseSaleOK,
 	CLoseSaleKO,
 
+	// WAREHOUSES
 	WarehousesGUI,
 
 	CreateWarehouseGUI,
@@ -195,6 +202,7 @@ public enum Events {
 	DeleteWarehouseOK,
 	DeleteWarehouseKO,
 
+	// WORKERS
 	WorkersGUI,
 
 	CreateFullTimeWorkerGUI,

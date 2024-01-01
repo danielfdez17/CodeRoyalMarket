@@ -14,7 +14,7 @@ import utilities.Utils;
 public class ProvidersGUIImp extends ProvidersGUI {
 
 	private static final long serialVersionUID = 1L;
-	private static final int ROWS = 9, COLS = 1;
+	private static final int ROWS = 5, COLS = 2;
 	
 	public ProvidersGUIImp() {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -26,7 +26,7 @@ public class ProvidersGUIImp extends ProvidersGUI {
 	}
 	
 	private void initGUI() {
-this.setTitle(Utils.ProvidersTitle);
+		this.setTitle(Utils.ProvidersTitle);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		this.setContentPane(mainPanel);

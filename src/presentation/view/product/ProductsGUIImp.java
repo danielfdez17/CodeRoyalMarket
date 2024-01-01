@@ -17,7 +17,7 @@ import utilities.Utils;
 public class ProductsGUIImp extends ProductsGUI {
 
 	private static final long serialVersionUID = 1L;
-	private static final int ROWS = 7, COLS = 1;
+	private static final int ROWS = 5, COLS = 2;
 	
 	public ProductsGUIImp() {
 		SwingUtilities.invokeLater(new Runnable() {
