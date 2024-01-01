@@ -14,7 +14,7 @@ import utilities.Utils;
 public class ClientGUIImp extends ClientGUI {
 	
 	private static final long serialVersionUID = 1L;
-	private static final int BUTTONS = 5;
+	private static final int ROWS = 5, COLS = 1;
 	
 	public ClientGUIImp() {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -31,11 +31,19 @@ public class ClientGUIImp extends ClientGUI {
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		this.setContentPane(mainPanel);
 		
-		JPanel buttonsPanel = new JPanel(new GridLayout(BUTTONS, 1));
+		JPanel buttonsPanel = new JPanel(new GridLayout(ROWS, COLS));
 		
 		JButton createButton = new JButton(Utils.CreateClient);
 		createButton.addActionListener(l -> {
 			CreateClientFrame.getInstance().setVisible(true);
+		});
+		JButton readButton = new JButton(Utils.ReadClient);
+		readButton.addActionListener(l -> {
+			ReadClientFrame.getInstance().setVisible(true);
+		});
+		JButton readAllButton = new JButton(Utils.ReadAllClients);
+		readAllButton.addActionListener(l -> {
+			ReadAllClientsFrame.getInstance().setVisible(true);
 		});
 		JButton updateButton = new JButton(Utils.UpdateClient);
 		updateButton.addActionListener(l -> {
@@ -48,6 +56,8 @@ public class ClientGUIImp extends ClientGUI {
 		
 		buttonsPanel.add(createButton);
 		buttonsPanel.add(updateButton);
+		buttonsPanel.add(readButton);
+		buttonsPanel.add(readAllButton);
 		buttonsPanel.add(deleteButton);
 		
 		mainPanel.add(buttonsPanel, BorderLayout.CENTER);

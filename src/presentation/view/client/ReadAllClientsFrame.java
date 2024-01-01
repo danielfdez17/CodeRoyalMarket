@@ -28,6 +28,8 @@ public class ReadAllClientsFrame extends Frame {
 	private static final long serialVersionUID = 1L;
 	private static final String FromWhere = ReadAllClientsFrame.class.getSimpleName();
 	
+	private static ReadAllClientsFrame instance;
+	
 	private JTable table;
 	private DefaultTableModel model;
 	
@@ -38,6 +40,11 @@ public class ReadAllClientsFrame extends Frame {
 				initGUI();
 			}
 		});
+	}
+	
+	public static synchronized ReadAllClientsFrame getInstance() {
+		if (instance == null) instance = new ReadAllClientsFrame();
+		return instance;
 	}
 	
 	private void initGUI() {
