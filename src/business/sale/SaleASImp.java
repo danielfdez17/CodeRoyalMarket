@@ -60,7 +60,7 @@ public class SaleASImp implements SaleAS {
 	}
 
 	@Override
-	public List<SaleTransfer> readSales() {
+	public List<SaleTransfer> readAllSales() {
 		List<SaleTransfer> res = new ArrayList<SaleTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<SaleBO> saleQuery = em.createNamedQuery("business.sale.SaleBO.findAll", SaleBO.class);
@@ -74,7 +74,7 @@ public class SaleASImp implements SaleAS {
 	}
 
 	@Override
-	public List<SaleTransfer> readSalesByClient(int clientId) {
+	public List<SaleTransfer> readAllSalesByClient(int clientId) {
 		List<SaleTransfer> res = new ArrayList<SaleTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
@@ -110,7 +110,7 @@ public class SaleASImp implements SaleAS {
 	}
 
 	@Override
-	public List<SaleTransfer> readSalesByProduct(int productId) {
+	public List<SaleTransfer> readAllSalesByProduct(int productId) {
 		List<SaleTransfer> res = new ArrayList<SaleTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();

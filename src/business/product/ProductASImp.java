@@ -111,7 +111,7 @@ public class ProductASImp implements ProductAS {
 	}
 
 	@Override
-	public List<ProductTransfer> readProducts() {
+	public List<ProductTransfer> readAllProducts() {
 		List<ProductTransfer> res = new ArrayList<ProductTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<ProductBO> query = em.createNamedQuery("business.product.ProductBO.findAll", ProductBO.class);
@@ -123,7 +123,7 @@ public class ProductASImp implements ProductAS {
 	}
 
 	@Override
-	public List<ProductTransfer> readProductsByProvider(int providerId) {
+	public List<ProductTransfer> readAllProductsByProvider(int providerId) {
 		List<ProductTransfer> res = new ArrayList<ProductTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();
@@ -153,7 +153,7 @@ public class ProductASImp implements ProductAS {
 	}
 
 	@Override
-	public List<ProductTransfer> readProductsBySale(int saleId) {
+	public List<ProductTransfer> readAllProductsBySale(int saleId) {
 		List<ProductTransfer> res = new ArrayList<ProductTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();

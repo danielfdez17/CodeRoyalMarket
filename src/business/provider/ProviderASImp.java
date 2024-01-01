@@ -97,7 +97,7 @@ public class ProviderASImp implements ProviderAS {
 	}
 
 	@Override
-	public List<ProviderTransfer> readProviders() {
+	public List<ProviderTransfer> readAllProviders() {
 		List<ProviderTransfer> res = new ArrayList<ProviderTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<ProviderBO> query = em.createNamedQuery("business.provider.ProviderBO.findAll", ProviderBO.class);
@@ -109,7 +109,7 @@ public class ProviderASImp implements ProviderAS {
 	}
 
 	@Override
-	public List<ProviderTransfer> readProvidersByProduct(int productId) {
+	public List<ProviderTransfer> readAllProvidersByProduct(int productId) {
 		List<ProviderTransfer> res = new ArrayList<ProviderTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();

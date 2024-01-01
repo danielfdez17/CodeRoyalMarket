@@ -18,11 +18,11 @@ public class ReadAllSalesByClient extends SaleTests {
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);
 		assertTrue(saleId > 0);
-		List<SaleTransfer> res = saleAS.readSalesByClient(clientId);
+		List<SaleTransfer> res = saleAS.readAllSalesByClient(clientId);
 		assertFalse(res.isEmpty());
 	}
 	
 	@Test public void readAllSalesByClientKO() {
-		assertTrue(saleAS.readSalesByClient(clientId).isEmpty());
+		assertTrue(saleAS.readAllSalesByClient(clientId).isEmpty());
 	}
 }

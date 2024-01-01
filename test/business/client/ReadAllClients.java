@@ -14,7 +14,7 @@ public class ReadAllClients extends ClientTests {
 	public void readAllOK() {
 		client = new ClientTransfer(nif + "E", "readClientsOK", balance);
 		clientAS.createClient(client);
-		List<ClientTransfer> res = clientAS.readClients();
+		List<ClientTransfer> res = clientAS.readAllClients();
 		assertNotNull(res);
 		assertFalse(res.isEmpty());
 	}

@@ -6,7 +6,7 @@ public interface WarehouseAS {
 	
 	public int createWarehouse(WarehouseTransfer warehouse);
 	public WarehouseTransfer readWarehouse(int warehouseId);
-	public List<WarehouseTransfer> readWarehouses();
+	public List<WarehouseTransfer> readAllWarehouses();
 	public int updateWarehouse(WarehouseTransfer warehouse);
 	public int deleteWarehouse(int warehouseId);
 	

@@ -13,12 +13,12 @@ public class ReadAllWorkersByWarehouse extends WorkerTests {
 	@Test public void readAllWorkersByWarehouseOK() {
 		String name = "readAllWorkersOK", nif1 = nif + "S", nif2 = nif + "T";
 		this.setASs(name, nif1, nif2);
-		List<WorkerTransfer> res = workerAS.readWorkersByWarehouse(warehouseId);
+		List<WorkerTransfer> res = workerAS.readAllWorkersByWarehouse(warehouseId);
 		assertFalse(res.isEmpty());
 	}
 	
 	@Test public void readAllWorkersByWarehouseKO() {
-		List<WorkerTransfer> res = workerAS.readWorkersByWarehouse(warehouseId);
+		List<WorkerTransfer> res = workerAS.readAllWorkersByWarehouse(warehouseId);
 		assertTrue(res.isEmpty());
 	}
 }

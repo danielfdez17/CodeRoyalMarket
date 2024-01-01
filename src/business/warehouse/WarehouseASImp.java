@@ -95,7 +95,7 @@ public class WarehouseASImp implements WarehouseAS {
 	}
 
 	@Override
-	public List<WarehouseTransfer> readWarehouses() {
+	public List<WarehouseTransfer> readAllWarehouses() {
 		List<WarehouseTransfer> res = new ArrayList<WarehouseTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<WarehouseBO> query = em.createNamedQuery("business.warehouse.WarehouseBO.findAll", WarehouseBO.class);

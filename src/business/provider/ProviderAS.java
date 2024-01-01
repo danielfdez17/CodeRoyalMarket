@@ -8,8 +8,8 @@ public interface ProviderAS {
 	
 	public int createProvider(ProviderTransfer provider);
 	public ProviderTransfer readProvider(int providerId);
-	public List<ProviderTransfer> readProviders();
-	public List<ProviderTransfer> readProvidersByProduct(int productId);
+	public List<ProviderTransfer> readAllProviders();
+	public List<ProviderTransfer> readAllProvidersByProduct(int productId);
 	public int assignProduct(ProviderProductTransfer providerProduct);
 	public int unassignProduct(ProviderProductTransfer providerProduct);
 	public int provideProduct(ProviderProductTransfer providerProduct);

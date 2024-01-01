@@ -10,7 +10,7 @@ public class ReadAllWarehouses extends WarehouseTests {
 	@Test public void readAllOK() {
 		String name = "readAllWarehousesOK";
 		this.setASs(name);
-		assertFalse(warehouseAS.readWarehouses().isEmpty());
+		assertFalse(warehouseAS.readAllWarehouses().isEmpty());
 	}
 	
 //	@Test public void readAllKO() {

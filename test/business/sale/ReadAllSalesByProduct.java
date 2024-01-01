@@ -18,11 +18,11 @@ public class ReadAllSalesByProduct extends SaleTests {
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);
 		assertTrue(saleId > 0);
-		List<SaleTransfer> res = saleAS.readSalesByProduct(productId);
+		List<SaleTransfer> res = saleAS.readAllSalesByProduct(productId);
 		assertFalse(res.isEmpty());
 	}
 	
 	@Test public void readAllSalesByProductKO() {
-		assertTrue(saleAS.readSalesByProduct(productId).isEmpty());
+		assertTrue(saleAS.readAllSalesByProduct(productId).isEmpty());
 	}
 }

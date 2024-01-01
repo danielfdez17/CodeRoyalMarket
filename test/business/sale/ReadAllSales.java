@@ -18,7 +18,7 @@ public class ReadAllSales extends SaleTests {
 		shoppingCart.getLines().add(saleLine);
 		saleId = saleAS.closeSale(shoppingCart);
 		assertTrue(saleId > 0);
-		List<SaleTransfer> res = saleAS.readSales();
+		List<SaleTransfer> res = saleAS.readAllSales();
 		assertFalse(res.isEmpty());
 	}
 	

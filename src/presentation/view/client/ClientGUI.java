@@ -17,7 +17,7 @@ public abstract class ClientGUI extends JFrame {
 
 	public synchronized static ClientGUI getInstance() {
 		if (instance == null) instance = new ClientGUIImp();
-		Controller.getInstance().action(new Context(Events.ReadClients, null));
+		Controller.getInstance().action(new Context(Events.ReadAllClients, null));
 		return instance;
 	}
 	

@@ -185,7 +185,7 @@ public class WorkerASImp implements WorkerAS {
 	}
 
 	@Override
-	public List<WorkerTransfer> readWorkers() {
+	public List<WorkerTransfer> readAllWorkers() {
 		List<WorkerTransfer> res = new ArrayList<WorkerTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		TypedQuery<WorkerBO> query = em.createNamedQuery("business.worker.WorkerBO.findAll", WorkerBO.class);
@@ -197,7 +197,7 @@ public class WorkerASImp implements WorkerAS {
 	}
 
 	@Override
-	public List<WorkerTransfer> readWorkersByWarehouse(int warehouseId) {
+	public List<WorkerTransfer> readAllWorkersByWarehouse(int warehouseId) {
 		List<WorkerTransfer> res = new ArrayList<WorkerTransfer>();
 		EntityManager em = EMFFactory.getInstance().createEntityManager();
 		EntityTransaction et = em.getTransaction();

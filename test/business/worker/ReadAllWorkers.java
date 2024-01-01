@@ -12,7 +12,7 @@ public class ReadAllWorkers extends WorkerTests {
 	@Test public void readAllWorkersOK() {
 		String name = "readAllWorkersOK", nif1 = nif + "Q", nif2 = nif + "R";
 		this.setASs(name, nif1, nif2);
-		List<WorkerTransfer> res = workerAS.readWorkers();
+		List<WorkerTransfer> res = workerAS.readAllWorkers();
 		assertFalse(res.isEmpty());
 	}
 	

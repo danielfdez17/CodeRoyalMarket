@@ -12,14 +12,14 @@ public class CommandReadClients implements Command {
 
 	@Override
 	public Context execute(Object data) {
-		List<ClientTransfer> res = BusinessFactory.getInstance().createClientAS().readClients();
-		if (res.isEmpty()) return new Context(Events.ReadClientsKO, res);
-		return new Context(Events.ReadClientsOK, res);
+		List<ClientTransfer> res = BusinessFactory.getInstance().createClientAS().readAllClients();
+		if (res.isEmpty()) return new Context(Events.ReadAllClientsKO, res);
+		return new Context(Events.ReadAllClientsOK, res);
 	}
 
 	@Override
 	public Events getId() {
-		return Events.ReadClients;
+		return Events.ReadAllClients;
 	}
 
 }

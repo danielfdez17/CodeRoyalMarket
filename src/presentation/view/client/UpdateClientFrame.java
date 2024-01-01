@@ -71,7 +71,7 @@ this.setTitle(Utils.UpdateClient);
 				try {
 					int id = Integer.parseInt(this.idText.getText());
 					this.clearData();
-					Controller.getInstance().action(new Context(Events.ReadForUpdateClient, id));
+					Controller.getInstance().action(new Context(Events.ReadClientForUpdate, id));
 				} catch(NumberFormatException nfe) {
 					GUIMSG.showMessage(Utils.OnlyNumbersFields, FromWhere, true);
 				}
@@ -143,14 +143,14 @@ this.setTitle(Utils.UpdateClient);
 			this.idText.setEditable(true);
 			this.setEditable(false);
 			break;
-		case ReadForUpdateClientOK:
+		case ReadClientForUpdateOK:
 			client = (ClientTransfer)context.getData();
 			GUIMSG.showMessage(Utils.ExistentClient + client.toString(), FromWhere, true);
 			this.restoreData();
 			this.idText.setEditable(false);
 			this.setEditable(true);
 			break;
-		case ReadForUpdateClientKO:
+		case ReadClientForUpdateKO:
 			GUIMSG.showMessage(String.format(Utils.NonexistentClient, (int)context.getData()), FromWhere, true);
 			this.idText.setEditable(true);
 			this.setEditable(false);

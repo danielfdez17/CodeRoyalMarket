@@ -13,7 +13,7 @@ public class ReadAllProducts  extends ProductTests {
 	public void readAllOK() {
 		String name = "readAllProductsOK";
 		setAS(name);
-		List<ProductTransfer> res = productAS.readProducts();
+		List<ProductTransfer> res = productAS.readAllProducts();
 		assertFalse(res.isEmpty());
 	}
 	

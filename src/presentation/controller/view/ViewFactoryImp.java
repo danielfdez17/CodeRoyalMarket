@@ -20,15 +20,15 @@ public class ViewFactoryImp extends ViewFactory {
 			MainGUI.getInstance().setVisible(true); 
 			break;
 			
-		case ClientGUI:
+		case ClientsGUI:
 			ClientGUI.getInstance().setVisible(true);
 			break;
 		case CreateClientOK:
 		case CreateClientKO:
 			CreateClientFrame.getInstance().update(context);
 			break;
-		case ReadClientsOK:
-		case ReadClientsKO:
+		case ReadAllClientsOK:
+		case ReadAllClientsKO:
 			ClientGUI.getInstance().update((List<ClientTransfer>) context.getData());
 			break;
 			

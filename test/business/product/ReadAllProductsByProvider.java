@@ -15,15 +15,15 @@ public class ReadAllProductsByProvider extends ProductTests {
 		String name = "readProductsByProviderOK";
 		this.setAS(name);
 		providerAS.assignProduct(providerProduct);
-		List<ProductTransfer> res = productAS.readProductsByProvider(providerId);
+		List<ProductTransfer> res = productAS.readAllProductsByProvider(providerId);
 		assertFalse(res.isEmpty());
 	}
 	
 	@Test public void readByProviderKO() {
-		List<ProductTransfer> res = productAS.readProductsByProvider(providerId);
+		List<ProductTransfer> res = productAS.readAllProductsByProvider(providerId);
 		assertTrue(res.isEmpty());
 		providerAS.deleteProvider(providerId);
-		res = productAS.readProductsByProvider(providerId);
+		res = productAS.readAllProductsByProvider(providerId);
 		assertTrue(res.isEmpty());
 	}
 }

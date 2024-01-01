@@ -28,7 +28,7 @@ public class ReadAllProductsBySale extends ProductTests {
 	@Test public void readBySaleOK() {
 		String name = "readProductBySaleOK";
 		this.setAS(name, nif + "A");
-		List<ProductTransfer> res = productAS.readProductsBySale(saleId);
+		List<ProductTransfer> res = productAS.readAllProductsBySale(saleId);
 		assertFalse(res.isEmpty());
 	}
 }

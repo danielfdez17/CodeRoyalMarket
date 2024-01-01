@@ -12,7 +12,7 @@ public class ReadAllProviders extends ProviderTests {
 	@Test public void readAllProvidersOK() {
 		String name = "readAllProvidersOK";
 		this.setASs(name);
-		List<ProviderTransfer> res = providerAS.readProviders();
+		List<ProviderTransfer> res = providerAS.readAllProviders();
 		assertFalse(res.isEmpty());
 	}
 	
