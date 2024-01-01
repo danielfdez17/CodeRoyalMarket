@@ -16,4 +16,8 @@ public abstract class Frame extends JFrame {
 
 	public abstract boolean areTextFieldsEmpty();
 	
+	public String toBold(String s) {
+    	return "<html><b>" + s + "</b></html>";
+    }
+	
 }

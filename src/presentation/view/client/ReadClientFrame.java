@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import business.client.ClientTransfer;
 import presentation.controller.Controller;
 import presentation.controller.Events;
 import presentation.controller.view.Context;
@@ -96,26 +97,32 @@ public class ReadClientFrame extends Frame {
 
 	@Override
 	public void update(Context context) {
-		// TODO Auto-generated method stub
-
+		switch (context.getEvent()) {
+		case ReadClientOK:
+			ClientTransfer client = (ClientTransfer)context.getData();
+			GUIMSG.showMessage(Utils.ExistentClient + client.toString(), FromWhere, false);
+			break;
+		case ReadClientKO:
+			break;
+		default:
+			GUIMSG.showMessage(Utils.NotConsideredResponse, FromWhere, true);
+			break;
+		}
 	}
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
+		this.idText.setText("");
 	}
 
 	@Override
 	public String getErrorMsg(int error) {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
 	public boolean areTextFieldsEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.idText.getText().isBlank();
 	}
 
 }

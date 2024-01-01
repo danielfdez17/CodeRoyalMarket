@@ -198,10 +198,6 @@ public class UpdateClientFrame extends Frame {
 				this.balanceText.getText().isBlank();
 	}
 	
-//	public void setClient(ClientTransfer client) {
-//		this.client = client;
-//	}
-	
 	private void restoreData() {
 		this.idText.setText("" + client.getId());
 		this.nameText.setText(client.getName());

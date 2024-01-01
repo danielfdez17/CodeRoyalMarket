@@ -2,26 +2,30 @@ package presentation.view.client;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import business.client.ClientTransfer;
 import presentation.controller.Controller;
 import presentation.controller.Events;
 import presentation.controller.view.Context;
 import presentation.view.Frame;
+import presentation.view.GUIMSG;
 import utilities.Utils;
 
 public class ReadAllClientsFrame extends Frame {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String Headers[] = {};
 	private static final String FromWhere = ReadAllClientsFrame.class.getSimpleName();
 	
 	private JTable table;
@@ -49,7 +53,7 @@ public class ReadAllClientsFrame extends Frame {
     		public boolean isCellEditable(int row, int col) { return false; }
     	};
     	this.model.setColumnCount(0);
-    	for (String s : Headers)
+    	for (String s : Utils.ClientsHeaders)
     		this.model.addColumn(s);
     	
     	// MAIN TABLE
@@ -81,25 +85,43 @@ public class ReadAllClientsFrame extends Frame {
 
 	@Override
 	public void update(Context context) {
-		// TODO Auto-generated method stub
-		
+		switch (context.getEvent()) {
+		case ReadAllClients:
+			this.model.setRowCount(0);
+			@SuppressWarnings("unchecked") List<ClientTransfer> list = (List<ClientTransfer>) context.getData();
+			for (ClientTransfer c : list) {
+				String id = "" + c.getId(),
+						nif = c.getNif(),
+						name = c.getName(),
+						balance = "" + c.getBalance();
+				if (c.isActive()) {
+					id = this.toBold(id);
+					nif = this.toBold(nif);
+					name = this.toBold(name);
+					balance = this.toBold(balance);
+					DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+					renderer.setFont(renderer.getFont().deriveFont(Font.BOLD));
+					table.getColumnModel().getColumn(1).setCellRenderer(renderer);
+				}
+				this.model.addRow(new Object[] {id, nif, name, balance});
+			}
+			break;
+		default:
+			GUIMSG.showMessage(Utils.NotConsideredResponse, FromWhere, true);
+			break;
+		}
 	}
 
 	@Override
-	public void clearData() {
-		// TODO Auto-generated method stub
-
-	}
+	public void clearData() {}
 
 	@Override
 	public String getErrorMsg(int error) {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
 	public boolean areTextFieldsEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

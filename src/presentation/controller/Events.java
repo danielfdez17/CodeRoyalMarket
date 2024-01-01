@@ -18,8 +18,6 @@ public enum Events {
 
 	ReadAllClientsGUI,
 	ReadAllClients,
-	ReadAllClientsOK,
-	ReadAllClientsKO,
 
 	UpdateClientGUI,
 	UpdateClient,
@@ -48,8 +46,6 @@ public enum Events {
 	
 	ReadAllProductsGUI,
 	ReadAllProducts,
-	ReadAllProductsOK,
-	ReadAllProductsKO,
 	
 	ReadAllProductsByProviderGUI,
 	ReadAllProductsByProvider,
@@ -88,8 +84,6 @@ public enum Events {
 
 	ReadAllProvidersGUI,
 	ReadAllProviders,
-	ReadAllProvidersOK,
-	ReadAllProvidersKO,
 
 	ReadAllProvidersByProductGUI,
 	ReadAllProvidersByProduct,
@@ -137,8 +131,6 @@ public enum Events {
 
 	ReadAllSalesGUI,
 	ReadAllSales,
-	ReadAllSalesOK,
-	ReadAllSalesKO,
 	
 	ReadAllSalesByClientGUI,
 	ReadAllSalesByClient,
@@ -189,8 +181,6 @@ public enum Events {
 
 	ReadAllWarehousesGUI,
 	ReadAllWarehouses,
-	ReadAllWarehousesOK,
-	ReadAllWarehousesKO,
 
 	UpdateWarehouseGUI,
 	UpdateWarehouse,
@@ -224,8 +214,6 @@ public enum Events {
 
 	ReadAllWorkersGUI,
 	ReadAllWorkers,
-	ReadAllWorkersOK,
-	ReadAllWorkersKO,
 
 	ReadAllWorkersByWarehouseGUI,
 	ReadAllWorkersByWarehouse,

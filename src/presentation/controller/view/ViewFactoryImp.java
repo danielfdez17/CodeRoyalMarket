@@ -6,7 +6,7 @@ import utilities.Utils;
 
 public class ViewFactoryImp extends ViewFactory {
 	
-	private static final String FromWhere = "ViewFactory.createView()";
+	private static final String FromWhere = ViewFactoryImp.class.getSimpleName();
 
 	@Override
 	public void createView(Context context) {

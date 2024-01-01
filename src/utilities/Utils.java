@@ -8,8 +8,15 @@ public class Utils {
 	// toString()
 	public static final String JUMP = "\n";
 	
+	// Fields names
+	public static final String Id = "ID";
+	public static final String Name = "Name";
+	public static final String Nif = "NIF";
+	public static final String Balance = "Balance";
+	
 	// Clients
 	public static final String ClientsTitle = "Clients";
+	public static final String ClientsHeaders[] = {Id, Nif, Name, Balance};
 	public static final String CreateClient = "Create client";
 	public static final String ReadAllClients = "Read all clients";
 	public static final String ReadClient = "Read client";
@@ -19,7 +26,7 @@ public class Utils {
 	public static final String ClientSuccessfullyCreated = "Client successfully created\n";
 	public static final String ClientSuccessfullyUpdated = "Client successfully updated\n";
 	public static final String ClientSuccessfullyDeactivated = "Client with id &d successfully deactivated";
-	public static final String ExistentClient = "The client exists";
+	public static final String ExistentClient = "The client exists\n";
 	
 	// Products
 	public static final String ProductsTitle = "Products";
@@ -36,11 +43,6 @@ public class Utils {
 	// Workers
 	public static final String WorkersTitle = "Workers";
 	
-	// Fields names
-	public static final String Id = "ID";
-	public static final String Name = "Name";
-	public static final String Nif = "NIF";
-	public static final String Balance = "Balance";
 	
 	// General 
 	public static final String OnlyNumbersFields = "There are textfields that only require numbers";

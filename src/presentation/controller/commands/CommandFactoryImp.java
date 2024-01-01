@@ -1,18 +1,16 @@
 package presentation.controller.commands;
 
 import presentation.controller.Events;
-import presentation.controller.commands.client.CommandCreateClient;
-import presentation.controller.commands.client.CommandReadClients;
 import presentation.controller.commands.main.CommandMainGUI;
 import presentation.view.GUIMSG;
 
 public class CommandFactoryImp extends CommandFactory {
 	
+	private static final String FromWhere = CommandFactoryImp.class.getSimpleName();
+	
 	private static Command commands[] = {
 		new CommandMainGUI(),
 		
-		new CommandCreateClient(),
-		new CommandReadClients(),
 	};
 
 	@Override
@@ -20,7 +18,7 @@ public class CommandFactoryImp extends CommandFactory {
 		for (Command c : commands) 
 			if (c.getId() == id)
 				return c;
-		GUIMSG.showMessage("Nonexistent command, add it to the list", "CommandFactoryImp", true);
+		GUIMSG.showMessage("Nonexistent command, add it to the list", FromWhere	, true);
 		return null;
 	}
 
