@@ -5,8 +5,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import business.client.ClientTransfer;
 import presentation.controller.Controller;
@@ -16,13 +18,12 @@ import presentation.view.Frame;
 import presentation.view.GUIMSG;
 import utilities.Errors;
 import utilities.Utils;
-import utilities.gui.Button;
 import utilities.gui.FieldPanel;
 
 public class CreateClientFrame extends Frame {
 
 	private static final long serialVersionUID = 1L;
-	private static final String FromWhere = "CreateClientFrame";
+	private static final String FromWhere = CreateClientFrame.class.getSimpleName();
 	private static final int ROWS = 3, COLS = 1;
 	
 	private static CreateClientFrame instance;
@@ -30,7 +31,12 @@ public class CreateClientFrame extends Frame {
 	private JTextField nameText, nifText, balanceText;
 	
 	private CreateClientFrame() {
-		this.initGUI();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				initGUI();
+			}
+		});
 	}
 	
 	public synchronized static CreateClientFrame getInstance() {
@@ -58,8 +64,8 @@ public class CreateClientFrame extends Frame {
 		this.balanceText = balancePanel.getJTextField();
 		createPanel.add(balancePanel.getJPanel());
 		
-		Button createButton = new Button(Utils.CreateClient);
-		createButton.getJButton().addActionListener(l -> {
+		JButton createButton = new JButton(Utils.CreateClient);
+		createButton.addActionListener(l -> {
 			if (!this.areTextFieldsEmpty()) {
 				try {
 					String name = this.nameText.getText(),
@@ -76,14 +82,14 @@ public class CreateClientFrame extends Frame {
 				GUIMSG.showMessage(Utils.SomeTextFieldsAreEmpty, FromWhere, true);
 			}
 		});
-		Button emptyButton = new Button(Utils.EmptyTextFields);
-		emptyButton.getJButton().addActionListener(l -> {
+		JButton emptyButton = new JButton(Utils.EmptyTextFields);
+		emptyButton.addActionListener(l -> {
 			this.clearData();
 		});
 		
 		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.add(createButton.getJButton());
-		buttonsPanel.add(emptyButton.getJButton());
+		buttonsPanel.add(createButton);
+		buttonsPanel.add(emptyButton);
 		
 		mainPanel.add(createPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.PAGE_END);

@@ -15,21 +15,20 @@ import presentation.controller.Events;
 import presentation.controller.view.Context;
 import presentation.view.Frame;
 import presentation.view.GUIMSG;
-import utilities.Errors;
 import utilities.Utils;
 import utilities.gui.FieldPanel;
 
-public class DeleteClientFrame extends Frame {
+public class ReadClientFrame extends Frame {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String FromWhere = DeleteClientFrame.class.getSimpleName();
+	private static final String FromWhere = ReadClientFrame.class.getSimpleName();
 	private static final int ROWS = 3, COLS = 1;
 	
-	private static DeleteClientFrame instance;
+	private static ReadClientFrame instance;
 	
 	private JTextField idText;
 	
-	private DeleteClientFrame() {
+	public ReadClientFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -38,13 +37,13 @@ public class DeleteClientFrame extends Frame {
 		});
 	}
 	
-	public static synchronized DeleteClientFrame getInstance() {
-		if (instance == null) instance = new DeleteClientFrame();
+	public static synchronized ReadClientFrame getInstance() {
+		if (instance == null) instance = new ReadClientFrame();
 		return instance;
 	}
-	
+
 	private void initGUI() {
-		this.setTitle(Utils.DeleteClient);
+		this.setTitle(Utils.ReadClient);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		this.setContentPane(mainPanel);
@@ -55,14 +54,14 @@ public class DeleteClientFrame extends Frame {
 		this.idText = idPanel.getJTextField();
 		deletePanel.add(idPanel.getJPanel());
 		
-		JButton deleteButton = new JButton(Utils.DeleteClient);
-		deleteButton.addActionListener(l -> {
+		JButton readButton = new JButton(Utils.DeleteClient);
+		readButton.addActionListener(l -> {
 			if (!this.areTextFieldsEmpty()) {
 				try {
 					int id = Integer.parseInt(this.idText.getText());
 					this.clearData();
 					this.setVisible(false);
-					Controller.getInstance().action(new Context(Events.DeleteClient, id));
+					Controller.getInstance().action(new Context(Events.ReadClient, id));
 				} catch(NumberFormatException nfe) {
 					GUIMSG.showMessage(Utils.OnlyNumbersFields, FromWhere, true);
 				}
@@ -78,7 +77,7 @@ public class DeleteClientFrame extends Frame {
 		});
 		
 		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.add(deleteButton);
+		buttonsPanel.add(readButton);
 		buttonsPanel.add(emptyButton);
 		
 		mainPanel.add(deletePanel, BorderLayout.CENTER);
@@ -97,43 +96,26 @@ public class DeleteClientFrame extends Frame {
 
 	@Override
 	public void update(Context context) {
-		switch (context.getEvent()) {
-		case DeleteClientOK:
-			GUIMSG.showMessage(Utils.ClientSuccessfullyDeactivated, FromWhere, false);
-			break;
-		case DeleteClientKO:
-			GUIMSG.showMessage(this.getErrorMsg((int)context.getData()), FromWhere, true);
-			break;
-		default:
-			GUIMSG.showMessage(Utils.NotConsideredResponse, FromWhere, true);
-			break;
-		}
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void clearData() {
-		this.idText.setText("");
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public String getErrorMsg(int error) {
-		switch (error) {
-		case Errors.SyntaxError:
-			return Utils.SyntaxError;
-		case Errors.NonexistentClient:
-			return Utils.NonexistentClient;
-		case Errors.InactiveClient:
-			return "The client is already inactive";
-		case Errors.UnexpectedError:
-			return Utils.UnexpectedError;
-		default:
-			return Utils.NotConsideredResponse;
-		}
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public boolean areTextFieldsEmpty() {
-		return this.idText.getText().isBlank();
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

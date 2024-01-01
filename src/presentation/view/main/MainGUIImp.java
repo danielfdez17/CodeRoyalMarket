@@ -5,11 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import presentation.view.client.ClientGUI;
 import utilities.Utils;
-import utilities.gui.Button;
 
 public class MainGUIImp extends MainGUI {
 	
@@ -17,7 +18,12 @@ public class MainGUIImp extends MainGUI {
 	private static final int ROWS = 6, COLS = 1;
 	
 	public MainGUIImp() {
-		this.initGUI();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				initGUI();
+			}
+		});
 	}
 	
 	private void initGUI() {
@@ -28,41 +34,41 @@ public class MainGUIImp extends MainGUI {
 		
 		JPanel buttonsPanel = new JPanel(new GridLayout(ROWS, COLS));
 		
-		Button clientsButton = new Button(Utils.ClientsTitle);
-		clientsButton.getJButton().addActionListener(l -> {
+		JButton clientsButton = new JButton(Utils.ClientsTitle);
+		clientsButton.addActionListener(l -> {
 			ClientGUI.getInstance().setVisible(true);
 		});
-		buttonsPanel.add(clientsButton.getJButton());
+		buttonsPanel.add(clientsButton);
 		
-		Button productsButton = new Button(Utils.ProductsTitle);
-		productsButton.getJButton().addActionListener(l -> {
+		JButton productsButton = new JButton(Utils.ProductsTitle);
+		productsButton.addActionListener(l -> {
 			
 		});
-		buttonsPanel.add(productsButton.getJButton());
+		buttonsPanel.add(productsButton);
 		
-		Button providersButton = new Button(Utils.ProvidersTitle);
-		providersButton.getJButton().addActionListener(l -> {
+		JButton providersButton = new JButton(Utils.ProvidersTitle);
+		providersButton.addActionListener(l -> {
 			
 		});
-		buttonsPanel.add(providersButton.getJButton());
+		buttonsPanel.add(providersButton);
 		
-		Button salesButton = new Button(Utils.SalesTitle);
-		salesButton.getJButton().addActionListener(l -> {
+		JButton salesButton = new JButton(Utils.SalesTitle);
+		salesButton.addActionListener(l -> {
 			
 		});
-		buttonsPanel.add(salesButton.getJButton());
+		buttonsPanel.add(salesButton);
 		
-		Button warehousesButton = new Button(Utils.WarehousesTitle);
-		warehousesButton.getJButton().addActionListener(l -> {
+		JButton warehousesButton = new JButton(Utils.WarehousesTitle);
+		warehousesButton.addActionListener(l -> {
 			
 		});
-		buttonsPanel.add(warehousesButton.getJButton());
+		buttonsPanel.add(warehousesButton);
 		
-		Button workersButton = new Button(Utils.WorkersTitle);
-		workersButton.getJButton().addActionListener(l -> {
+		JButton workersButton = new JButton(Utils.WorkersTitle);
+		workersButton.addActionListener(l -> {
 			
 		});
-		buttonsPanel.add(workersButton.getJButton());
+		buttonsPanel.add(workersButton);
 		
 		mainPanel.add(buttonsPanel, BorderLayout.CENTER);
 		

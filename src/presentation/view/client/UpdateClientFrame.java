@@ -1,12 +1,15 @@
 package presentation.view.client;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import business.client.ClientTransfer;
 import presentation.controller.Controller;
@@ -16,13 +19,12 @@ import presentation.view.Frame;
 import presentation.view.GUIMSG;
 import utilities.Errors;
 import utilities.Utils;
-import utilities.gui.Button;
 import utilities.gui.FieldPanel;
 
 public class UpdateClientFrame extends Frame {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String FromWhere = "UpdateClientFrame";
+	private static final String FromWhere = UpdateClientFrame.class.getSimpleName();
 	private static final int ROWS = 4, COLS = 1;
 	
 	private static UpdateClientFrame instance;
@@ -31,7 +33,12 @@ public class UpdateClientFrame extends Frame {
 	private ClientTransfer client;
 	
 	private UpdateClientFrame() {
-		this.initPanel();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				initGUI();
+			}
+		});
 	}
 	
 	public static synchronized UpdateClientFrame getInstance() {
@@ -39,8 +46,8 @@ public class UpdateClientFrame extends Frame {
 		return instance;
 	}
 	
-	private void initPanel() {
-this.setTitle(Utils.UpdateClient);
+	private void initGUI() {
+		this.setTitle(Utils.UpdateClient);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		this.setContentPane(mainPanel);
@@ -65,8 +72,8 @@ this.setTitle(Utils.UpdateClient);
 		
 		this.setEditable(false);
 		
-		Button findButton = new Button(Utils.ReadClient);
-		findButton.getJButton().addActionListener(l -> {
+		JButton findButton = new JButton(Utils.ReadClient);
+		findButton.addActionListener(l -> {
 			if (!this.idText.getText().isBlank()) {
 				try {
 					int id = Integer.parseInt(this.idText.getText());
@@ -82,7 +89,7 @@ this.setTitle(Utils.UpdateClient);
 		});
 		
 		Button createButton = new Button(Utils.CreateClient);
-		createButton.getJButton().addActionListener(l -> {
+		createButton.addActionListener(l -> {
 			if (!this.areTextFieldsEmpty()) {
 				try {
 					int id = Integer.parseInt(this.idText.getText());
@@ -102,19 +109,19 @@ this.setTitle(Utils.UpdateClient);
 			}
 		});
 		Button emptyButton = new Button(Utils.EmptyTextFields);
-		emptyButton.getJButton().addActionListener(l -> {
+		emptyButton.addActionListener(l -> {
 			this.clearData();
 		});
 		
 		Button restoreButton = new Button(Utils.RestoreValues);
-		restoreButton.getJButton().addActionListener(l -> {
+		restoreButton.addActionListener(l -> {
 			this.restoreData();
 		});
 		
 		JPanel buttonsPanel = new JPanel();
-		buttonsPanel.add(createButton.getJButton());
-		buttonsPanel.add(restoreButton.getJButton());
-		buttonsPanel.add(emptyButton.getJButton());
+		buttonsPanel.add(createButton);
+		buttonsPanel.add(restoreButton);
+		buttonsPanel.add(emptyButton);
 		
 		mainPanel.add(createPanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.PAGE_END);

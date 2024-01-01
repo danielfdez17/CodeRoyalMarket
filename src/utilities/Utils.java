@@ -11,7 +11,8 @@ public class Utils {
 	// Clients
 	public static final String ClientsTitle = "Clients";
 	public static final String CreateClient = "Create client";
-	public static final String ReadClient = "Find client";
+	public static final String ReadAllClients = "Read all clients";
+	public static final String ReadClient = "Read client";
 	public static final String UpdateClient = "Update client";
 	public static final String DeleteClient = "Delete client";
 	public static final String NonexistentClient = "The client with id %d does not exist";
