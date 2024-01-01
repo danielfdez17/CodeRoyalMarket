@@ -79,6 +79,11 @@ public class Utils {
 	
 	// Warehouses
 	public static final String WarehousesTitle = "Warehouses";
+	public static final String CreateWarehouse = "Create warehouse";
+	public static final String ReadWarehouse = "Read warehouse";
+	public static final String ReadAllWarehouses = "Read all warehouses";
+	public static final String UpdateWarehouse = "Update warehouse";
+	public static final String DeleteWarehouse = "Delete warehouse";
 	
 	// Workers
 	public static final String WorkersTitle = "Workers";
