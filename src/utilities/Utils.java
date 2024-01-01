@@ -87,6 +87,14 @@ public class Utils {
 	
 	// Workers
 	public static final String WorkersTitle = "Workers";
+	public static final String CreateFullTimeWorker = "Create full time worker";
+	public static final String CreatePartTimeWorker = "Create part time worker";
+	public static final String ReadWorker = "Read worker";
+	public static final String ReadAllWorkers = "Read all workers";
+	public static final String ReadAllWorkersByWarehouse = "Read all workers by warehouse";
+	public static final String UpdateFullTimeWorker = "Udpate full time worker";
+	public static final String UpdatePartTimeWorker = "Update part time worker";
+	public static final String DeleteWorker = "Delete worker";
 	
 	
 	// General 
