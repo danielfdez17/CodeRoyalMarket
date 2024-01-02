@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import business.provider.ProviderTransfer;
 import business.providerProduct.ProviderProductTransfer;
 import presentation.controller.Controller;
 import presentation.controller.Events;

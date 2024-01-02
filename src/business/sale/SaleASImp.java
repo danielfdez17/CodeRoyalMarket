@@ -30,6 +30,7 @@ public class SaleASImp implements SaleAS {
 			SaleBO saleBO = em.find(SaleBO.class, saleId, LockModeType.OPTIMISTIC);
 			
 			if (saleBO == null) {
+				saleId = Errors.NonexistentSale;
 				throw be;
 			}
 			
@@ -50,6 +51,9 @@ public class SaleASImp implements SaleAS {
 		} catch (Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				saleId = Errors.UnexpectedError;
 			}
 			System.out.println(e.getMessage());
 			res = null;
@@ -84,6 +88,7 @@ public class SaleASImp implements SaleAS {
 			ClientBO clientBO = em.find(ClientBO.class, clientId, LockModeType.OPTIMISTIC);
 			
 			if (clientBO == null) {
+				clientId = Errors.NonexistentClient;
 				throw be;
 			}
 			
@@ -101,6 +106,9 @@ public class SaleASImp implements SaleAS {
 		} catch (Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				clientId = Errors.UnexpectedError;
 			}
 			res = new ArrayList<SaleTransfer>();
 		} finally {

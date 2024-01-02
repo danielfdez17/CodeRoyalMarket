@@ -16,11 +16,14 @@ public class Utils {
 	public static final String Stock = "Stock";
 	public static final String Price = "Price";
 	public static final String Amount = "Amount";
+	public static final String Cost = "Cost";
+	public static final String Date = "Date";
 	public static final String WarehouseId = "Warehouse " + Id;
 	public static final String PhoneNumber = "Phone number";
 	public static final String ProviderId = "Provider " + Id;
 	public static final String ProductId = "Product " + Id;
 	public static final String SaleId = "Sale " + Id;
+	public static final String ClientId = "Client " + Id;
 	
 	// Clients
 	public static final String ClientsTitle = "Clients";
@@ -84,6 +87,7 @@ public class Utils {
 	
 	// Sales
 	public static final String SalesTitle = "Sales";
+	public static final String SalesHeaders[] = {Id, Cost, Date, ClientId};
 	public static final String OpenSale = "Open sale";
 	public static final String ReadSale = "Read sale";
 	public static final String ReadAllSales = "Read all sales";
@@ -95,6 +99,7 @@ public class Utils {
 	public static final String ReturnProduct = "Return product";
 	public static final String CloseSale = "Close sale";
 	public static final String NonexistentSale = "The sale with id %s does not exist";
+	public static final String ExistentSale = "The sale exists";
 	
 	// Warehouses
 	public static final String WarehousesTitle = "Warehouses";
