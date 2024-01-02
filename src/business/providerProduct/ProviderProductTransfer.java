@@ -41,8 +41,9 @@ public class ProviderProductTransfer {
 
 	@Override
 	public String toString() {
-		return "Provider ID: " + this.providerId + Utils.JUMP +
-				"Product ID: " + this.productId + Utils.JUMP;
+		return Utils.ProviderId + this.providerId + Utils.JUMP +
+				Utils.ProductId + this.productId + Utils.JUMP +
+				(this.amount != 0 ? Utils.Amount + this.amount + Utils.JUMP : "");
 	}
 	
 }

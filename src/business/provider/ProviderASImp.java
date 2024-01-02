@@ -79,6 +79,7 @@ public class ProviderASImp implements ProviderAS {
 			ProviderBO providerBO = em.find(ProviderBO.class, providerId, LockModeType.OPTIMISTIC);
 			
 			if (providerBO == null) {
+				providerId = Errors.NonexistentProvider;
 				throw be;
 			}
 			
@@ -88,6 +89,9 @@ public class ProviderASImp implements ProviderAS {
 		} catch (Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				providerId = Errors.UnexpectedError;
 			}
 			res = null;
 		} finally {
@@ -119,7 +123,13 @@ public class ProviderASImp implements ProviderAS {
 			BusinessException be = new BusinessException();
 			ProductBO productBO = em.find(ProductBO.class, productId, LockModeType.OPTIMISTIC);
 			
-			if (productBO == null || !productBO.isActive()) {
+			if (productBO == null) {
+				productId = Errors.NonexistentProduct;
+				throw be;
+			}
+			
+			if (!productBO.isActive()) {
+				productId = Errors.InactiveProduct;
 				throw be;
 			}
 			
@@ -133,6 +143,9 @@ public class ProviderASImp implements ProviderAS {
 		} catch(Exception e) {
 			if (e instanceof BusinessException) {
 				et.rollback();
+			}
+			else {
+				productId = Errors.UnexpectedError;
 			}
 			res = new ArrayList<ProviderTransfer>();
 		} finally {
@@ -358,7 +371,7 @@ public class ProviderASImp implements ProviderAS {
 			boolean providerWithActiveProducts = false;
 			
 			for (ProductBO p : providerBO.getProducts()) {
-				em.lock(p, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+				em.lock(p, LockModeType.OPTIMISTIC);
 				if (p.isActive()) {
 					providerWithActiveProducts = true;
 					break;

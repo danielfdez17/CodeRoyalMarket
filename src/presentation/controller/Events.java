@@ -119,6 +119,7 @@ public enum Events {
 	ReadProviderForUpdateKO,
 
 	DeleteProviderGUI,
+	DeleteProvider,
 	DeleteProviderOK,
 	DeleteProviderKO,
 

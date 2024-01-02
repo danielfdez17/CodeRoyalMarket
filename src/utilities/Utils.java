@@ -15,9 +15,11 @@ public class Utils {
 	public static final String Balance = "Balance";
 	public static final String Stock = "Stock";
 	public static final String Price = "Price";
+	public static final String Amount = "Amount";
 	public static final String WarehouseId = "Warehouse " + Id;
 	public static final String PhoneNumber = "Phone number";
 	public static final String ProviderId = "Provider " + Id;
+	public static final String ProductId = "Product " + Id;
 	public static final String SaleId = "Sale " + Id;
 	
 	// Clients
@@ -50,6 +52,7 @@ public class Utils {
 	public static final String ProductSuccessfullyDeactivated = "Product with id %s successfully deactivated\n";
 	public static final String ExistentProduct = "The product exists\n";
 	public static final String ActiveProduct = "The product id already active";
+	public static final String InactiveProduct = "The product with id %s is inactive";
 	public static final String NonexistentProduct = "The product with id %s does not exist";
 	public static final String ProductWithActiveProviders = "The product has active providers";
 	
@@ -70,7 +73,14 @@ public class Utils {
 	public static final String ProviderSuccessfullyDeactivated = "Provider with id %s successfully deactivated\n";
 	public static final String ExistentProvider = "The provider exists\n";
 	public static final String NonexistentProvider = "The provider with id %s does not exist\n";
-	public static final String InactiveProvider = "The provider is inactive";
+	public static final String ActiveProvider = "The provider is already active";
+	public static final String InactiveProvider = "The provider with id %s is inactive";
+	public static final String ProductAssigned = "The provider with id %s has assigned the product with id %s";
+	public static final String ProductSuccessfullyAssigned = "Product successfully assigned\n";
+	public static final String ProductSuccessfullyUnassigned = "Product successfully unassigned\n";
+	public static final String ProductSuccessfullyProvided = "Product successfully provided\n";
+	public static final String ProductAlreadyUnassigned = "Product already unassigned\n";
+	public static final String ActiveProductsAssigned = "The provider with id %a has linked products assigned";
 	
 	// Sales
 	public static final String SalesTitle = "Sales";

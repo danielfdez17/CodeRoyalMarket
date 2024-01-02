@@ -9,9 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import presentation.view.client.CreateClientFrame;
-import presentation.view.client.DeleteClientFrame;
-import presentation.view.client.UpdateClientFrame;
 import utilities.Utils;
 
 public class ProductsGUIImp extends ProductsGUI {
@@ -29,7 +26,7 @@ public class ProductsGUIImp extends ProductsGUI {
 	}
 	
 	private void initGUI() {
-this.setTitle(Utils.ProductsTitle);
+		this.setTitle(Utils.ProductsTitle);
 		
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		this.setContentPane(mainPanel);
