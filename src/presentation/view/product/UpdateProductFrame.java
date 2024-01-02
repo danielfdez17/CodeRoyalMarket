@@ -31,6 +31,7 @@ public class UpdateProductFrame extends Frame {
 						nameText,
 						priceText,
 						warehouseIdText;
+	private ProductTransfer product;
 	
 	public UpdateProductFrame() {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -70,7 +71,22 @@ public class UpdateProductFrame extends Frame {
 		this.warehouseIdText = warehouseIdPanel.getJTextField();
 		updatePanel.add(warehouseIdPanel.getJPanel());
 		
-		JButton updateButton = new JButton(Utils.UpdateClient);
+		JButton searchButton = new JButton(Utils.ReadProduct);
+		searchButton.addActionListener(l -> {
+			if (!this.idText.getText().isBlank()) {
+				try {
+					int id = Integer.parseInt(this.idText.getText());
+					Controller.getInstance().action(new Context(Events.ReadProductForUpdate, id));
+				} catch(NumberFormatException nfe) {
+					GUIMSG.showMessage(Utils.OnlyNumbersFields, FromWhere, true);
+				}
+			}
+			else {
+				GUIMSG.showMessage(Utils.SomeTextFieldsAreEmpty, FromWhere, true);
+			}
+		});
+		
+		JButton updateButton = new JButton(Utils.UpdateProduct);
 		updateButton.addActionListener(l -> {
 			if (!this.areTextFieldsEmpty()) {
 				try {
@@ -95,10 +111,16 @@ public class UpdateProductFrame extends Frame {
 		emptyButton.addActionListener(l -> {
 			this.clearData();
 		});
+		JButton restoreButton = new JButton(Utils.RestoreValues);
+		restoreButton.addActionListener(l -> {
+			this.restoreData();
+		});
 		
 		JPanel buttonsPanel = new JPanel();
+		buttonsPanel.add(searchButton);
 		buttonsPanel.add(updateButton);
 		buttonsPanel.add(emptyButton);
+		buttonsPanel.add(restoreButton);
 		
 		mainPanel.add(updatePanel, BorderLayout.CENTER);
 		mainPanel.add(buttonsPanel, BorderLayout.PAGE_END);
@@ -118,8 +140,8 @@ public class UpdateProductFrame extends Frame {
 	public void update(Context context) {
 		switch (context.getEvent()) {
 		case UpdateProductOK:
-			ProductTransfer product = (ProductTransfer)context.getData();
-			GUIMSG.showMessage(Utils.ProductSuccessfullyUpdated + product.toString(), FromWhere, false);
+			this.product = (ProductTransfer)context.getData();
+			GUIMSG.showMessage(Utils.ProductSuccessfullyUpdated + this.product.toString(), FromWhere, false);
 			break;
 		case UpdateProductKO:
 			GUIMSG.showMessage(this.getErrorMsg((int)context.getData()), FromWhere, true);
@@ -137,6 +159,15 @@ public class UpdateProductFrame extends Frame {
 		this.priceText.setText(t);
 		this.warehouseIdText.setText(t);
 	}
+	
+	private void restoreData() {
+		if (this.product != null) {
+			this.idText.setText("" + this.product.getId());
+			this.nameText.setText(this.product.getName());
+			this.priceText.setText("" + this.product.getPrice());
+			this.warehouseIdText.setText("" + this.product.getWarehouseId());
+		}
+	}
 
 	@Override
 	public String getErrorMsg(int error) {
@@ -144,13 +175,11 @@ public class UpdateProductFrame extends Frame {
 		case Errors.SyntaxError:
 			return Utils.SyntaxError;
 		case Errors.NonexistentWarehouse:
-			return Utils.NonexistentWarehouse;
+			return String.format(Utils.NonexistentWarehouse, this.product.getWarehouseId());
 		case Errors.InactiveWarehouse:
-			return Utils.InactiveWarehouse;
-		case Errors.ActiveProduct:
-			return Utils.ActiveProduct;
-		case Errors.InactiveProduct:
-			return "Inactive product, now is active";
+			return String.format(Utils.InactiveWarehouse, this.product.getWarehouseId());
+		case Errors.NonexistentProduct:
+			return String.format(Utils.NonexistentProduct, this.product.getId());
 		case Errors.UnexpectedError:
 			return Utils.UnexpectedError;
 		default:
@@ -160,7 +189,8 @@ public class UpdateProductFrame extends Frame {
 
 	@Override
 	public boolean areTextFieldsEmpty() {
-		return this.nameText.getText().isBlank() &&
+		return this.idText.getText().isBlank() && 
+				this.nameText.getText().isBlank() &&
 				this.priceText.getText().isBlank() &&
 				this.warehouseIdText.getText().isBlank();
 	}
