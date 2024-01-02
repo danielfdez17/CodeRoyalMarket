@@ -1,7 +1,6 @@
 package presentation.controller.commands.client;
 
 import business.businessFactory.BusinessFactory;
-import business.client.ClientTransfer;
 import presentation.controller.Events;
 import presentation.controller.commands.Command;
 import presentation.controller.view.Context;
